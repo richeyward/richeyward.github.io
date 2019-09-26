@@ -1,0 +1,29 @@
+---
+layout: default
+title: About
+---
+
+<div class="home">
+  <div class="page-heading">
+    <h2 class="page-title">About me</h2>
+  </div>
+  <div class="about">
+    <div class="container-face">
+      <img class="face" src="{{site.baseurl}}/assets/img/{% if site.pic %}{{ site.pic }}{% else %}github.jpg{% endif %}" alt="">
+    </div>
+    <h2 class="tagline">{% if site.tagline %}{{site.tagline}}{% else %}{% endif %}</h2>
+    <div class="about-description">
+      <p>{% if site.about-description %}{{site.about-description}}{% else %}{% endif %}</p>
+    </div>
+    <div class="contact-contaiver">
+      <ul class="contact-list">
+          <li class="email"><a href="mailto:{{site.email}}"><i class="fa fa-envelope-o"></i> {{site.email}}</a></li>
+          <li class="phone"><a href="tel:{{site.phone}}"><i class="fa fa-phone"></i> {{site.phone}}</a></li>
+          <li class="website"><a href="http://{{site.website}}" target="_blank"><i class="fa fa-globe"></i> {{site.website}}</a></li>
+          <li class="linkedin"><a href="https://in.linkedin.com/in/{{site.linkedin}}" target="_blank"><i class="fa fa-linkedin"></i> linkedin.com/in/{{site.linkedin}}</a></li>
+          <li class="github"><a href="http://github.com/{{site.github}}" target="_blank"><i class="fa fa-github"></i> github.com/{{site.github}}</a></li>
+          <li class="twitter"><a href="https://twitter.com/{{site.twitter}}" target="_blank"><i class="fa fa-twitter"></i> {{site.twitter}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

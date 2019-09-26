@@ -1,0 +1,21 @@
+title: Richey Ward
+email: me@richeyward.com
+tagline: >-
+  IT Sec Professional
+baseurl: ""
+url: "https://richeyward.github.io"
+twitter: richeyward
+github:  richeyward
+phone: +353-83-379-7705
+website: richeyward.com
+linkedin: richey-ward-46497722
+name: Richey Ward
+about-description: >-
+    Cyber Security Professional for over 6 years.
+pic: bio.jpg
+
+analytics: UA-113143194-1
+plugins:
+  # - jekyll-feed
+
+exclude: [old, vendor]
