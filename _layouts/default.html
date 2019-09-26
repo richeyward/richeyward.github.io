@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+  {% include head.html %}
+  <body class="wrap">
+    {% include header.html %}
+      <div class="grid">
+        <div class="unit four-fifths main-content">
+        {{ content }}
+        </div>
+        <div class="unit one-fifth side-content">
+          <!-- {% for cat in site.categories %}
+            <h3>{{ cat | first }}</h3>
+            {% for subcat in site.tags[cat] %}
+              <p>{{ subcat | first }}</p>
+            {% endfor %}
+          {% endfor %} -->
+        </div>
+    </div>
+    {% include footer.html %}
+    {% include javascripts.html %}
+    {% include analytics.html %}
+  </body>
+</html>
