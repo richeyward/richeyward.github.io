@@ -1,19 +1,9 @@
 baseURL: "https://richeyward.github.io"
-
-# Change the default theme to be use when building the site with Hugo
 theme: "LoveIt"
-
-# website title
 title: "Richey Ward"
 
 languageCode: "en"
 languageName: "English"
-
-# # Author config
-# [author]
-#   name = "xxxx"
-#   email = ""
-#   link = ""
 
 # # Menu config
 # [menu]
