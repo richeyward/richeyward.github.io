@@ -1,0 +1,50 @@
+defaultTheme: "dark"
+dateFormat: "2006-01-02"
+title: "Richey Ward - Threat Hunting/Reverse Engineering"
+description: "Richey Ward, Threat Hunting, Reverse Engineering"
+# # website images for Open Graph and Twitter Cards
+# images: ["/logo.png"]
+
+# # public git repo url only then enableGitInfo is true
+# gitRepo: "https://github.com/richeyward/richeyward.github.io"
+# #  which hash function used for SRI, when empty, no SRI is used
+# # ["sha256", "sha384", "sha512", "md5"]
+# fingerprint: ""
+
+# Header/Footer Config
+header:
+  desktopMode: "fixed" # desktop header mode ["fixed", "normal", "auto"]
+  mobileMode: "auto"   # mobile header mode ["fixed", "normal", "auto"]
+  title:
+    name: "Richey Ward"
+    # logo: ""
+    name: "Richey Ward"
+    pre: ">"
+    post: "<"
+    typeit: true
+
+footer:
+  enable: true
+  # custom: ''
+  hugo: false
+  copyright: true
+  author: true
+  since: 2023
+  # license: '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+
+# Home Config
+home:
+  rss: 10 #  amount of RSS pages
+  profile:
+    enable: true
+    gravatarEmail: "me@richeyward.com"
+    # avatarURL: "/images/avatar.png"
+    title: "Richey Ward"
+    subtitle: "Threat Hunting/Detection Engineering/Reverse Engineering"
+    typeit: true
+    social: true
+    # disclaimer: "Warning: Shitposting ahoy"
+  posts:
+    enable: true
+    paginate: 6
+    defaultHiddenFromHomePage: false

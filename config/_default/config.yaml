@@ -5,7 +5,22 @@ title: "Richey Ward"
 languageCode: "en"
 languageName: "English"
 
-# # Markup related configuration in Hugo
+paginate: 12
+googleAnalytics: "G-C47Q9PZL7R"
+# copyright description used only for seo schema
+# copyright: ""
+
+# whether to use robots.txt
+enableRobotsTXT: true
+# whether to use git commit log
+enableGitInfo: true
+# whether to use emoji code
+enableEmoji: true
+
+# ignore some build errors
+# ignoreErrors: ["error-remote-getjson", "error-missing-instagram-accesstoken"]
+
+
 # [markup]
 #   # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
 #   [markup.highlight]
