@@ -41,7 +41,7 @@ home:
     # avatarURL: "/images/avatar.png"
     title: "Richey Ward"
     subtitle: "Threat Hunting/Detection Engineering/Reverse Engineering"
-    typeit: true
+    typeit: false
     social: true
     # disclaimer: "Warning: Shitposting ahoy"
   posts:

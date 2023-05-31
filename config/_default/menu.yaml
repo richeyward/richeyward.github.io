@@ -1,13 +1,17 @@
 main:
-  # - name: "Posts"
-    # identifier: "posts"
-    # url: "/posts/"
-    # pre: ""
-    # post: ""
-    # title: ""
-    # weight: 1
+  - name: "Posts"
+    identifier: "posts"
+    url: "/posts/"
+    pre: ""
+    post: ""
+    title: ""
+    weight: 1
   # - name: "Threat Hunting"
     # identifier:
     # url: "/hunting/"
   - name: Links
     url: "/links/"
+    pre: ""
+    post: ""
+    title: ""
+    weight: 2
