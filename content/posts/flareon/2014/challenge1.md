@@ -1,19 +1,16 @@
 ---
-title: Flare-On 2014 - Bob Roge
-classes: wide
-slug: flare-2014-challenge-1
-header:
-  teaser: /assets/images/ctf/flareon/2014/01-01.png
+title: Flare-On1 - 01 - Bob Roge
 description: The first challenge of Flare-On 2014 is a PE-32 executable. Running the program shows Bob Ross painting and a button marked 'DECODE!'.
 author: Richey Ward
-date: "2023-11-05"
+slug: flare-2014-challenge-1
+date: 2023-11-05
 draft: false
 tags:
   - Flare-On
-  - Flare-On 2014
+  - Flare-On1
 categories:
   - CTF
-keywords: []
+keywords:
 ---
 
 ## Initial
@@ -71,7 +68,7 @@ Each byte is iterated through and firstly a _rotate right_ (ror) is performed on
 
 CyberChef Recipe: [here](<https://gchq.github.io/CyberChef/#recipe=From_Hex('Auto')Rotate_left(4,false)XOR(%7B'option':'Decimal','string':'41'%7D,'Standard',false)&input=QTFCNTQ0ODQxNEU0QTFCNUQ0NzBCNDkxQjQ3MEQ0OTFFNEM0OTZGNDU0ODRCNUM0NDA2NDc0NzBBNDY0NDQK>)
 
-### Tools Used:
+## Tools Used
 
 - Detect It Easy
 - DNSpy
