@@ -1,22 +1,60 @@
-baseURL: "https://richeyward.github.io"
-theme: "LoveIt"
-title: "Richey Ward"
+# -- Site Configuration --
+theme: blowfish
+baseURL: https://richeyward.github.io
+defaultContentLanguage: en
 
-languageCode: "en"
-languageName: "English"
-
-paginate: 12
-googleAnalytics: "G-C47Q9PZL7R"
-# copyright description used only for seo schema
-# copyright: ""
-
-# whether to use robots.txt
 enableRobotsTXT: true
-# whether to use git commit log
-enableGitInfo: true
-# whether to use emoji code
-enableEmoji: true
+paginate: 10
+summaryLength: 0
 
-# ignore some build errors
-# ignoreErrors: ["error-remote-getjson", "error-missing-instagram-accesstoken"]
+buildDrafts: false
+buildFuture: false
 
+googleAnalytics: G-C47Q9PZL7R
+
+# [imaging]
+#   anchor: 'Center'
+
+# [taxonomies]
+#   tag: "tags"
+#   category: "categories"
+#   author: "authors"
+#   series: "series"
+
+sitemap:
+  changefreq: 'daily'
+  filename: 'sitemap.xml'
+  priority: 0.5
+
+# [outputs]
+#   home: ["HTML", "RSS", "JSON"]
+
+# [related]
+#   threshold: 0
+#   toLower: false
+
+#     [[related.indices]]
+#         name: "tags"
+#         weight: 100
+
+#     [[related.indices]]
+#         name: "categories"
+#         weight: 100
+
+#     [[related.indices]]
+#         name: "series"
+#         weight: 50
+
+#     [[related.indices]]
+#         name: "authors"
+#         weight: 20
+
+#     [[related.indices]]
+#         name: "date"
+#         weight: 10
+
+#     [[related.indices]]
+#       applyFilter: false
+#       name: 'fragmentrefs'
+#       type: 'fragments'
+#       weight: 10
