@@ -4,7 +4,7 @@ subtitle: ""
 url: "/cmiyc/"
 date: "2023-05-28"
 lastmod: 2023-05-29
-draft: false
+draft: true
 tags:
     - korelogic
     - cmiyc
