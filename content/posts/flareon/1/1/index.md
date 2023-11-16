@@ -2,7 +2,7 @@
 title: Flare-On1 - 01 - Bob Roge
 description: The first challenge of Flare-On 2014 is a PE-32 executable. Running the program shows Bob Ross painting and a button marked 'DECODE!'.
 author: Richey Ward
-slug: flare-2014-challenge-1
+slug: flare-2014-1-bob-roge
 date: 2023-11-05
 draft: false
 tags:
@@ -17,15 +17,15 @@ keywords:
 
 The first challenge of [Flare-On 2014](/ctf/writeups/#flare-on-2014) is a Windows PE-32 executable. Running the program shows Bob Ross painting and a button marked 'DECODE!'.
 
-![](/images/ctf/flareon/2014/01-01.png)
+![](01-01.png)
 
 Pressing this button changes the picture and top text.
 
-![](/images/ctf/flareon/2014/01-02.png)
+![](01-02.png)
 
 Assuming that we have zero knowledge of reverse engineering, any new tools or technique will be explained.  The first tool that we will use is [Detect It Easy](https://github.com/horsicq/Detect-It-Easy) which tells us information on the binary we are looking at.  Analyzing it through Detect It Easy shows that the binary is a .NET application.
 
-![](/images/ctf/flareon/2014/01-03.png)
+![](01-03.png)
 
 .NET apps are relatively easy to reverse engineer, as they can be decompiled making the source code accessible and ultimately easier to understand. Let's use [DNSpy](https://github.com/dnSpy/dnSpy) to do exactly that. DNSpy does a best effort in decompiling .NET apps so you can browse the source code. Opening this up, we see a function called `btnDecode_Click` which runs when the decode button is clicked.
 
