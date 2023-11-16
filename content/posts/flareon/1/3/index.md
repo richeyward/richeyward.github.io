@@ -1,6 +1,6 @@
 ---
 title: Flare-On 2014 - 03 - Shellolololol
-slug: flare-2014-challenge-3
+slug: flareon01-03-shellolololol
 author: Richey Ward
 date: "2023-11-26"
 tags:
@@ -19,7 +19,7 @@ As execution is currently not an option, static analysis our first path. For thi
 
 Opening the exe in Cutter shows some basic commands but `fcn.00401000` stands out. The function pushes 0x201 bytes of shellcode into the stack and executes it (`call eax`). 
 
-![](/images/ctf/flareon/2014/03-01.png)
+![](03-01.png)
 
 ## Shellcode Extraction
 
@@ -69,7 +69,7 @@ As documented below, the shellcode is multi layered shellcode, with the outer co
 
 As mentioned, Cutter allows the ability to import shellcode. Once imported, the only thing I needed to do was to ensure it was set to 32 bits as it defaulted to 64 for me. The outline is this:
 
-![](/images/ctf/flareon/2014/03-02.png)
+![](03-02.png)
 
 The code starts with `call 5` which is just a call to the next instruction, then sets the `esi` register to the stack pointer (`0x05`) and adds `0x1c` to it (`0x21`). This makes sense as the size of the wrapper is 0x20 bytes, so the actions that happen next are going to occur on the data immediately after the wrapper.
 
@@ -77,7 +77,7 @@ The code then loops through each byte from esi upwards and xors it with key `0x6
 
 While it is possible to emulate this action through Cutter's debug feature, this report will perform this in Cyber Chef.
 
-![](/images/ctf/flareon/2014/03-03.png)
+![](03-03.png)
 
 Cyber Chef link [here](<https://gchq.github.io/CyberChef/#recipe=From_Hex('Auto')XOR(%7B'option':'Hex','string':'66'%7D,'Standard',false)Drop_bytes(0,33,false)&input=ZTggMDAgMDAgMDAgMDAgOGIgMzQgMjQgIDgzIGM2IDFjIGI5IGRmIDAxIDAwIDAwIAo4MyBmOSAwMCA3NCAwNyA4MCAzNiA2NiAgNDYgNDkgZWIgZjQgZTkgMTAgMDAgMDAgCjAwIDA3IDA4IDAyIDQ2IDE1IDA5IDQ2ICAwZiAxMiA0NiAwNCAwMyAwMSAwZiAwOCAKMTUgMGUgMTMgMTUgNjYgNjYgMGUgMTUgIDA3IDEzIDE0IDBlIDA4IDA5IDE2IDA3IAplZiA4NSA4ZSA2NiA2NiA2NiA2NiBlZCAgNTIgNDIgZTUgYTAgNGIgZWYgOTcgZTcgCmE3IGVhIDY3IDY2IDY2IGVmIGJlIGU1ICBhNiA2YyA1ZiBiZSAxMyA2MyBlZiA4NSAKZTUgYTUgNjIgNWYgYTggMTIgNmUgZWMgIDc1IDU2IDcwIDI1IDIwIDhkIDhkIDhmIAo1NyA2NiA2NiA2NiA2ZiA2YyA2MiAyNyAgNjcgNjIgNzIgNzAgNmEgMzUgN2MgNjYgCjM2IDYwIDcwIDczIDMzIDdhIDdjIDY1ICAyZiA2YyA3MiAyNyA2NiA2OCAzMyA3MCAKNzIgNzggNjYgMjkgN2UgNjYgNjcgNjMgIDMzIDdkIDdkIDM1IDdjIDYxIDczIDI3IAo2NSA2NiA3YSA3YSA2NyBmZCAwOCAwOSAgMTYgMDcgOWUgMzMgMzcgOTcgZDUgMGIgCmIxIDMxIDE3IDA3IDE1IDg0IGVhIDE0ICA2ZCAxYiA4OSAzZiA3NCA0OCA3OSA0MCAKOTAgZDIgMTcgOTYgZTEgMGQgZmQgZWEgIGZhIGM4IDdmIDUzIDcxIDVhIGU5IGNlIAo3NCA0OCA3OSA0MCBlMSBjYiBlZiBjMiAgMDIgMzQgNDUgNjEgNDggMjAgNWYgM2MgCjA3IDNmIDBjIDIzIDFiIDNiIDBkIDI4ICAwNSA3YiAxZSAzZSAwMiAyZiAwOSA2MCAKMWUgMjAgMTAgM2UgMTYgN2EgZWQgYWQgIDljIDQ4IDc5IDQwIDcxIGQwIDRiIDc2IAplOSA4MCA1NyBjOSA4NiBjOSBiZSA4NSAgNzEgNWEgNjQgYzcgYWMgY2IgYjkgNTggCjQ4IDgzIDBhIDU3IGUzIGE1IGY5IDgzICA3MyA3MSBiMSAyNyA3OSBkMCA3NyA3ZSAKNjIgMGIgM2YgYWIgOWEgYjIgNjIgNTIgIDZhIDQ2IDY2IDU4IDczIDAwIDM4IDE1IAozOSAwMCAyMSA1ZiAyNSAxNSAyNCAxZSAgMzIgMWUgMWYgNWIgNzAgNDIgN2EgMWEgCjdiIDE4IDdlIDEwIDc1IDE1IDYwIDU1ICAzYSA1NSAwZCA2MCA3OCAxNyA2MSA0ZCAKN2MgNWEgN2EgNDYgMjYgNDAgNjUgMGQgIDMxIDBiIDZmIDRiIDcyIDA5IDcxIDUyIApkOCBkMSBlMyA3MiAwYiAyYSAxNyBhNCAgMzAgMTggZGMgZmEgMmYgYjYgZTcgZjAgCjk0IDA2IDE2IDJkIDE2IGYyIGNlIGEyICA4YSAzZCAzNyBiOCA2MyAyMSA5YiBkZiAKODEgZWQgNDAgMTggY2MgNTkgMDMgZjUgIDQzIDU0IDA2IDdjIDRiIDhkIGY4IDYzIAplNCBmMiA1YSA3NiBmYSA0YSBlNiA1MyAgNjIgOTAgNjYgMTMgZmYgMGMgNjAgODggCjRkIDM4IGZmIDVlIGYxIDc3IDdiIDdkICA0MCBlMSBmMCA4ZSA3YiA3YyA1YiBkNCAKMzAgMzkgMmEgOWUgZjYgMzggNDkgMWYgIGYwIDI4IDk5IDk1IDRiIGYyIDYxIGRiIAo2MiBkMCA1NiA0OCAwNSAyMiAxMiAyOSAgOGEgZDIgNDUgNDkgMjAgNzUgMGQgM2YgCjQ4IGFjIGYzIDI5IDUyIDA3IGEzIDM0ICBiYiA3ZiAwNSA5OCAxMCA1OCA3MiBjOCAKZTYgNjcgOWQgZTAgNzUgODggMWIgNjYgIDU1IDczIDc2IDI0IDFjIDdmIDE5IDBkIAo0NiAyZiAyNSAzNSAxNCA4ZCA4MCBiMiAgMmUgNGIgMDEgODAgMzIgMWMgOTUgYzkgCjAwIA>)
 
@@ -119,14 +119,14 @@ ca 95 4f 34 61 c5 52 dd 19 63 fe 76 3e 14 ae 80
 
 As before, it is imported to Cutter.
 
-![](/images/ctf/flareon/2014/03-04.png)
+![](03-04.png)
 
 Firstly, three strings are pushed to the stack, spelling out `'nopasaurus'`. Like before, the stack pointer (`0x16`) is pushed to esi and `0x2d` is added to it giving a starting point `0x43`, and in turn, every byte after is XORed with the `nopasaurus` key. Finally, the next
 instruction is called at `0x74`.
 
 Cyber Chef shows another message, `get ready to get nop'ed so damn hard in the paint`.
 
-![](/images/ctf/flareon/2014/03-05.png)
+![](03-05.png)
 
 Cyber Chef link [here](<https://gchq.github.io/CyberChef/#recipe=From_Hex('Auto')Drop_bytes(0,67,false)XOR(%7B'option':'UTF8','string':'nopasaurus'%7D,'Standard',false)To_Hex('Space',0/disabled)&input=NjggNzUgNzMgMDAgMDAgNjggNzMgNjEgNzUgNzIgNjggNmUgNmYgNzAgNjEgODkgZTMgZTggMDAgMDAgMDAgMDAgOGIgMzQgMjQgODMgYzYgMmQgODkgZjEgODEgYzEgOGMgMDEgMDAgMDAgODkgZDggODMgYzAgMGEgMzkgZDggNzUgMDUgODkgZTMgODMgYzMgMDQgMzkgY2UgNzQgMDggOGEgMTMgMzAgMTYgNDMgNDYgZWIgZWIgZTkgMzEgMDAgMDAgMDAgMDkgMGEgMDQgNDEgMDEgMDQgMTQgMTYgMGMgNTMgMWEgMDAgNTAgMDYgMTYgMTUgNTUgMWMgMWEgMDMgNDkgMGEgMTQgNDEgMDAgMGUgNTUgMTYgMTQgMWUgMDAgNGYgMTggMDAgMDEgMDUgNTUgMWIgMWIgNTMgMWEgMDcgMTUgNDEgMDMgMDAgMWMgMWMgMDEgOWIgNmUgNmYgNzAgNjEgZjggNTUgNTEgZjEgYjMgNmQgZDcgNTcgNzEgNjEgNzMgZTIgOGMgNzIgMGIgN2QgZWYgNTkgMTIgMmUgMWYgMjYgZjYgYjQgNzEgZjAgODcgNmIgOWIgOGMgOWMgYWUgMTkgMzUgMTcgM2MgOGYgYTggMTIgMmUgMWYgMjYgODcgYWQgODkgYTQgNjQgNTIgMjMgMDcgMmUgNDYgMzkgNWEgNjEgNTkgNmEgNDUgN2QgNWQgNmIgNGUgNjMgMWQgNzggNTggNjQgNDkgNmYgMDYgNzggNDYgNzYgNTggNzAgMWMgOGIgY2IgZmEgMmUgMWYgMjYgMTcgYjYgMmQgMTAgOGYgZTYgMzEgYWYgZTAgYWYgZDggZTMgMTcgM2MgMDIgYTEgY2EgYWQgZGYgM2UgMmUgZTUgNmMgMzEgODUgYzMgOWYgZTUgMTUgMTcgZDcgNDEgMWYgYjYgMTEgMTggMDQgNmQgNTkgY2QgZmMgZDQgMDQgMzQgMGMgMjAgMDAgM2UgMTUgNjYgNWUgNzMgNWYgNjYgNDcgMzkgNDMgNzMgNDIgNzggNTQgNzggNzkgM2QgMTYgMjQgMWMgN2MgMWQgN2UgMTggNzYgMTMgNzMgMDYgMzMgNWMgMzMgNmIgMDYgMWUgNzEgMDcgMmIgMWEgM2MgMWMgMjAgNDAgMjYgMDMgNmIgNTcgNmQgMDkgMmQgMTQgNmYgMTcgMzQgYmUgYjcgODUgMTQgNmQgNGMgNzEgYzIgNTYgN2UgYmEgOWMgNDkgZDAgODEgOTYgZjIgNjAgNzAgNGIgNzAgOTQgYTggYzQgZWMgNWIgNTEgZGUgMDUgNDcgZmQgYjkgZTcgOGIgMjYgN2UgYWEgM2YgNjUgOTMgMjUgMzIgNjAgMWEgMmQgZWIgOWUgMDUgODIgOTQgM2MgMTAgOWMgMmMgODAgMzUgMDQgZjYgMDAgNzUgOTkgNmEgMDYgZWUgMmIgNWUgOTkgMzggOTcgMTEgMWQgMWIgMjYgODcgOTYgZTggMWQgMWEgM2QgYjIgNTYgNWYgNGMgZjggOTAgNWUgMmYgNzkgOTYgNGUgZmYgZjMgMmQgOTQgMDcgYmQgMDQgYjYgMzAgMmUgNjMgNDQgNzQgNGYgZWMgYjQgMjMgMmYgNDYgMTMgNmIgNTkgMmUgY2EgOTUgNGYgMzQgNjEgYzUgNTIgZGQgMTkgNjMgZmUgNzYgM2UgMTQgYWUgODAgMDEgZmIgODYgMTMgZWUgN2QgMDAgMzMgMTUgMTAgNDIgN2EgMTkgN2YgNmIgMjAgNDkgNDMgNTMgNzIgZWIgZTYgZDQgNDggMmQgNjcgZTYgNTQgN2EgZjMgYWYgNjY>)
 
@@ -161,7 +161,7 @@ e6 dd b7 82 34 21 bf 76 26 88 cb 92 f8 48 11 da
 
 This code is a lot smaller. Similar to what we have seen, it is an XOR iteration but this time via a hard coded value "`0x476c4f62`".
 
-![](/images/ctf/flareon/2014/03-06.png)
+![](03-06.png)
 
 I had struggled with this for the longest time, only to understand that the bytes are little-endian, i.e. I had to reverse them. No string like clues like last time, only straight into more code.
 
@@ -192,7 +192,7 @@ ca 24 7a ca 7a 1e 08 88 91 2f e2 b3 04 d2 7f 28
 5f 11 65 ce 46 54 ec 89 71
 ```
 
-![](/images/ctf/flareon/2014/03-07.png)
+![](03-07.png)
 
 Yet another XOR key, this time it is "`omg is it almost over?!?`"
 
@@ -221,7 +221,7 @@ Even though we now have the flag, there's one more piece left after the flag. We
 ```
 Unsurprinsingly, it's one more XOR decrypt with the key `aaaaaand i'm spent`. 
 
-![](/images/ctf/flareon/2014/03-08.png)
+![](03-08.png)
 
 The code that came after appears to be a fake error code thrown when it gets to the end, however I wasn't able to execute this successfuly, so I just called it a day here :)
 
