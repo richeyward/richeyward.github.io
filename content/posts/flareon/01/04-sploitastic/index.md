@@ -1,6 +1,6 @@
 ---
-title: Flare-On 2014 - 04 - Sploitastic
-slug: flareon01-04-sploitastic
+title: Flare-On1 - 04 - Sploitastic
+slug: flare-on1-04-sploitastic
 author: Richey Ward
 date: 2023-12-03
 draft: false

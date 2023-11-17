@@ -1,7 +1,7 @@
 ---
 title: Flare-On1 - 02 - Javascrap
 author: Richey Ward
-slug: flareon01-02-javascrap
+slug: flare-on1-02-javascrap
 date: 2023-11-19
 tags:
   - Flare-On
@@ -9,6 +9,8 @@ tags:
 categories:
   - CTF
 draft: false
+summary: |
+  This challenge was presented as a zip file. The zip contains a HTML file and a png. Opening the HTML file in a browser shows the following.
 ---
 
 ## Initial

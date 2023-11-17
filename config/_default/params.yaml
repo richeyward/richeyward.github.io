@@ -39,49 +39,49 @@ homepage:
   cardViewScreenWidth: true
   layoutBackgroundBlur: false # only used when layout equals background
 
-# [article]
-#   showDate: true
-#   showViews: false
-#   showLikes: false
-#   showDateUpdated: false
-#   showAuthor: true
-#   showHero: false
-#   # heroStyle: "basic" # valid options: basic, big, background, thumbAndBackground
-#   layoutBackgroundBlur: true # only used when heroStyle equals background or thumbAndBackground
-#   layoutBackgroundHeaderSpace: true # only used when heroStyle equals background
-#   showBreadcrumbs: false
-#   showDraftLabel: true
-#   showEdit: false
-#   # editURL: "https://github.com/username/repo/"
-#   editAppendPath: true
-#   seriesOpened: false
-#   showHeadingAnchors: true
-#   showPagination: true
-#   invertPagination: false
-#   showReadingTime: true
-#   showTableOfContents: false
-#   # showRelatedContent: false
-#   # relatedContentLimit: 3
-#   showTaxonomies: false
-#   showAuthorsBadges: false
-#   showWordCount: true
-#   # sharingLinks: [ "linkedin", "twitter", "reddit", "pinterest", "facebook", "email", "whatsapp", "telegram"]
+article:
+  showDate: true
+  showViews: false
+  showLikes: false
+  showDateUpdated: true
+  showAuthor: true
+  showHero: false
+  heroStyle: "basic" # valid options: basic, big, background, thumbAndBackground
+  layoutBackgroundBlur: true # only used when heroStyle equals background or thumbAndBackground
+  layoutBackgroundHeaderSpace: true # only used when heroStyle equals background
+  showBreadcrumbs: false
+  showDraftLabel: true
+  showEdit: false
+  editURL: "https://github.com/username/repo/"
+  editAppendPath: true
+  seriesOpened: true
+  showHeadingAnchors: true
+  showPagination: true
+  invertPagination: false
+  showReadingTime: true
+  showTableOfContents: true
+  showRelatedContent: false
+   relatedContentLimit: 3
+  showTaxonomies: false
+  showAuthorsBadges: false
+  showWordCount: true
+  # sharingLinks: [ "linkedin", "twitter", "reddit", "pinterest", "facebook", "email", "whatsapp", "telegram"]
 
-# [list]
-#   showHero: false
-#   # heroStyle: "background" # valid options: basic, big, background, thumbAndBackground
-#   layoutBackgroundBlur: true # only used when heroStyle equals background or thumbAndBackground
-#   layoutBackgroundHeaderSpace: true # only used when heroStyle equals background
-#   showBreadcrumbs: false
-#   showSummary: false
-#   showViews: false
-#   showLikes: false
-#   showTableOfContents: false
-#   showCards: false
-#   groupByYear: true
-#   cardView: false
-#   cardViewScreenWidth: false
-#   constrainItemsWidth: false
+list:
+  showHero: false
+  heroStyle: "background" # valid options: basic, big, background, thumbAndBackground
+  layoutBackgroundBlur: true # only used when heroStyle equals background or thumbAndBackground
+  layoutBackgroundHeaderSpace: true # only used when heroStyle equals background
+  showBreadcrumbs: false
+  showSummary: true
+  showViews: false
+  showLikes: false
+  showTableOfContents: true
+  showCards: true
+  groupByYear: true
+  cardView: true
+  cardViewScreenWidth: true
+  constrainItemsWidth: true
 
 # [sitemap]
 #   excludedKinds: ["taxonomy", "term"]

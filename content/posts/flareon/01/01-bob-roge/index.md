@@ -1,16 +1,16 @@
 ---
 title: Flare-On1 - 01 - Bob Roge
-description: The first challenge of Flare-On 2014 is a PE-32 executable. Running the program shows Bob Ross painting and a button marked 'DECODE!'.
+summary: The first challenge of Flare-On 2014 is a PE-32 executable. Running the program shows Bob Ross painting and a button marked 'DECODE!'.
 author: Richey Ward
-slug: flareon01-01-bob-roge
+slug: flare-on1-01-bob-roge
 date: 2023-11-05
 draft: false
 tags:
-  - Flare-On
-  - Flare-On1
+    - Flare-On
+    - Flare-On1
 categories:
-  - CTF
-keywords:
+    - CTF
+preview: /content/posts/flareon/1/1/feature.png
 ---
 
 ## Initial

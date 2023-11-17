@@ -1,14 +1,15 @@
 ---
-title: Flare-On 2014 - 03 - Shellolololol
-slug: flareon01-03-shellolololol
+title: Flare-On1 - 03 - Shellolololol
+slug: flare-on1-03-shellolololol
 author: Richey Ward
-date: "2023-11-26"
+date: 2023-11-26
 tags:
   - Flare-On
   - Flare-On1
 categories:
   - CTF
 draft: false
+summary: "A file called 'such_evil' is contained in the zip. The `file` command shows it to be a PE32 executable. "
 ---
 
 ## Initial
