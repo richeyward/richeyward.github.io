@@ -2,7 +2,7 @@
 title: Flare-On1 - 02 - Javascrap
 author: Richey Ward
 slug: flare-on1-02-javascrap
-date: 2023-11-19
+date: 2023-11-20
 tags:
   - Flare-On
   - Flare-On1

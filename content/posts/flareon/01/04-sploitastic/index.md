@@ -2,7 +2,7 @@
 title: Flare-On1 - 04 - Sploitastic
 slug: flare-on1-04-sploitastic
 author: Richey Ward
-date: 2023-12-03
+date: 2023-12-04
 draft: false
 tags:
   - Flare-On

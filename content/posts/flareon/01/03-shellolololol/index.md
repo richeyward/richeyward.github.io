@@ -2,7 +2,7 @@
 title: Flare-On1 - 03 - Shellolololol
 slug: flare-on1-03-shellolololol
 author: Richey Ward
-date: 2023-11-26
+date: 2023-11-27
 tags:
   - Flare-On
   - Flare-On1
