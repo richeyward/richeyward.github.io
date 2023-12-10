@@ -23,14 +23,15 @@ There's somewhat an irony that it was learning to code a game that got me here, 
 
 ### MHRD
 [Steam Link](https://store.steampowered.com/app/576030/MHRD/)
-![[mhrd.png]]
+
 MHRD is a hardware design game that enables you to build the very fundamentals through to a fully blown basic CPU. It's also fun to play as it's in a retro style terminal window. It starts small building out primitive logic circuits, building up to more complex pieces until there is enough to build out a CPU. Circuits are built using a text based syntax. 
-`<graphic>`
+![](mhrd.png)
 
 ### Turing Complete
 [Steam Link](https://store.steampowered.com/app/1444480/Turing_Complete/)
-![](turing-complete.png)
+
 Turing Complete is a more advanced approach to MHRD. The initial concepts are the same however the primary differences are that it is GUI based, in that you design your circuitry with the mouse as opposed to typing out the connections.  You also have the ability to create a CPU of your design and corresponding language to program it with, unleashing almost unlimited potential. 
+![](turing-complete.png)
 
 For the first part of this, I'll focus on MHRD however we will plug our learned knowledge from there into Turing Complete when the time is right.
 ### Further Reading
@@ -53,10 +54,10 @@ Logic gates are core to understanding how digital electronics work. To make the 
 
 A graphical representation of a NAND gate is as follows.  The `D` shape indicates an AND gate, and the little circle called a bubble is representative of a negator, i.e. it will invert whatever is behind it. Removing this bubble would give you an AND gate.
 
-![[nand.png]]
+![](nand.png)
 As discussed, a NAND gate will always output a TRUE signal unless both inputs are TRUE.  In MHRD, there's a very similar write up on it...
 
-![[mhrd-nand.png]]
+![](mhrd-nand.png)
 
 
 Now that we have the first building block in our hands, we will start to build more useful circuits which will make even more useful circuits.
