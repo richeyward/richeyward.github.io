@@ -38,7 +38,7 @@ For the first part of this, I'll focus on MHRD however we will plug our learned 
 Two references that I also found extremely useful were the [NAND2Tetris](https://www.nand2tetris.org/) project that provides a very similar approach to MHRD, in fact I would wager that MHRD is based off of this project anf if you complete MHRD, then you have most of this course already completed.  Second is a book called [Digital Computer Electronics](https://archive.org/details/367026792DigitalComputerElectronicsAlbertPaulMalvinoAndJeraldABrownPdf1) which takes a much deeper approach to the above, but also discussed building the SAP-1 (Simple As Possible) computer which is a very basic computer that can perform basic instructions and run small bytes of code.  This is quite heavy to absorb however if you aren't accustomed to the fundamentals.
 
 ## The NAND Gate
-In the above games, the most basic logic is called the NAND gate.  It's a tiny piece of hardware that can receive two binary inputs and has one output.  Binary inputs can only have two states: `TRUE` or `FALSE` (`1` or `0`).  It's called a gate as like one, it can only be open or closed and NAND is an abbreviation of "NOT AND" which will be explained below.  What makes the NAND gate so interesting is that in theory all other gates and computer elements that we will make can be made just by using NAND gates, or gates built using other gates created this way.  The basic theory of a NAND gate is that it will output true as long as both inputs are NOT true, i.e. if input A AND input B are TRUE, then it outputs FALSE, otherwise TRUE. 
+In the above games, the most basic logic is called the NAND gate.  It's a tiny piece of hardware that can receive two binary inputs and has one output.  Binary inputs can only have two states: `TRUE` or `FALSE` (`1` or `0`).  It's called a gate as like one, it can only be open or closed and NAND is an abbreviation of "NOT AND" which will be explained below.  What makes the NAND gate so interesting is that in theory all other gates and computer elements that we will make can be made just by using NAND gates, or gates built using other gates created this way.  The basic theory of a NAND gate is that it will output true as long as both inputs are NOT true, i.e. if input A AND input B are 1, then it outputs 0, otherwise 1. 
 
 ### Boolean Logic
 Logic gates are core to understanding how digital electronics work. To make the understanding of this a little easier, Boolean Logic is applied. Basically it's a representation of what the output will be depending on the inputs provided.  As there are two inputs in a NAND gate with two possible options, there's a total possibility of four input combinations.  This can be represented in what's called a truth table like so:
@@ -55,7 +55,7 @@ Logic gates are core to understanding how digital electronics work. To make the 
 A graphical representation of a NAND gate is as follows.  The `D` shape indicates an AND gate, and the little circle called a bubble is representative of a negator, i.e. it will invert whatever is behind it. Removing this bubble would give you an AND gate.
 
 ![](nand.png)
-As discussed, a NAND gate will always output a TRUE signal unless both inputs are TRUE.  In MHRD, there's a very similar write up on it...
+As discussed, a NAND gate will always output a 1 signal unless both inputs are 1.  In MHRD, there's a very similar write up on it...
 
 ![](mhrd-nand.png)
 

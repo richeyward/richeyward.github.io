@@ -9,6 +9,7 @@ tags:
   - Flare-On1
 categories:
   - CTF
+description: This challenge starts with a single PDF file. As with most CTF files I examine, I normally transfer them...
 ---
 
 ## Initial

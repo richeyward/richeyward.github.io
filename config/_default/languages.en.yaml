@@ -16,8 +16,8 @@ params:
 author:
   name: Richey Ward
   image: bio-photo.jpg
-  headline: Threat Hunter, Reverse Engineer, CTF
-  bio: Threat Hunter, Reverse Engineer, CTF
+  headline: Threat Hunter, Reverse Engineer, CTFer
+  bio: Threat Hunter, Reverse Engineer, CTFer
   links: [
     { email: mailto:me@richeyward.com },
 #     { link: "https://link-to-some-website.com/" },
