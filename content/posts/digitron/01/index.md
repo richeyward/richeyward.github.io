@@ -1,5 +1,5 @@
 ---
-title: Learning Digital Electronics Through Gaming - 1 - Getting Started
+title: Learning Electronics Through Gaming - 1 - Getting Started
 author: Richey Ward
 date: 2023-12-11
 tags:

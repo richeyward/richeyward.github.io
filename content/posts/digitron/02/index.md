@@ -1,5 +1,5 @@
 ---
-title: Learning Digital Electronics Through Gaming - 2 - Basic Logic Gates
+title: Learning Electronics Through Gaming - 2 - Basic Logic Gates
 author: Richey Ward
 date: 2023-12-18
 tags:
