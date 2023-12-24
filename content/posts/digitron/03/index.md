@@ -1,9 +1,13 @@
 ---
 title: Learning Electronics Through Gaming - 3 - Buses
 date: 2023-12-25
-draft: true
+draft: false
 author: Richey Ward
-summary:
+summary: We have a good collection of logic gates available to us, but there's still not a whole...
+tags:
+    - MHRD
+categories:
+    - Digital Electronics
 ---
 ## Initial
 
@@ -130,4 +134,5 @@ Wires:
 
 Completing this design will also unlock the following gates: XOR16B, OR16W OR16B AND16B NOT16B NAND16B NAND4B.  It should be fairly obvious what is performed by each judging by the name alone.
 
+## Conclusion
 The basic gates are now completed.  We now move to building out the next layer of more complex components.   

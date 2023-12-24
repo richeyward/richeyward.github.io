@@ -60,4 +60,6 @@ As discussed, a NAND gate will always output a 1 signal unless both inputs are 1
 ![](mhrd-nand.png)
 
 
+## Conclusion
+
 Now that we have the first building block in our hands, we will start to build more useful circuits which will make even more useful circuits.
