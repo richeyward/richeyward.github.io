@@ -191,6 +191,13 @@ Wires:
 	n4.out -> out;
 ```
 
+## XNOR Gate
+![](xnor-symbol.png)
+
+In Turing Complete, an XNOR gate is also created, which is just the negated output of an XOR gate:
+
+
+![](xnor-diagram.png)
 ## De Morgan's Laws
 An interesting observation of OR/NOR/AND/NAND is their relationship to one another.  Obviously to convert an OR to a NOR, or an AND to a NAND, all that's needed to do is invert the output.  What's also interesting is that an OR can be converted to a NAND, and a NOR to an AND but inverting the inputs also.  This screenshot from Turing Complete represents this nicely.
 

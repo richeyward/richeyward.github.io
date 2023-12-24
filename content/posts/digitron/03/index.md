@@ -105,6 +105,9 @@ Wires:
 
 When this is completed, you are informed that your partner in the game has created a few designs for you, an XOR4B and OR4B.
 
+### TC - Bigger And Gate
+A similar challenge is presented in Turing Complete, however just three inputs are used.  
+![](bigger-and.png)
 
 ## OR4W
 This design is different than a 4B design as it takes 4 inputs (4-way) but only one output.  A OR4W design is useful for checking if any of the 4 inputs is true.
@@ -134,5 +137,8 @@ Wires:
 
 Completing this design will also unlock the following gates: XOR16B, OR16W OR16B AND16B NOT16B NAND16B NAND4B.  It should be fairly obvious what is performed by each judging by the name alone.
 
+### TC - Bigger OR Gate
+A similar challenge is presented in Turing Complete, however just three inputs are used.  
+![](bigger-or.png)
 ## Conclusion
 The basic gates are now completed.  We now move to building out the next layer of more complex components.   

@@ -156,6 +156,8 @@ Adders can be joined together to add larger numbers together. The `carry` flag m
 
 Looking at the two outputs of this, the mappings should be familiar. The `out` is an XOR and the `carry` is an AND.  Let's just use those as our components.
 
+![](halfadder-diagram.png)
+
 ```
 Inputs: in1, in2;
 Outputs: out, carry;
@@ -290,6 +292,12 @@ Wires:
 
 Not only was this easier to understand than the first solution, but the NAND count is smaller, going from 32 down to 26.
 
+### Solution 3 - TC's Version
+Turing Complete has a different approach, as the MUX components are not available yet.  The three inputs are fed into two XOR gates. This will check to see if the inputs are odd (even numbers will have `0` out.), Next, three AND comparisons against all three inputs are made, and if any are true, then the `carryOut` is true.
+
+![](fulladder-diagram2.png)
+
+Overall, I like solution 2 best, but solution 3 is also quite elegant.
 ## ADDER4B
 Our last component is joining multiple adders together to add 2 4-bit values together. 
 
