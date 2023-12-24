@@ -4,13 +4,14 @@ author: Richey Ward
 date: 2023-12-18
 tags:
   - MHRD
+  - TuringComplete
 categories:
   - Digital Electronics
 summary: Now that we have the initial building block of a NAND gate under our belt,
 draft: false
 ---
 ## Initial
-Now that we have the initial building block of a NAND gate under our belt, the next step is to start building new gates from it.  We will work on NOT, AND, OR and XOR gates next.  I've also used a tool called [Logisim](http://www.cburch.com/logisim/) to design and test the diagrams below as well as document the symbols of each new gate.
+Now that we have the initial building block of a NAND gate under our belt, the next step is to start building new gates from it.  We will work on NOT, AND, OR, NOR and XOR gates next.  
 
 ## NOT Gate
 The NOT gate takes one input only and negates it, i.e. turn `1` into `0` and vice versa. This is useful for flipping a bit for example. 
@@ -22,7 +23,7 @@ Below is the MHRD documentation.
 
 ![](mhrd-not.png)
 
-We can replicate the truth table using just a NAND gate but inputting the single NOT input into both NAND inputs. If `in1` and `in2` are both `0` then the output is `1` and vice-versa.  It looks like this:
+We can replicate the truth table using just a NAND gate but inputting the single NOT input into both NAND inputs. If `in1` and `in2` are both `0` then the output is `1` and vice-versa.  It looks like this in Turing Complete:
 
 ![](not-diagram.png)
 
@@ -107,6 +108,13 @@ Wires:
 
 ```
 
+## NOR Gate
+Although not covered in MHRD, Turing Complete also talks about a NOR gate, which implies that it's a NOT-OR gate.
+
+As it's a negation of the output of an OR gate, all that's needed is to add a NOT after the output of the last gate above.
+
+![](nor-diagram.png)
+
 ## XOR Gate
 The previous gates were fairly intuitive, in that you could figure out the actions of it by the name. This next gate differs from that which is the XOR (Exclusive OR) gate.  XOR gates output `1` if only one input is `1` else `0`.  Their usages are quite varied but for now, just think of it as a difference checker.
 
@@ -157,8 +165,8 @@ This diagram has a NAND count of 6, but it can be reduced.
 ### Solution 2
 This is more complicated to understand but bear with me.   First gate takes both inputs, so it will only output `0` when both are true. Next two gates which are identical except checking on different inputs will output `1` except when its corresponding input is `1` and the other is `0`. Final NAND combines the outputs of both.  It's hard to understand but this is a well regarded diagram, so we will use this instead.
 
-
 ![](xor-diagram2.png)
+
 
 ```
 Inputs: in1, in2;
@@ -182,6 +190,12 @@ Wires:
 	n3.out -> n4.in2,
 	n4.out -> out;
 ```
+
+## De Morgan's Laws
+An interesting observation of OR/NOR/AND/NAND is their relationship to one another.  Obviously to convert an OR to a NOR, or an AND to a NAND, all that's needed to do is invert the output.  What's also interesting is that an OR can be converted to a NAND, and a NOR to an AND but inverting the inputs also.  This screenshot from Turing Complete represents this nicely.
+
+
+![](demorgans.png)
 
 ## Conclusion
 We've expanded out the NAND gate to build out four new but very powerful gates.  Next we will introduce the topic of using *buses* to compute larger bits of data.

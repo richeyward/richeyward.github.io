@@ -4,6 +4,7 @@ author: Richey Ward
 date: 2023-12-11
 tags:
   - MHRD
+  - TuringComplete
 categories:
   - Digital Electronics
 summary: The topic of Digital Electronics was always fascinating to me.  When I...
@@ -33,7 +34,7 @@ MHRD is a hardware design game that enables you to build the very fundamentals t
 Turing Complete is a more advanced approach to MHRD. The initial concepts are the same however the primary differences are that it is GUI based, in that you design your circuitry with the mouse as opposed to typing out the connections.  You also have the ability to create a CPU of your design and corresponding language to program it with, unleashing almost unlimited potential. 
 ![](turing-complete.png)
 
-For the first part of this, I'll focus on MHRD however we will plug our learned knowledge from there into Turing Complete when the time is right.
+For the first part of this, I'll focus on MHRD however we will plug our learned knowledge from there into Turing Complete also.
 ### Further Reading
 Two references that I also found extremely useful were the [NAND2Tetris](https://www.nand2tetris.org/) project that provides a very similar approach to MHRD, in fact I would wager that MHRD is based off of this project anf if you complete MHRD, then you have most of this course already completed.  Second is a book called [Digital Computer Electronics](https://archive.org/details/367026792DigitalComputerElectronicsAlbertPaulMalvinoAndJeraldABrownPdf1) which takes a much deeper approach to the above, but also discussed building the SAP-1 (Simple As Possible) computer which is a very basic computer that can perform basic instructions and run small bytes of code.  This is quite heavy to absorb however if you aren't accustomed to the fundamentals.
 
@@ -53,8 +54,8 @@ Logic gates are core to understanding how digital electronics work. To make the 
 | 1       | 1       | 0   |
 
 A graphical representation of a NAND gate is as follows.  The `D` shape indicates an AND gate, and the little circle called a bubble is representative of a negator, i.e. it will invert whatever is behind it. Removing this bubble would give you an AND gate.
-
 ![](nand.png)
+
 As discussed, a NAND gate will always output a 1 signal unless both inputs are 1.  In MHRD, there's a very similar write up on it...
 
 ![](mhrd-nand.png)
