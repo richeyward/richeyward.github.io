@@ -140,5 +140,16 @@ Completing this design will also unlock the following gates: XOR16B, OR16W OR16B
 ### TC - Bigger OR Gate
 A similar challenge is presented in Turing Complete, however just three inputs are used.  
 ![](bigger-or.png)
+
+## TC - OR8B
+Turing Complete also has an 8-bit OR component. There's a new component called a splitter and its inverse called a maker in this also.  You may know by now that 8 bits put together is called a byte. A byte can be a value from 0 to 255.  The splitter breaks down a byte into each of its component bits, and the maker does the opposite.  The below diagram just ORs each respective bit and joins them back together.
+
+
+![](or8b.png)
+
+## TC - NOT8B
+Using the splitters and makers, an 8-bit NOT
+
+![](not8b.png)
 ## Conclusion
 The basic gates are now completed.  We now move to building out the next layer of more complex components.   

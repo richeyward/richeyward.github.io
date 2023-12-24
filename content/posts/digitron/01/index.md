@@ -54,7 +54,7 @@ Logic gates are core to understanding how digital electronics work. To make the 
 | 1       | 1       | 0   |
 
 A graphical representation of a NAND gate is as follows.  The `D` shape indicates an AND gate, and the little circle called a bubble is representative of a negator, i.e. it will invert whatever is behind it. Removing this bubble would give you an AND gate.
-![](nand%20small.png)
+![](nand%20symbol.png)
 
 As discussed, a NAND gate will always output a 1 signal unless both inputs are 1.  In MHRD, there's a very similar write up on it...
 

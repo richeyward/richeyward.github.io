@@ -341,5 +341,12 @@ Wires:
 
 New design unlocked: ADDER16B
 
+## TC - Byte Adder
+In Turing Complete, we can extend the above to 8 bits where the same can be performed with a carry input and output.
+
+![](abber8b.png)
+
+
+
 ## Conclusion
 We can now add two 4-bit values together, even 2 16-bit values which is the first component used in the *Arithmetic Logic Unit* (ALU). 

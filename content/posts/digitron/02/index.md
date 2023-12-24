@@ -16,7 +16,7 @@ Now that we have the initial building block of a NAND gate under our belt, the n
 ## NOT Gate
 The NOT gate takes one input only and negates it, i.e. turn `1` into `0` and vice versa. This is useful for flipping a bit for example. 
 
-![](not-symbol.png)
+![](not%20small.png)
 *NOT gate symbol*
 
 Below is the MHRD documentation.
@@ -51,7 +51,7 @@ Once a test has completed, other new components for designing appear. Next is th
 ## AND Gate
 As the name implies, the AND gate only outputs `1` if both inputs are also `1`, otherwise `0`. AND gates are useful when you want to check if two or more inputs are true.
 
-![](and-symbol.png)
+![](and%20symbol.png)
 *AND gate Symbol*
 
 ![](mhrd-and.png)
@@ -80,7 +80,7 @@ Wires:
 ## OR Gate
 Similar to the above, the name gives it away, if any of the inputs is `1` then the output is `1` else `0`. This is useful for checking if any input is true.
 
-![](or-symbol.png)
+![](or%20symbol.png)
 *OR gate symbol*
 
 ![](mhrd-or.png)
@@ -109,6 +109,7 @@ Wires:
 ```
 
 ## NOR Gate
+![](nor%20symbol.png)
 Although not covered in MHRD, Turing Complete also talks about a NOR gate, which implies that it's a NOT-OR gate.
 
 As it's a negation of the output of an OR gate, all that's needed is to add a NOT after the output of the last gate above.
@@ -118,7 +119,7 @@ As it's a negation of the output of an OR gate, all that's needed is to add a NO
 ## XOR Gate
 The previous gates were fairly intuitive, in that you could figure out the actions of it by the name. This next gate differs from that which is the XOR (Exclusive OR) gate.  XOR gates output `1` if only one input is `1` else `0`.  Their usages are quite varied but for now, just think of it as a difference checker.
 
-![](xor-symbol.png)
+![](xor%20symbol.png)
 *XOR gate symbol*
 
 
@@ -192,7 +193,7 @@ Wires:
 ```
 
 ## XNOR Gate
-![](xnor-symbol.png)
+![](xnor%20symbol.png)
 
 In Turing Complete, an XNOR gate is also created, which is just the negated output of an XOR gate:
 
