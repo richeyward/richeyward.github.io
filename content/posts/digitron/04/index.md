@@ -3,7 +3,7 @@ title: Learning Electronics Through Gaming - 4 - Muxers & Adders
 date: 2024-01-01
 draft: false
 author: Richey Ward
-summary: 
+summary: The time has come to start building out the next layer of components.  These are slightly more advanced...
 tags:
   - MHRD
 categories:
@@ -14,7 +14,7 @@ categories:
 The time has come to start building out the next layer of components.  These are slightly more advanced and complex but shouldn't be too difficult to figure out.  
 
 ## MUX
-A Multiplexer (MUX) component is a very useful piece of technology in that it takes two normal inputs, and depending on the value set on the third input called a selector, will output the value of the corresponding input. If the selector is set to `0`, then the value of in1 is outputted, otherwise the value of in2 is outputted. 
+A Multiplexer (MUX) component is a very useful piece of technology in that it takes two normal inputs, and depending on the value set on the third input called a selector, will output the value of the corresponding input. If the selector is set to `0`, then the value of `in1` is outputted, otherwise the value of `in2` is outputted. 
 
 It looks like this:
 
@@ -145,7 +145,7 @@ Wires:
 	sel[1] -> d3.sel;
 ```
 
-Completing this unlocks MUX4W16B, MUX16B, DFF components.  The DFF will be discussed in the future.
+Completing this unlocks MUX4W16B, MUX16B and DFF components.  The DFF will be discussed in the future.
 
 ## HALF ADDER
 A core action of a CPU is the ability to add numbers together.  This component is the beginning of getting there.  A half adder takes two inputs and adds them together.  If both are `0`, then so is the output.  If one input is true then so is the output. If both are positive however, then a second output called `carry` is true. 
