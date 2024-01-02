@@ -112,12 +112,3 @@ list:
 #   # bing: ""
 #   # pinterest: ""
 #   # yandex: ""
-
-firebase:
-  apiKey: AIzaSyCPkJOMaEYI7K20Y4moSyUhOO0kA8LCJK8
-  authDomain: richeyward-6eaf4.firebaseapp.com
-  projectId: "richeyward-6eaf4"
-  storageBucket: "richeyward-6eaf4.appspot.com"
-  messagingSenderId: "216425985693"
-  appId: "1:216425985693:web:0bb93ab0f6317f2ec64674"
-  measurementId: "G-6TLBKLF9RE"
