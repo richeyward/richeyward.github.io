@@ -7,10 +7,10 @@ enableRobotsTXT: true
 paginate: 10
 summaryLength: 0
 
-buildDrafts: true
-buildFuture: true
+buildDrafts: false
+buildFuture: false
 
-# googleAnalytics: G-C47Q9PZL7R
+googleAnalytics: G-C47Q9PZL7R
 
 # [imaging]
 #   anchor: 'Center'
