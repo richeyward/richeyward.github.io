@@ -10,16 +10,14 @@ summaryLength: 0
 buildDrafts: true
 buildFuture: true
 
-# googleAnalytics: G-C47Q9PZL7R
+imaging:
+  anchor: 'Center'
 
-# [imaging]
-#   anchor: 'Center'
-
-# [taxonomies]
-#   tag: "tags"
-#   category: "categories"
-#   author: "authors"
-#   series: "series"
+taxonomies:
+  tag: "tags"
+  category: "categories"
+  author: "authors"
+  series: "series"
 
 sitemap:
   changefreq: 'daily'
@@ -29,32 +27,21 @@ sitemap:
 outputs:
   home: ["HTML", "RSS", "JSON"]
 
-# [related]
-#   threshold: 0
-#   toLower: false
-
-#     [[related.indices]]
-#         name: "tags"
-#         weight: 100
-
-#     [[related.indices]]
-#         name: "categories"
-#         weight: 100
-
-#     [[related.indices]]
-#         name: "series"
-#         weight: 50
-
-#     [[related.indices]]
-#         name: "authors"
-#         weight: 20
-
-#     [[related.indices]]
-#         name: "date"
-#         weight: 10
-
-#     [[related.indices]]
-#       applyFilter: false
-#       name: 'fragmentrefs'
-#       type: 'fragments'
-#       weight: 10
+related:
+  threshold: 0
+  toLower: false
+  indices:
+    - name: "tags"
+      weight: 100
+    - name: "categories"
+      weight: 100
+    - name: "series"
+      weight: 50
+    - name: "authors"
+      weight: 20
+    - name: "date"
+      weight: 10
+    - name: "fragmentrefs"
+      type: "fragments"
+      applyFilter: false
+      weight: 10
