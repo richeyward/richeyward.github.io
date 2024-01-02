@@ -8,7 +8,7 @@ tags:
   - Flare-On1
 categories:
   - CTF
-draft: false
+draft: true
 summary: "A file called 'such_evil' is contained in the zip. The `file` command shows it to be a PE32 executable. "
 ---
 

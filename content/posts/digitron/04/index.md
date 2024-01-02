@@ -1,13 +1,14 @@
 ---
 title: Learning Electronics Through Gaming - 4 - Muxers & Adders
-date: 2024-01-01
+date: 2024-01-22T00:00:00.000Z
 draft: false
 author: Richey Ward
 summary: The time has come to start building out the next layer of components.  These are slightly more advanced...
 tags:
-  - MHRD
+    - MHRD
+    - TuringComplete
 categories:
-  - Digital Electronics
+    - Digital Electronics
 ---
 ## Initial
 

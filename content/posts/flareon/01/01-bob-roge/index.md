@@ -4,12 +4,12 @@ summary: The first challenge of Flare-On 2014 is a PE-32 executable. Running the
 author: Richey Ward
 slug: flare-on1-01-bob-roge
 date: 2023-11-06
-draft: false
+draft: true
 tags:
-  - Flare-On
-  - Flare-On1
+    - Flare-On
+    - Flare-On1
 categories:
-  - CTF
+    - CTF
 preview: /content/posts/flareon/1/1/feature.png
 ---
 

@@ -1,12 +1,12 @@
 ---
 title: Learning Electronics Through Gaming - 2 - Basic Logic Gates
 author: Richey Ward
-date: 2023-12-18
+date: 2024-01-08T00:00:00.000Z
 tags:
-  - MHRD
-  - TuringComplete
+    - MHRD
+    - TuringComplete
 categories:
-  - Digital Electronics
+    - Digital Electronics
 summary: Now that we have the initial building block of a NAND gate under our belt,
 draft: false
 ---

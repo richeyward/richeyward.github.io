@@ -1,14 +1,14 @@
 ---
 title: Learning Electronics Through Gaming - 5 - Registers & Memory
-date: 2024-01-08
+date: 2024-01-29T00:00:00.000Z
 draft: false
 author: Richey Ward
 summary: We turn our attention now to using storage of data. Data storage is crucial for performing calculations for example...
 tags:
-  - MHRD
-  - TuringComplete
+    - MHRD
+    - TuringComplete
 categories:
-  - Digital Electronics
+    - Digital Electronics
 ---
 We turn our attention now to using storage of data. Data storage is crucial for performing calculations for example where the input values to be calculated are stored before calculation as well as the output afterwards.  In cases like this, a *register* is the most common component used.
 
@@ -44,6 +44,10 @@ Wires:
 
 This component can now accept a bit when desired, and repeatedly output it.
 
+As there's no 1-bit MUX in Turing Complete, switches are used instead.
+
+![](tc-register.png)
+
 ## Register4B
 Storing just 1-bit is not very useful. In order to store larger values, more bit 1-bit registers are needed. A 4-bit register can hold a value from 0 to 15.  As we have already build out a 1-bit register, we just need to expand that out 4 times.
 
@@ -74,6 +78,9 @@ Wires:
 ```
 
 This design also unlocks the REGISTER16B design which again is a further extension of the same concept.
+
+Turing Complete has a similar challenge. Note that this is for 1-byte (8-bits) and there's also the ability to toggle the output via a an input in the output component.
+![](tc-register-1byte.png)
 
 ## RAM4W16B
 As mentioned, registers are really useful in a CPU for calculations, but what it you wanted to store a bunch of data? The answer is *Random Access Memory* or *RAM* which is vital for most computers to function.  RAM can be written to and recalled at a later stage just like a register, in fact RAM is in essence a bunch of registers tied together.  To in order to access a register to read/write, an *address* is assigned to each.  This component only has 4 registers so it's quite small but a good place to start.
@@ -123,6 +130,10 @@ Wires:
 
 Designed unlocked: RAM64K16B
 
+### TC Version
+Turing Complete has a nice challenge to make the same circuit but with two differences. We don't have DEMUX switches to enable easy selection of registers, and there's a physical constraint to making it work to make it more challenging.  
+
+![](tc-ram.png)
 ## Conclusion
 
 Having the registers and RAM components unlocked is a big step towards our goal of building a simple computer. The component last unlocked gives 64k (65535) bytes of memory to play with which when you're programming at such a low level can be massive.  Registers also also a vital component of a CPU.

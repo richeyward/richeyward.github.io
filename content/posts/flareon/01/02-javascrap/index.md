@@ -8,7 +8,7 @@ tags:
   - Flare-On1
 categories:
   - CTF
-draft: false
+draft: true
 summary: |
   This challenge was presented as a zip file. The zip contains a HTML file and a png. Opening the HTML file in a browser shows the following.
 ---
