@@ -21,6 +21,12 @@
           "type": "datetime"
         },
         {
+          "title": "Last modified date",
+          "name": "lastmod",
+          "type": "datetime",
+          "isModifiedDate": true
+        },
+        {
           "title": "draft",
           "name": "draft",
           "type": "boolean"
@@ -39,6 +45,24 @@
           "title": "summary",
           "name": "summary",
           "type": "string"
+        },
+        {
+          "title": "description",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "series",
+          "name": "series",
+          "type": "choice",
+          "choices": [
+            "Electronics Through Gaming"
+          ]
+        },
+        {
+          "title": "series_order",
+          "name": "series_order",
+          "type": "number"
         }
       ]
     }
