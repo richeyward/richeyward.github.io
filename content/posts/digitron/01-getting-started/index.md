@@ -1,19 +1,23 @@
 ---
 title: Learning Electronics Through Gaming - 1 - Getting Started
 author: Richey Ward
-date: 2024-01-01T00:00:00.000Z
+date: 2024-01-01
 tags:
   - MHRD
   - TuringComplete
 categories:
   - Digital Electronics
-summary: The topic of Digital Electronics was always fascinating to me.  When I...
+summary: Covering the foundations of learning Digital Electronics through gaming
+description: Covering the foundations of learning Digital Electronics through gaming
 draft: false
-series: ["Electronics Through Gaming"]
+series:
+  - Electronics Through Gaming
 series_order: 1
+lastmod: 2024-01-04T19:46:04.612Z
+slug: 1-getting-started
 ---
 
-## Initial
+ ## Initial
 The topic of Digital Electronics was always fascinating to me.  When I was a young boy in the 80's, games on the Commodore 64 weren't enough in the simple joy of playing them, I HAD to learn how they were made.  I remember pouring through code printed in magazines written in BASIC and painstakingly typing them out (often wrongly) to get them to run. Once they were finally correct and ran, they were very slow and clunky and it was later that I learned that the code I had typed was running on a slow language. The real developers for the C64 were using Assembly language to make their games.  This language is very primitive but complex, and my preteen self simply couldn't understand it.  Years later when I started to passively study malware and perform cursory reverse engineering, I once again encountered Assembly (ASM) and I wanted to research it again, albeit not for C64 games but to understand how the hell it works.
 
 ### ASM - What is the secret of your power?
@@ -22,16 +26,16 @@ I'll briefly discuss ASM here without deviating too much from my original topic.
 This is just breezing over the concept to understand ASM and we will certainly return to it. Going back to my curiosities which got me here, I wanted to know *how* CPUs worked at a fundamental level.  After much research, I'd like to share this with you in the hopes there are similar people like me that want to know how a computer works from the ground up.
 
 ## Learning Through Gaming
-There's somewhat an irony that it was learning to code a game that got me here, but there are games available that can teach you to code the very fundamentals.  For this I will heavily reference two which are MHRD and Turing Complete.
+There's somewhat an irony that it was learning to code a game that got me here, but there are games available that can teach you to code the very fundamentals.  For this I will heavily reference two which are **MHRD** and **Turing Complete**.
 
 ### MHRD
-[Steam Link](https://store.steampowered.com/app/576030/MHRD/)
+{{< icon "steam" >}} [Steam Link](https://store.steampowered.com/app/576030/MHRD/)
 
 MHRD is a hardware design game that enables you to build the very fundamentals through to a fully blown basic CPU. It's also fun to play as it's in a retro style terminal window. It starts small building out primitive logic circuits, building up to more complex pieces until there is enough to build out a CPU. Circuits are built using a text based syntax. 
 ![](mhrd.png)
 
 ### Turing Complete
-[Steam Link](https://store.steampowered.com/app/1444480/Turing_Complete/)
+{{< icon "steam" >}}  [Steam Link](https://store.steampowered.com/app/1444480/Turing_Complete/)
 
 Turing Complete is a more advanced approach to MHRD. The initial concepts are the same however the primary differences are that it is GUI based, in that you design your circuitry with the mouse as opposed to typing out the connections.  You also have the ability to create a CPU of your design and corresponding language to program it with, unleashing almost unlimited potential. 
 ![](turing-complete.png)
