@@ -9,6 +9,8 @@ categories:
   - Digital Electronics
 summary: The topic of Digital Electronics was always fascinating to me.  When I...
 draft: false
+series: ["Electronics Through Gaming"]
+series_order: 1
 ---
 
 ## Initial

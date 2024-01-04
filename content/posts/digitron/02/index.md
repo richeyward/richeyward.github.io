@@ -9,6 +9,8 @@ categories:
     - Digital Electronics
 summary: Now that we have the initial building block of a NAND gate under our belt,
 draft: false
+series: ["Electronics Through Gaming"]
+series_order: 2
 ---
 ## Initial
 Now that we have the initial building block of a NAND gate under our belt, the next step is to start building new gates from it.  We will work on NOT, AND, OR, NOR and XOR gates next.  
