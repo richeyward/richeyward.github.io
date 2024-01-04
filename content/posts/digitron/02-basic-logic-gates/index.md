@@ -3,16 +3,18 @@ title: Learning Electronics Through Gaming - 2 - Basic Logic Gates
 author: Richey Ward
 date: 2024-01-08
 tags:
-  - MHRD
-  - TuringComplete
+    - MHRD
+    - TuringComplete
 categories:
-  - Digital Electronics
+    - Digital Electronics
 summary: Building the NOT, AND, OR and XOR gates.
 draft: false
 series:
-  - Electronics Through Gaming
+    - Electronics Through Gaming
 series_order: 2
-lastmod: 2024-01-04
+lastmod: 2024-01-04T19:49:03.060Z
+slug: 2-basic-logic-gates
+description: Building the NOT, AND, OR and XOR gates.
 ---
 ## Initial
 Now that we have the initial building block of a NAND gate under our belt, the next step is to start building new gates from it.  We will work on NOT, AND, OR, NOR and XOR gates next.  
