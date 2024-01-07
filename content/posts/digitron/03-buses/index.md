@@ -3,36 +3,37 @@ title: Learning Electronics Through Gaming - 3 - Buses
 date: 2024-01-15T00:00:00.000Z
 draft: false
 author: Richey Ward
-summary: We have a good collection of logic gates available to us, but there's still not a whole...
+summary: Expanding our new gates to handle multiple bit buses
 tags:
     - MHRD
 categories:
     - Digital Electronics
+lastmod: 2024-01-04T20:03:32.562Z
+slug: 3-buses
+description: Expanding our new gates to handle multiple bit buses
+series:
+    - Electronics Through Gaming
+series_order: 3
 ---
+
 ## Initial
 
 We have a good collection of logic gates available to us, but there's still not a whole lot that we can do with them, as they only take in singular bits of information.  With a single binary input, we can only represent the numbers `1` and `0`.  If we want to start using numbers higher than this, more inputs in parallel must be used. Using 4 inputs, we can represent the numbers 0 to 15. 
 ### Understanding multiple bits
-The first input would be the standard `1` or `0` mapping, but if we want to show the number `2`, an extra input must be used. When that is positive, it means that the value represented contains a 2. Further bits added can represent further values in multiples of 2, for example a third represents `4` and a fourth stands for `8`. A table would look like this:
+The first input would be the standard `1` or `0` mapping, but if we want to show the number `2`, an extra input must be used. When that is positive, it means that the value represented contains a 2. Further bits added can represent further values in multiples of 2, for example a third represents `4` and a fourth stands for `8`. A partial list of numbers would look like this: 
 
-| n   | 8   | 4   | 2   | 1   |
-| --- | --- | --- | --- | --- |
-| 0   | 0   | 0   | 0   | 0   |
-| 1   | 0   | 0   | 0   | 1   |
-| 2   | 0   | 0   | 1   | 0   |
-| 3   | 0   | 0   | 1   | 1   |
-| 4   | 0   | 1   | 0   | 0   |
-| 5   | 0   | 1   | 0   | 1   |
-| 6   | 0   | 1   | 1   | 0   |
-| 7   | 0   | 1   | 1   | 1   |
-| 8   | 1   | 0   | 0   | 0   |
-| 9   | 1   | 0   | 0   | 1   |
-| 10  | 1   | 0   | 1   | 0   |
-| 11  | 1   | 0   | 1   | 1   |
-| 12  | 1   | 1   | 0   | 0   |
-| 13  | 1   | 1   | 0   | 1   |
-| 14  | 1   | 1   | 1   | 0   |
-| 15  | 1   | 1   | 1   | 1   | 
+```
+0 - 0000
+1 - 0001
+2 - 0010
+3 - 0011
+4 - 0100
+5 - 0101
+6 - 0110
+7 - 0111
+...
+```
+
 
 The concept of joining together multiple binary inputs is called a *bus* which is what will be explored in this post. Two main uses of buses are like above, representing larger values, and also performing logic calculations from more than two inputs. 
 
