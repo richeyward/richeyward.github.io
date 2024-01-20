@@ -119,21 +119,21 @@ Wires:
 
 ## NOR Gate
 
-![](nor%20symbol.png)
+![NOR Gate](nor%20symbol.png)
 Although not covered in MHRD, Turing Complete also talks about a NOR gate, which implies that it's a NOT-OR gate.
 
 As it's a negation of the output of an OR gate, all that's needed is to add a NOT after the output of the last gate above.
 
-![](nor-diagram.png)
+![NOR Diagram](nor-diagram.png)
 
 ## XOR Gate
 
 The previous gates were fairly intuitive, in that you could figure out the actions of it by the name. This next gate differs from that which is the XOR (Exclusive OR) gate.  XOR gates output `1` if only one input is `1` else `0`.  Their usages are quite varied but for now, just think of it as a difference checker.
 
-![](xor%20symbol.png)
+![XOR Gat](xor%20symbol.png)
 *XOR gate symbol*
 
-![](mhrd-xor.png)
+![XOR gate in MHRD](mhrd-xor.png)
 
 There's a simple solution to this but also a more complex one with less parts.  One thing you'll notice is that each solution has a NAND count, the lesser the better as parts with a higher NAND count are slower.  Let's go over the two solutions.
 
@@ -149,11 +149,11 @@ The truth table is identical to an OR table except for one condition and the sam
 | 1      | 0        | 0   |
 
 The diagram is a representation of the above
-![](xor-diagram1.png)
+![XOR Diagram](xor-diagram1.png)
 
 The wiring of this is:
 
-```
+```matlab
 Inputs: in1, in2;
 Outputs: out;
 
@@ -178,9 +178,9 @@ This diagram has a NAND count of 6, but it can be reduced.
 
 This is more complicated to understand but bear with me.   First gate takes both inputs, so it will only output `0` when both are true. Next two gates which are identical except checking on different inputs will output `1` except when its corresponding input is `1` and the other is `0`. Final NAND combines the outputs of both.  It's hard to understand but this is a well regarded diagram, so we will use this instead.
 
-![](xor-diagram2.png)
+![XOR Diagram](xor-diagram2.png)
 
-```
+```matlab
 Inputs: in1, in2;
 Outputs: out;
 
@@ -205,17 +205,17 @@ Wires:
 
 ## XNOR Gate
 
-![](xnor%20symbol.png)
+![XNOR Gate](xnor%20symbol.png)
 
 In Turing Complete, an XNOR gate is also created, which is just the negated output of an XOR gate:
 
-![](xnor-diagram.png)
+![XNOR Diagram](xnor-diagram.png)
 
 ## De Morgan's Laws
 
 An interesting observation of OR/NOR/AND/NAND is their relationship to one another.  Obviously to convert an OR to a NOR, or an AND to a NAND, all that's needed to do is invert the output.  What's also interesting is that an OR can be converted to a NAND, and a NOR to an AND but inverting the inputs also.  This screenshot from Turing Complete represents this nicely.
 
-![](demorgans.png)
+![De Morgan's Laws](demorgans.png)
 
 ## Conclusion
 
