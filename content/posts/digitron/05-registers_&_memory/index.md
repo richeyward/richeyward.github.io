@@ -3,12 +3,16 @@ title: Learning Electronics Through Gaming - 5 - Registers & Memory
 date: 2024-01-29T00:00:00.000Z
 draft: false
 author: Richey Ward
-summary: We turn our attention now to using storage of data. Data storage is crucial for performing calculations for example...
+summary: Creating registers and memoy to hold data values
 tags:
     - MHRD
     - TuringComplete
 categories:
     - Digital Electronics
+lastmod: 2024-01-28T23:54:20.256Z
+description: Creating registers and memoy to hold data values
+series: Electronics Through Gaming
+series_order: 5
 ---
 We turn our attention now to using storage of data. Data storage is crucial for performing calculations for example where the input values to be calculated are stored before calculation as well as the output afterwards.  In cases like this, a *register* is the most common component used.
 
