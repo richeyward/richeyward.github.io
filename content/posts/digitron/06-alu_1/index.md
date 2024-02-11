@@ -13,6 +13,7 @@ description: Building out the basic calculation unit, the ALU
 series: 
     - Electronics Through Gaming
 series_order: 6
+slug: alu-1
 ---
 ## Initial
 

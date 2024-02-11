@@ -5,15 +5,15 @@ draft: false
 author: Richey Ward
 summary: Selecting inputs via MUXERs and adding bits together
 tags:
-    - MHRD
-    - TuringComplete
+  - MHRD
+  - TuringComplete
 categories:
-    - Digital Electronics
+  - Digital Electronics
 series:
-    - Electronics Through Gaming
+  - Electronics Through Gaming
 series_order: 4
 slug: 4-muxers-and-adders
-lastmod: 2024-01-20T09:46:28.638Z
+lastmod: 2024-02-11T23:12:52.281Z
 description: Selecting inputs via MUXERs and adding bits together
 ---
 ## Initial
@@ -27,6 +27,8 @@ A Multiplexer (MUX) component is a very useful piece of technology in that it ta
 It looks like this:
 
 ![MUX](mux.png)
+
+### Solution 1
 
 To understand how we can build this, let's look at the behaviour if `sel` is set to `1`.  The output is only true if both `sel` and `in2` are true.  This can be calculated via an AND gate:
 
@@ -57,6 +59,33 @@ Wires:
  a1.out -> o.in1,
  a2.out -> o.in2,
  o.out -> out;
+```
+
+### Solution 2
+
+There is a much more efficient solution however using just 4 NAND gates.  I personally prefer the first solution but if you want to be efficient, this can be used.
+
+```matlab
+Inputs: in1, in2, sel;
+Outputs: out;
+
+Parts:
+  n1 NAND,
+  n2 NAND,
+  n3 NAND,
+  n4 NAND;
+
+Wires:
+  in1 -> n1.in1,
+  in2 -> n2.in2,
+  sel -> n2.in1,
+  sel -> n3.in1,
+  sel -> n3.in2,
+  n3.out -> n1.in2,
+  n1.out -> n1.in1,
+  n2.out -> n4.in1,
+  n4.out -> out;
+
 ```
 
 ## DEMUX

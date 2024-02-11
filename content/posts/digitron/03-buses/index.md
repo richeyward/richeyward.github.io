@@ -9,7 +9,7 @@ tags:
     - TuringComplete
 categories:
     - Digital Electronics
-lastmod: 2024-01-20T09:45:10.451Z
+lastmod: 2024-02-11T23:12:29.618Z
 slug: 3-buses
 description: Expanding our new gates to handle multiple bit buses
 series:
@@ -93,13 +93,13 @@ Parts:
 
 Wires:
  in1[1] -> a1.in1,
- in2[1] -> a2.in1,
- in3[1] -> a3.in1,
- in4[1] -> a4.in1,
- in1[2] -> a1.in2,
+ in1[2] -> a2.in1,
+ in1[3] -> a3.in1,
+ in1[4] -> a4.in1,
+ in2[1] -> a1.in2,
  in2[2] -> a2.in2,
- in3[2] -> a3.in2,
- in4[2] -> a4.in2,
+ in2[3] -> a3.in2,
+ in2[4] -> a4.in2,
  a1.out -> out[1],
  a2.out -> out[2],
  a3.out -> out[3],
