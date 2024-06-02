@@ -1,7 +1,7 @@
 ---
 title: Learning Electronics Through Gaming - 1 - Getting Started
 author: Richey Ward
-date: 2024-01-01
+date: 2024-06-03
 tags:
   - MHRD
   - TuringComplete
@@ -13,7 +13,7 @@ draft: false
 series:
   - Electronics Through Gaming
 series_order: 1
-lastmod: 2024-01-04T20:12:05.222Z
+lastmod: 2024-06-02T19:54:47.794Z
 slug: 1-getting-started
 ---
 
@@ -69,7 +69,8 @@ Logic gates are core to understanding how digital electronics work. To make the 
 | 1       | 1       | 0   |
 
 A graphical representation of a NAND gate is as follows.  The `D` shape indicates an AND gate, and the little circle called a bubble is representative of a negator, i.e. it will invert whatever is behind it. Removing this bubble would give you an AND gate.
-![NAND Symbol](nand%20symbol.png)
+
+![NAND Gate Symbol](nand-symbol.png)
 
 As discussed, a NAND gate will always output a 1 signal unless both inputs are 1.  In MHRD, there's a very similar write up on it...
 
