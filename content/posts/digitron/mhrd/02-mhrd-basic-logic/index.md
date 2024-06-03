@@ -1,20 +1,19 @@
 ---
-title: Learning Electronics Through Gaming - 2 - Basic Logic Gates
+title: Learning Electronics Through Gaming - 2 - MHRD - Basic Logic
 author: Richey Ward
-date: 2024-01-08
+date: 2024-06-10
 tags:
-    - MHRD
-    - TuringComplete
+  - MHRD
 categories:
-    - Digital Electronics
+  - Digital Electronics
 summary: Building the NOT, AND, OR and XOR gates.
 draft: false
 series:
-    - Electronics Through Gaming
+  - Electronics Through Gaming
 series_order: 2
-lastmod: 2024-01-04T19:49:03.060Z
-slug: 2-basic-logic-gates
-description: Building the NOT, AND, OR and XOR gates.
+lastmod: 2024-06-02T20:57:01.974Z
+slug: 2-mhrd-basic-logic-gates
+description: Building the NOT, AND, OR and XOR gates in MHRD.
 ---
 ## Initial
 
@@ -24,16 +23,16 @@ Now that we have the initial building block of a NAND gate under our belt, the n
 
 The NOT gate takes one input only and negates it, i.e. turn `1` into `0` and vice versa. This is useful for flipping a bit for example.
 
-![NOT Symbol](not%20small.png)
+![NOT Gate Symbol](not%20symbol.png)
 *NOT gate symbol*
 
 Below is the MHRD documentation.
 
 ![MHRD NOT](mhrd-not.png)
 
-We can replicate the truth table using just a NAND gate but inputting the single NOT input into both NAND inputs. If `in1` and `in2` are both `0` then the output is `1` and vice-versa.  It looks like this in Turing Complete:
+We can replicate the truth table using just a NAND gate but inputting the single NOT input into both NAND inputs. If `in1` and `in2` are both `0` then the output is `1` and vice-versa.  It looks like this:
 
-![NOT Gate Diagram](not-diagram.png)
+![NOT Gate Diagram](not%20diagram.png)
 
 Designing this in MHRD can be done in the 'Design' tab of the component.  It explains the inputs and outputs given, and you have to declare what parts you intend to use and how they are connected. The design for this part is as follows:
 
@@ -67,7 +66,7 @@ As the name implies, the AND gate only outputs `1` if both inputs are also `1`, 
 
 As we have a NAND and a NOT gate, we can invert the output of the NAND using the NOT to get the same results. Double NOTs cancel each other out so a NOT NAND is an AND.
 
-![AND diagram](and-diagram.png)
+![AND diagram](and%20diagram.png)
 
 Wiring this up looks like this:
 
@@ -97,7 +96,7 @@ Similar to the above, the name gives it away, if any of the inputs is `1` then t
 
 Taking a look at the output, all outputs are true except when the inputs are all `0` which is the same as a NAND gate except the conditions there are when all inputs are `1`.  This suggests that we need to flip each of the input values with a NOT before feeding into a NAND like so:
 
-![OR Diagram](or-diagram.png)
+![OR Diagram](or%20diagram.png)
 
 ```matlab
 Inputs: in1, in2;
@@ -117,20 +116,11 @@ Wires:
 
 ```
 
-## NOR Gate
-
-![NOR Gate](nor%20symbol.png)
-Although not covered in MHRD, Turing Complete also talks about a NOR gate, which implies that it's a NOT-OR gate.
-
-As it's a negation of the output of an OR gate, all that's needed is to add a NOT after the output of the last gate above.
-
-![NOR Diagram](nor-diagram.png)
-
 ## XOR Gate
 
-The previous gates were fairly intuitive, in that you could figure out the actions of it by the name. This next gate differs from that which is the XOR (Exclusive OR) gate.  XOR gates output `1` if only one input is `1` else `0`.  Their usages are quite varied but for now, just think of it as a difference checker.
+The previous gates were fairly intuitive, in that you could figure out the actions of it by the name. This next gate differs from that which is the XOR (Exclusive OR) gate.  XOR gates output `1` if only one input is `1` else `0`.  Their usages are quite varied but for now, just think of it as a difference checker, i.e. if `in1` is different than `in2`, then output `1`.
 
-![XOR Gat](xor%20symbol.png)
+![XOR Gate](xor%20symbol.png)
 *XOR gate symbol*
 
 ![XOR gate in MHRD](mhrd-xor.png)
@@ -149,7 +139,7 @@ The truth table is identical to an OR table except for one condition and the sam
 | 1      | 0        | 0   |
 
 The diagram is a representation of the above
-![XOR Diagram](xor-diagram1.png)
+![XOR Diagram](xor%20diagram1.png)
 
 The wiring of this is:
 
@@ -178,7 +168,7 @@ This diagram has a NAND count of 6, but it can be reduced.
 
 This is more complicated to understand but bear with me.   First gate takes both inputs, so it will only output `0` when both are true. Next two gates which are identical except checking on different inputs will output `1` except when its corresponding input is `1` and the other is `0`. Final NAND combines the outputs of both.  It's hard to understand but this is a well regarded diagram, so we will use this instead.
 
-![XOR Diagram](xor-diagram2.png)
+![XOR Diagram](xor%20diagram2.png)
 
 ```matlab
 Inputs: in1, in2;
@@ -202,14 +192,6 @@ Wires:
  n3.out -> n4.in2,
  n4.out -> out;
 ```
-
-## XNOR Gate
-
-![XNOR Gate](xnor%20symbol.png)
-
-In Turing Complete, an XNOR gate is also created, which is just the negated output of an XOR gate:
-
-![XNOR Diagram](xnor-diagram.png)
 
 ## De Morgan's Laws
 
