@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 2 - MHRD - Basic Logic
+title: Learning Electronics Through Gaming - 02 - MHRD - Basic Logic
 author: Richey Ward
 date: 2024-06-10
 tags:
@@ -24,7 +24,6 @@ Now that we have the initial building block of a NAND gate under our belt, the n
 The NOT gate takes one input only and negates it, i.e. turn `1` into `0` and vice versa. This is useful for flipping a bit for example.
 
 ![NOT Gate Symbol](not%20symbol.png)
-*NOT gate symbol*
 
 Below is the MHRD documentation.
 

@@ -1,15 +1,14 @@
 ---
-title: Learning Electronics Through Gaming - 3 - Buses
-date: 2024-01-15T00:00:00.000Z
+title: Learning Electronics Through Gaming - 03 - MHRD - Buses
+date: 2024-06-17
 draft: false
 author: Richey Ward
 summary: Expanding our new gates to handle multiple bit buses
 tags:
     - MHRD
-    - TuringComplete
 categories:
     - Digital Electronics
-lastmod: 2024-02-11T23:12:29.618Z
+lastmod: 2024-06-16T18:41:26.581Z
 slug: 3-buses
 description: Expanding our new gates to handle multiple bit buses
 series:
@@ -108,11 +107,6 @@ Wires:
 
 When this is completed, you are informed that your partner in the game has created a few designs for you, an XOR4B and OR4B.
 
-### TC - Bigger And Gate
-
-A similar challenge is presented in Turing Complete, however just three inputs are used.  
-![Bigger AND](bigger-and.png)
-
 ## OR4W
 
 This design is different than a 4B design as it takes 4 inputs (4-way) but only one output.  A OR4W design is useful for checking if any of the 4 inputs is true.
@@ -141,23 +135,6 @@ Wires:
 ```
 
 Completing this design will also unlock the following gates: XOR16B, OR16W OR16B AND16B NOT16B NAND16B NAND4B.  It should be fairly obvious what is performed by each judging by the name alone.
-
-### TC - Bigger OR Gate
-
-A similar challenge is presented in Turing Complete, however just three inputs are used.  
-![Bigger OR](bigger-or.png)
-
-## TC - OR8B
-
-Turing Complete also has an 8-bit OR component. There's a new component called a splitter and its inverse called a maker in this also.  You may know by now that 8 bits put together is called a byte. A byte can be a value from 0 to 255.  The splitter breaks down a byte into each of its component bits, and the maker does the opposite.  The below diagram just ORs each respective bit and joins them back together.
-
-![OR8B](or8b.png)
-
-## TC - NOT8B
-
-Using the splitters and makers, an 8-bit NOT
-
-![NOT8B](not8b.png)
 
 ## Conclusion
 
