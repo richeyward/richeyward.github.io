@@ -1,7 +1,7 @@
 ---
 title: Learning Electronics Through Gaming - 01 - Getting Started
 author: Richey Ward
-date: 2024-06-03
+date: 2024-07-01
 tags:
   - MHRD
   - TuringComplete
