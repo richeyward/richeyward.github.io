@@ -8,8 +8,8 @@ tags:
     - MHRD
 categories:
     - Digital Electronics
-lastmod: 2024-06-16T18:41:26.581Z
-slug: 3-buses
+lastmod: 2024-08-25T14:11:23.189Z
+slug: 03-buses
 description: Expanding our new gates to handle multiple bit buses
 series:
     - Electronics Through Gaming

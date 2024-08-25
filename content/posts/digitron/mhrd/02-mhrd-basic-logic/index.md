@@ -11,8 +11,8 @@ draft: false
 series:
   - Electronics Through Gaming
 series_order: 2
-lastmod: 2024-06-02T20:57:01.974Z
-slug: 2-mhrd-basic-logic-gates
+lastmod: 2024-08-25T14:11:12.957Z
+slug: 02-mhrd-basic-logic-gates
 description: Building the NOT, AND, OR and XOR gates in MHRD.
 ---
 ## Initial

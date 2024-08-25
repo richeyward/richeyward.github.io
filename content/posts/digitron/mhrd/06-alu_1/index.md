@@ -1,19 +1,19 @@
 ---
-title: Learning Electronics Through Gaming - 6 - ALU (1)
-date: 2024-02-05T00:00:00.000Z
+title: Learning Electronics Through Gaming - 06 - MHRD - ALU (1)
+date: 2024-08-05
 draft: false
 author: Richey Ward
 summary: Building out the basic calculation unit, the ALU
 tags:
   - MHRD
-  - TuringComplete
 categories:
   - Digital Electronics
 description: Building out the basic calculation unit, the ALU
-series: 
-    - Electronics Through Gaming
+series:
+  - Electronics Through Gaming
 series_order: 6
-slug: alu-1
+slug: 06-alu-1
+lastmod: 2024-08-25T14:12:42.628Z
 ---
 ## Initial
 
@@ -27,17 +27,17 @@ The ALU below take 2 4-bit inputs as well as a 4-bit `opCode` value which gives 
 
 The example table below represents what the opcodes intend to perform:
 
-| opCode | in1 | in2 | out | zero | negative | action |
-| ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| 0000 | 0011 | 0101 | 1000 | 0 | 1 | in1 + in2 |
-| 0000 | 0001 | 1111 | 0000 | 1 | 0 | overflow |
-| 0101 | 0011 | 0101 | 0010 | 0 | 0 | in2 - in1 |
-| 1001 | 0011 | 0101 | 1110 | 0 | 1 | in1 - in2 |
-| 0010 | 0011 | 0101 | 1110 | 0 | 1 | in1 nand in2 |
-| 0011 | 0011 | 0101 | 0001 | 0 | 0 | in1 and in2 |
-| 1110 | 0011 | 0101 | 0111 | 0 | 0 | in1 or in2 |
-| 0101 | 0011 | 0000 | 1101 | 0 | 1 | -in1 |
-| 0001 | 1100 | 0000 | 0011 | 0 | 0 | not in1 |
+| opCode | in1  | in2  | out  | zero | negative | action       |
+| ----   | ---- | ---- | ---- | ---- | ----     | ----         |
+| 0000   | 0011 | 0101 | 1000 | 0    | 1        | in1 + in2    |
+| 0000   | 0001 | 1111 | 0000 | 1    | 0        | overflow     |
+| 0101   | 0011 | 0101 | 0010 | 0    | 0        | in2 - in1    |
+| 1001   | 0011 | 0101 | 1110 | 0    | 1        | in1 - in2    |
+| 0010   | 0011 | 0101 | 1110 | 0    | 1        | in1 nand in2 |
+| 0011   | 0011 | 0101 | 0001 | 0    | 0        | in1 and in2  |
+| 1110   | 0011 | 0101 | 0111 | 0    | 0        | in1 or in2   |
+| 0101   | 0011 | 0000 | 1101 | 0    | 1        | -in1         |
+| 0001   | 1100 | 0000 | 0011 | 0    | 0        | not in1      |
 
 ### Negative Numbers
 
@@ -45,9 +45,9 @@ Now is a good time to talk about how negative numbers are represented in binary.
 
 ### Signed vs Unsigned
 
-Up until now, it was only known that a 4-bit value could any number between `0-15` as it has $2^4$ (16) possible permutations.  This is known as an *unsigned integer* as is only can be positive. In this ALU, the idea of using negative numbers is enforced, so if we are to use the MSB as a negative sign, then we can only represent $2^3$ (8) different values, with the indicator of positive or negative being used as the 4th bit.
+Up until now, it was only known that a 4-bit value could any number between `0-15` as it has 2<sup>4</sup> (16) possible permutations.  This is known as an *unsigned integer* as is only can be positive. In this ALU, the idea of using negative numbers is enforced, so if we are to use the MSB as a negative sign, then we can only represent $2^3$ (8) different values, with the indicator of positive or negative being used as the 4th bit.
 
-For positive values, the first 8 possibilities in the range are identical to an unsigned integer i.e. `0000 = 0` and `0111 = 7`.  The other 8 are different however.  Suppose for a moment that we have a secret 5th bit in a binary value like so: `10000`. If it is subtracted by 1, then the value would be `01111`.  Removing the bit again shows how the behaviour works.  `0 - 1 = -1` in decimal would be `0000 - 1 = 1111` where `1111` is the equivalent of `-1`.  Continuing to minus down until you reach the lowest possible value `1000`, it would be observed that this represents `-8`.  So, in reality a -bit signed value can range from `-8`to `7`.
+For positive values, the first 8 possibilities in the range are identical to an unsigned integer i.e. `0000 = 0` and `0111 = 7`.  The other 8 are different however.  Suppose for a moment that we have a secret 5th bit in a binary value like so: `10000`. If it is subtracted by 1, then the value would be `01111`.  Removing the bit again shows how the behaviour works.  `0 - 1 = -1` in decimal would be `0000 - 1 = 1111` where `1111` is the equivalent of `-1`.  Continuing to minus down until you reach the lowest possible value `1000`, it would be observed that this represents `-8`.  So, in reality a 4-bit signed value can range from `-8`to `7`.
 
 As the output will be the same if the inputs are treated as signed or unsigned, the actual calculations do not matter.
 

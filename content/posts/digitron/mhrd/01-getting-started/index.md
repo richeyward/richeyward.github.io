@@ -13,8 +13,8 @@ draft: false
 series:
   - Electronics Through Gaming
 series_order: 1
-lastmod: 2024-06-02T19:54:47.794Z
-slug: 1-getting-started
+lastmod: 2024-08-25T14:10:55.377Z
+slug: 01-getting-started
 ---
 
 ## Initial

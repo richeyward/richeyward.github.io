@@ -11,8 +11,8 @@ categories:
 series:
   - Electronics Through Gaming
 series_order: 4
-slug: 4-muxers-and-adders
-lastmod: 2024-06-16T18:47:25.950Z
+slug: 04-muxers-and-adders
+lastmod: 2024-08-25T14:11:38.990Z
 description: Selecting inputs via MUXERs and adding bits together
 ---
 ## Initial

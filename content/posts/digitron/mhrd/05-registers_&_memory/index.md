@@ -1,18 +1,19 @@
 ---
-title: Learning Electronics Through Gaming - 5 MHRD - Registers & Memory
+title: Learning Electronics Through Gaming - 05 - MHRD - Registers & Memory
 date: 2024-07-29
-draft: true
+draft: false
 author: Richey Ward
-summary: Creating registers and memoy to hold data values
+summary: Creating registers and memory to hold data values
 tags:
     - MHRD
 categories:
     - Digital Electronics
-lastmod: 2024-01-28T23:54:20.256Z
-description: Creating registers and memoy to hold data values
-series: 
+lastmod: 2024-08-25T14:12:23.329Z
+description: Creating registers and memory to hold data values
+series:
     - Electronics Through Gaming
 series_order: 5
+slug: 05-registers_and_memory
 ---
 We turn our attention now to using storage of data. Data storage is crucial for performing calculations for example where the input values to be calculated are stored before calculation as well as the output afterwards.  In cases like this, a *register* is the most common component used.
 
