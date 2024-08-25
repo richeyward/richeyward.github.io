@@ -1,12 +1,11 @@
 ---
-title: Learning Electronics Through Gaming - 5 - Registers & Memory
-date: 2024-01-29T00:00:00.000Z
-draft: false
+title: Learning Electronics Through Gaming - 5 MHRD - Registers & Memory
+date: 2024-07-29
+draft: true
 author: Richey Ward
 summary: Creating registers and memoy to hold data values
 tags:
     - MHRD
-    - TuringComplete
 categories:
     - Digital Electronics
 lastmod: 2024-01-28T23:54:20.256Z
@@ -29,6 +28,8 @@ As mentioned in the documentation for the register component, there is similar b
 
 ![Register](register.png)
 
+The register takes an `input` bit, and also a `load` switch which when positive, tells the register to store the value of the `input` into the register. The value of whatever is stored in the register is then outputted to the `out` pin.
+
 The trick to this is repeatedly taking the output of the register and feeding it back to the register input *except* when the `load` is set true, where it would take the input of the `in` value instead.  This can be done using a MUX.  Wiring is as follows;
 
 ```matlab
@@ -47,11 +48,7 @@ Wires:
  d.out -> m.in1;
 ```
 
-This component can now accept a bit when desired, and repeatedly output it.
-
-As there's no 1-bit MUX in Turing Complete, switches are used instead.
-
-![TC Register](tc-register.png)
+This component can now store a bit when desired, and repeatedly output it.
 
 ## Register4B
 
@@ -85,9 +82,6 @@ Wires:
 ```
 
 This design also unlocks the REGISTER16B design which again is a further extension of the same concept.
-
-Turing Complete has a similar challenge. Note that this is for 1-byte (8-bits) and there's also the ability to toggle the output via a an input in the output component.
-![TC Register 1byte](tc-register-1byte.png)
 
 ## RAM4W16B
 
@@ -141,12 +135,6 @@ Wires:
 ```
 
 Designed unlocked: RAM64K16B
-
-### TC Version
-
-Turing Complete has a nice challenge to make the same circuit but with two differences. We don't have DEMUX switches to enable easy selection of registers, and there's a physical constraint to making it work to make it more challenging.  
-
-![TC RAM](tc-ram.png)
 
 ## Conclusion
 
