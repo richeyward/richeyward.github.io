@@ -113,12 +113,11 @@ Putting all of this together builds out a successfully operating ALU. Successful
 
 The last remaining component in this section is the COUNTER4B which is useful for figuring out what part of the program we intend to run. The counter will increment by one per cycle if the `load` flag is `0`. If the flag is `1`, then the counter is loaded with the value of `in`. Also, it is reset to `0` if the `reset` flag is used.
 
-
 ![COUNTER4B](counter4b.png)
 
 First thing is to use a REGiSTER4B as the counter, and output that into an ADDER4B with the `carryIn` flag set to always be `1` which will continually increment the counter.  Next is to loop back the value to two MUX4Bs in order. The first one will handle the `load` input as its `sel`.  If `load` is `1` then it will use the input value instead. This is then outputted to the second MUX4B that uses the `reset` input as its `sel`.  As the value is set to `0` when reset, there is no need for a second input. Finally the output of the second MUX4B is inputted to the REGISTER4B that we started with. Note that the `load` input of the register is always set to `1`.  Wiring is as follows;
 
-```
+```matlab
 Inputs; in[4], load, reset;
 Outputs: out[4];
 
@@ -142,7 +141,8 @@ Wires:
   m2.out -> r.in;
 ```
 
-Completing this unlocks the COUNTER16B component, and the final phase of building the MHRD CPU is upon us.  
+Completing this unlocks the COUNTER16B component, and the final phase of building the MHRD CPU is upon us.
+
 ## Conclusion
 
 The ALU is now ready and all the major pieces are completed. The last stage of creating the CPU is all that remains.

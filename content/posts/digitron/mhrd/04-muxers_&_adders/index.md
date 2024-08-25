@@ -62,7 +62,6 @@ Wires:
  o.out -> out;
 ```
 
-
 ## DEMUX
 
 Demutiplexers (DEMUX) are used to perform the opposite of a MUX, in that there is one input and two outputs, and a selector to choose which output to use.  This is similar to construct albeit a little simpler.
@@ -76,8 +75,6 @@ A logical arrangement of the DEMUX component is below
 Looking at the truth table, we can see that positive outputs occur once for each output so two AND gates are to be used, as well as a NOT to flip the selector. This is actually very similar to the last component removing the OR gate.  
 
 ![DEMUX Diagram 2](demux%20diagram2.png)
-
-
 
 Wiring is as follows:
 
@@ -210,7 +207,6 @@ A full adder is similar to the half adder as mentioned however it will also incl
 The truth table for this is:
 
 ![Full Adder Truth Table](f1-truthtable.png)
-
 
 Looking back at the truth table, the `out` is an XOR, then an inverted XOR, so XOR the inputs, and the output and its negative are inputted into a MUX which is controlled by the `carryIn` bit.  
 
