@@ -1,19 +1,19 @@
 ---
-title: Learning Electronics Through Gaming - 7 - ALU (2)
-date: 2024-02-12T00:00:00.000Z
+title: Learning Electronics Through Gaming - 07 - MHRD - ALU (2)
+date: 2024-08-12
 draft: false
 author: Richey Ward
 summary: Finalizing the building of the ALU
 tags:
   - MHRD
-  - TuringComplete
 categories:
   - Digital Electronics
 description: Finalizing the building of the ALU
-series: 
-    - Electronics Through Gaming
+series:
+  - Electronics Through Gaming
 series_order: 7
-slug: alu-2
+slug: 07-alu-2
+lastmod: 2024-08-25T14:28:42.707Z
 ---
 ## Initial
 
@@ -123,8 +123,8 @@ Inputs; in[4], load, reset;
 Outputs: out[4];
 
 Parts:
-  r REgISTER4B,
-  a ADDRE4B,
+  r REGISTER4B,
+  a ADDER4B,
   m1 MUX4B,
   m2 MUX4B
 ;
