@@ -69,7 +69,17 @@ Demutiplexers (DEMUX) are used to perform the opposite of a MUX, in that there i
 
 ![DEMUX](demux.png)
 
-Looking at the truth table, we can see that positive outputs occur once for each output so two AND gates are to be used, as well as a NOT to flip the selector. This is actually very similar to the last component removing the OR gate.  Wiring is as follows:
+A logical arrangement of the DEMUX component is below
+
+![DEMUX Diagram](demux%20diagram.png)
+
+Looking at the truth table, we can see that positive outputs occur once for each output so two AND gates are to be used, as well as a NOT to flip the selector. This is actually very similar to the last component removing the OR gate.  
+
+![DEMUX Diagram 2](demux%20diagram2.png)
+
+
+
+Wiring is as follows:
 
 ```matlab
 Inputs: in, sel;
@@ -162,7 +172,7 @@ Completing this unlocks MUX4W16B, MUX16B and DFF components.  The DFF will be di
 
 ## HALF ADDER
 
-A core action of a CPU is the ability to add numbers together.  This component is the beginning of getting there.  A half adder takes two inputs and adds them together.  If both are `0`, then so is the output.  If one input is true then so is the output. If both are positive however, then a second output called `carry` is true.
+A core action of a CPU is the ability to add numbers together.  This component is the beginning of getting there.  A half adder takes two inputs and adds them together.  If both are `0`, then so is the output.  If one input is true then so is the output. If both are positive however, then the output is `0` and a second output called `carry` is set to `1`.
 
 ![Half Adder](halfadder.png)
 
@@ -197,81 +207,16 @@ A full adder is similar to the half adder as mentioned however it will also incl
 
 ![Full Adder](fulladder.png)
 
-The trust table for this is:
+The truth table for this is:
 
 ![Full Adder Truth Table](f1-truthtable.png)
 
-### Solution 1
-
-Looking at the `out` map, the first half is an XOR like before, however the second half is an inverted XOR, the `carryOut` is also an AND for the first half but the second half looks like an OR gate.  There is temptation to rebuild a new design from scratch, but since we have built out half adders and DEMUX components, let's attempt to exclusively use those first.
-
-First, use a half adder for when the `carryIn` is `0`. Take both outputs and place into MUX gates so the other half can be wired in later. Wire the `carryIn` into both MUX gates as the selector. When `carryIn` is `0`, it will work perfectly.  
-
-```matlab
-Inputs: carryIn, in1, in2;
-Outputs: out, carryOut;
-
-Parts:
- h1 HALFADDER,
- m1 MUX,
- m2 MUX;
-
-Wires:
- in1 -> h1.in1,
- in2 -> h1.in2,
- h1.out -> m1.in1,
- h1carry -> m2.in1,
- carryIn -> m1.sel,
- carryIn -> m2.sel,
- m1.out -> out,
- m2.out -> carryOut;
-```
-
-Adding a HALFADDER in the same manner will not work. If we take a look at the outputs for when `carryIn` is `1`, the output can only be achieved by negating both the inputs and the outputs. It's a little clumsy but it works.
-
-```matlab
-Inputs: carryIn, in1, in2;
-Outputs: out, carryOut;
-
-Parts:
- h1 HALFADDER,
- h2 HALFADDER,
- m1 MUX,
- m2 MUX,
- n1 NOT,
- n2 NOT,
- n3 NOT,
- n4 NOT;
-
-Wires:
- in1 -> h1.in1,
- in2 -> h1.in2,
- h1.out -> m1.in1,
- h1.carry -> m2.in1,
-
- in1 -> n1.in,
- in2 -> n2.in,
- n1.out -> h2.in1,
- n2.out -> h2.in2,
- h2.out -> n3.in,
- h2.carry -> n4.in,  
- n3.out -> m1.in2,
- n4.out -> m2.in2,
- carryIn -> m1.sel,
- carryIn -> m2.sel,
- m1.out -> out,
- m2.out -> carryOut;
-```
-
-While this works, it feels a little clumsy.  Let's try a simpler approach.
-
-### Solution 2
-
-![Full Adder](fulladder-diagram.png)
 
 Looking back at the truth table, the `out` is an XOR, then an inverted XOR, so XOR the inputs, and the output and its negative are inputted into a MUX which is controlled by the `carryIn` bit.  
 
 The `carryOut` value is an AND gate when `carryIn` is `0` and an OR gate when it is `1`. Using another MUX, this is easy to create.
+
+![Full Adder](fulladder-diagram.png)
 
 Wiring this up:
 
@@ -305,15 +250,7 @@ Wires:
  m2.out -> carryOut;
 ```
 
-Not only was this easier to understand than the first solution, but the NAND count is smaller, going from 32 down to 26.
-
-### Solution 3 - TC's Version
-
-Turing Complete has a different approach, as the MUX components are not available yet.  The three inputs are fed into two XOR gates. This will check to see if the inputs are odd (even numbers will have `0` out.), Next, three AND comparisons against all three inputs are made, and if any are true, then the `carryOut` is true.
-
-![Full Adder 2](fulladder-diagram2.png)
-
-Overall, I like solution 2 best, but solution 3 is also quite elegant.
+As you can guess, these can be chained to represent larger numbers which will be demonstrated next.
 
 ## ADDER4B
 
@@ -358,12 +295,6 @@ Wires:
 ```
 
 New design unlocked: ADDER16B
-
-## TC - Byte Adder
-
-In Turing Complete, we can extend the above to 8 bits where the same can be performed with a carry input and output.
-
-![Adder8B](abber8b.png)
 
 ## Conclusion
 

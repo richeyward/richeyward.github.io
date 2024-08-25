@@ -115,6 +115,8 @@ This design is different than a 4B design as it takes 4 inputs (4-way) but only 
 
 This can be achieved by using three OR gates. Gate 1 will take the first two inputs, gate 2 the next two, and gate three will take the inputs from the first two gates.  
 
+![OR4W Diagram](or4w%20diagram.png)
+
 ```matlab
 Inputs: in[4];
 Outputs: out;
