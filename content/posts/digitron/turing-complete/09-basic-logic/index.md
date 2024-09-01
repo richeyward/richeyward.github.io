@@ -1,7 +1,7 @@
 ---
 title: Learning Electronics Through Gaming - 09 - TC - Basic Logic
 date: 2024-08-26
-draft: true
+draft: false
 author: Richey Ward
 summary: Getting started with Turing Complete
 tags:
