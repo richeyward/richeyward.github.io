@@ -13,7 +13,7 @@ series:
     - Electronics Through Gaming
 series_order: 11
 slug: 11-memory
-lastmod: 2024-09-01T15:08:51.542Z
+lastmod: 2024-09-03T12:50:16.443Z
 ---
 
 
