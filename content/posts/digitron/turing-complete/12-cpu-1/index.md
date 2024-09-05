@@ -1,7 +1,7 @@
 ---
 title: Learning Electronics Through Gaming - 12 - CPU (1)
 date: 2024-09-16
-draft: true
+draft: false
 author: Richey Ward
 summary: Completing the CPU - Part 1
 tags:
@@ -13,7 +13,7 @@ series:
     - Electronics Through Gaming
 series_order: 12
 slug: 12-cpu-1
-lastmod: 2024-09-03T14:24:39.883Z
+lastmod: 2024-09-03T19:30:28.858Z
 ---
 
 ## Initial
