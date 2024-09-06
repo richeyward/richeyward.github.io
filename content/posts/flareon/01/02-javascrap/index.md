@@ -1,27 +1,27 @@
 ---
 title: Flare-On1 - 02 - Javascrap
+draft: false
+date: 2024-09-30
 author: Richey Ward
-slug: flare-on1-02-javascrap
-date: 2023-11-20
 tags:
   - Flare-On
   - Flare-On1
 categories:
   - CTF
-draft: true
-summary: |
-  This challenge was presented as a zip file. The zip contains a HTML file and a png. Opening the HTML file in a browser shows the following.
+description: Challenge 2 of Flare-On 1.
+summary: Challenge 2 of Flare-On 1.
+slug: 02-javascrap
 ---
 
 ## Initial
 
 This challenge was presented as a zip file. The zip contains a HTML file and a png. Opening the HTML file in a browser shows the following.
 
-![](02-01.png)
+![Pic 1](02-01.png)
 
 Checking the source code showed nothing of interest. Looking closer at the png file with _strings_ however provides results, there appears to be a PHP payload embedded.
 
-![](02-02.png)
+![Pic 2](02-02.png)
 
 ## PHP Payload 1
 
@@ -29,7 +29,7 @@ Extracting and analyzing the PHP code declares two arrays: `terms` and `order`, 
 
 A quick modification and execution of this in **ipython** gives us a new payload:
 
-![](02-03.png)
+![Pic 3](02-03.png)
 
 ## PHP Payload 2
 
@@ -41,7 +41,7 @@ Three vars are set, and then an execution occurs at the end: `eval($___($__));`
 
 `$_` decoded equals:
 
-```
+```js
 if(isset($_POST["\97\49\49\68\x4F\84\116\x68\97\x74\x44\x4F\x54\x6A\97\x76
 \x61\x35\x63\x72\97\x70\x41\84\x66\x6C\97\x72\x65\x44\65\x53\72\111\110\68
 \79\84\99\x6F\x6D"])) 
@@ -52,16 +52,18 @@ if(isset($_POST["\97\49\49\68\x4F\84\116\x68\97\x74\x44\x4F\x54\x6A\97\x76
 
 The first encoded string equals `a11DOTthatDOTjava5crapATflareDASHonDOTcom`
 
-![](02-04.png)
+![Pic 4](02-04.png)
 
 Decoding the second string shows the same value.
 
 Flag: `a11.that.java5crap@flare-on.com`
 
-**Tools Used**
+## Tools Used
 
 - strings
 - ipython
+
+## Appendix
 
 ### Appendix A - Raw Source
 
