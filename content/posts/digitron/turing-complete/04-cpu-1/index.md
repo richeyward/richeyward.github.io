@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 04 - CPU (1)
+title: Learning Electronics Through Gaming - TC - 04 - CPU (1)
 date: 2024-09-16
 draft: false
 author: Richey Ward
@@ -16,33 +16,37 @@ slug: 04-cpu-1
 lastmod: 2024-09-03T19:30:28.858Z
 ---
 
-## Initial
+## Introduction
 
-The foundations are now set to build our first CPU, i.e. a device that can take instructions and action them. Unlike in MHRD however, it will be possible to craft the instructions ourselves. It will be basic, but it will be of our own creation.
+With the foundations now in place, it’s time to build our first CPU—capable of receiving and executing instructions. Unlike in MHRD, here we have the flexibility to craft our own instruction set. While it may be basic initially, the CPU will be of our own design and creation.
+
+---
 
 ## Arithmetic Engine
 
-The last ALU component was basic, and this challenge can extend it by adding `ADD` and `SUB` functionality to it.  It's entirely possible to use the same method of using Demorgans and only use one logic gate for the first four instructions, however as some new shiny gates were just unlocked, using them instead looks cleaner.
+We begin by enhancing the previous ALU design by adding `ADD` and `SUB` functionalities. While it’s possible to use De Morgan’s laws and rely on a single logic gate for the first four operations, it’s cleaner and more efficient to use the newly unlocked gates.
 
-For the input instruction, it's also cleaner to use a bit splitter and a decoder to handle choosing which instruction is requested.  Next, the inputs are connected to an `OR`, `NAND`, `NOR` and `NAND` gate with the output of each connected to a switch. The enable of each switch is then controlled using the decoder bit.
+For handling instruction input, a bit splitter and a decoder simplify selecting the desired operation. The inputs are routed to `OR`, `NAND`, `NOR`, and `NAND` gates, with each output connected to a switch. The decoder then controls the enable signal for each switch.
 
-The final two bits used in the decoder are for `ADD` and `SUB`. There is not a subtractor component however this can be replicated by negating the second input. For these two instructions, the same adder is used, the only difference being if the second value is negated or not using a `Negator` and `MUX`.  This completes our ALU.
-
-It should be noted that this design can be now plugged into designs but still can be edited in future.
+The final two bits in the decoder correspond to `ADD` and `SUB` operations. Since there is no specific subtractor component, subtraction is achieved by negating the second input. The same adder handles both `ADD` and `SUB`, with a `Negator` and a `MUX` determining whether the second input is negated. This completes the ALU, which can still be edited for improvements later.
 
 ![Arithmetic Engine](<arithmetic engine.png>)
 
+---
+
 ## Overture Architecture
 
-The time has come to build our first architecture, the **Overture**. This is not a one off challenge like before, but a design that will be improved upon over time.  If you improve the design and go back to a previous challenge, the latest one will appear.
+We are now ready to build our first CPU architecture: **Overture**. Unlike previous challenges, this design will be refined over time, and improvements will carry over to earlier challenges when revisited.
+
+---
 
 ## Registers
 
-This starts with an `Instruction`, `INPUT` and `OUTPUT`, with six `Register` components called `REG 0` to `REG 5`. Note that these are stuck in place and cannot be moved. This is fine, as it allows space to evolve.
+The architecture starts with three key components: `Instruction`, `INPUT`, and `OUTPUT`, along with six `Register` components named `REG 0` to `REG 5`. These registers are fixed in place, allowing space for future expansion.
 
-The instruction bytes at this time are simple, where values are copied from one place to another. The three lowest bits indicate the *destination* while the next three indicate the *source*.  The two highest bits are not used at this time.
+At this stage, the instruction set is simple: values are copied from one location to another. The three lowest bits of the instruction specify the destination, while the next three bits indicate the source. The two highest bits are unused for now.
 
-The mapping for the inputs/output bit values are:
+Here’s how the inputs and outputs map to the instruction bits:
 
 ```txt
 000 - REG 0
@@ -54,15 +58,17 @@ The mapping for the inputs/output bit values are:
 110 - Input/Output
 ```
 
-So, for example, if the value from `INPUT` is to be saved in `REG 3`, then the instruction would look like `XX110011` where the two highest bits are ignored, `110` is the source and `011` is the destination.
+For instance, to store the value from `INPUT` into `REG 3`, the instruction would look like `XX110011` (the `XX` representing the ignored two highest bits).
 
-As there will only be one source and one destination used, all inputs and outputs can be connected together. Next, the instruction byte is split, and the source bits and destination bits are both fed into a decoder. The decoder pins are connected to their respective devices with source connecting to the `LOAD` pin and destination connecting to the `SAVE` pin.
+Since only one source and one destination are used at a time, all inputs and outputs are connected together. The instruction byte is split, with the source and destination bits routed through a decoder, which is then connected to the appropriate `LOAD` and `SAVE` pins of each register.
 
 ![Registers](registers.png)
 
+---
+
 ## Instruction Decoder
 
-The two remaining bits in the instruction are used to determine what action is to be performed. Note that it is only able to COPY values from one place to another. Other funcionality will come by using the other components designed but first there needs to be an instruction decoder. The bit values are:
+The remaining two bits of the instruction determine the action to be performed. At this point, the CPU can only `COPY` values from one place to another. As additional functionality is added, these bits will drive more complex operations. For now, here are the possible values:
 
 ```txt
 00 - IMMEDIATE
@@ -71,64 +77,64 @@ The two remaining bits in the instruction are used to determine what action is t
 11 - CONDITION
 ```
 
-The other instruction types will be explained as they are built.
+Other operations will be introduced as new components are added.
 
 ![Instruction Decoder](<instruction decoder.png>)
 
+---
+
 ## Calculations
 
-Adding the previously created ALU to this diagram will allow the ability to perform calculations on two values, namely `REG 1` and `REG 2`. The output of the calculation is then to be stored in `REG 3`. While the `LOAD` input is used to output a reg value, there is now a second output which will always output the value regardless of state.
+By integrating the ALU designed earlier, we can now perform arithmetic operations on two registers, specifically `REG 1` and `REG 2`, with the result stored in `REG 3`. While the `LOAD` input triggers the output of a register, there is now a second output that continuously outputs the current register value, regardless of the `LOAD` state.
 
-It should also be noted that the two decoders are only explicitly used during a `COPY`, so to prevent unwanted behaviour, they can be disabled by using a newly added decoder input that when enabled does not output any values. Useful. For this diagram, I connected the 7th bit of the splitter to the decoder disablers, so when it was true (in this case, during a calculation), it disables the decoders.  This will be finessed later.
+To avoid unwanted behavior, the decoders (used during `COPY` operations) can be disabled during other operations by adding an additional control signal. This is managed by connecting the 7th bit of the instruction splitter to the decoder enable pins, ensuring they are only active during a `COPY`.
 
-An `Instruction Decoder` is added and connected to the inbound instruction.  Our `ALU` is added to the diagram, inputting the instruction byte and `REG-1`/`REG-2` values. The `ALU` output is fed to a switch, so it will always remain disabled until the instruction is for a `CALCULATE`. The output is then set into `REG 3`.
+The instruction decoder feeds the inbound instruction into the ALU, which receives inputs from `REG 1` and `REG 2`. The ALU’s output is routed to a switch, which is only enabled for `CALCULATE` instructions, and the result is stored in `REG 3`.
 
 ![Calculation ALU](<calc alu.png>)
 
-To be clear, when a `CALCULATION` occurs, regardless of what calculation to perform, `REG 1` is the first input and `REG 2` is the second, with `REG 3` as the output of calculation. At this stage, the **Overture** can `COPY` and `CALCULATE`.
+To summarize, for all `CALCULATION` operations, `REG 1` provides the first input, `REG 2` the second, and `REG 3` stores the result. At this point, the **Overture** CPU can handle both `COPY` and `CALCULATE` instructions.
 
 ![Calculations](calculations.png)
 
+---
+
 ## Conditions
 
-The diagram will require some conditional calculations to occur, but that component hasn't been built yet, so, time to explore this.
+Conditional operations are the next step, though the component required for this hasn’t been designed yet. The goal is to check specific conditions, such as whether a value is zero, positive, negative, etc.
 
-The logic of this is basically to check if something is true, i.e. if the input is zero, positive or negative, etc.
-
-This component I found hard to design knowing all the conditions that had to be made, but I've learned to embrace the idea of build it to meet the first condition, then adapting for the rest. When approaching it this way, I came up with some novel ideas to achieve my goal.
-
-I started out splitting both inputs for further parsing, then observed the conditions as they came in through the simulator.  
+This component took some trial and error to design, but the solution became clear as I focused on building one condition at a time. Here’s how the conditions were implemented:
 
 ### 0 - NEVER
 
-The first instruction is easy, never output true when picked.
+This is straightforward: the output is always false.
 
 ### 1 - VALUE == 0
 
-The next one checks if a number is zero. This can only occur when all bits are `0`, so if any bit is `1`, this is incorrect. Chaining up some `3-bit OR` gates to read all the bits can detect if it is not `0`, then fed into a `NOR`, so it will be positive if the input is `0`.  Chaining this output to an AND, with the split instruction bit makes this work.
+This condition checks if a number is zero, which occurs only if all bits are `0`. To achieve this, several `3-bit OR` gates are chained to detect if any bit is `1`. The result is fed into a `NOR` gate, which outputs true only if all bits are `0`.
 
 ![Conditions 1](<conditions 1.png>)
 
 ### 2 - VALUE < 0
 
-This is a lot simpler. All that's needed is to check if the 8th bit of the value is set.
+This condition simply checks if the 8th bit of the value is set, indicating a negative number.
 
 ![Conditions 2](<conditions 2.png>)
 
 ### 3 - ALWAYS
 
-The opposite of `NEVER`. When this is true, just output true.
+This is the opposite of `NEVER`: the output is always true.
 
 ![Conditions 3](<conditions 3.png>)
 
 ### 4 - VALUE != 0
 
-So this is the second opposite instruction in a row. It's now clear that if the third pin is positive, then the output is negated. An `XOR` gate to handle the outputs of the previous instructions with the output of the third pin should complete this and the remaining conditions.
-
-The other instructions (`VALUE >= 0` and `VALUE > 0`) work flawlessly with this approach.
+This is the opposite of `VALUE == 0`. By this point, it’s clear that if the third pin is positive, the output is negated. An `XOR` gate handles this, completing the rest of the conditions, including `VALUE >= 0` and `VALUE > 0`.
 
 ![Conditions](conditions.png)
 
+---
+
 ## Conclusion
 
-The final pieces for the **Overture** design is almost completed. In the next section, it will be completed and the first steps of writing code to execute on it will be performed.
+The **Overture** CPU design is nearing completion. In the next section, we’ll finalize the design and take the first steps toward writing code that can execute on this CPU.

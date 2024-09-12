@@ -13,7 +13,7 @@ series:
     - Electronics Through Gaming - TC
 series_order: 3
 slug: 03-memory
-lastmod: 2024-09-03T12:50:16.443Z
+lastmod: 2024-09-12T17:15:01.949Z
 ---
 
 

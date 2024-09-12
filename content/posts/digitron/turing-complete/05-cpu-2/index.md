@@ -1,7 +1,7 @@
 ---
 title: Learning Electronics Through Gaming - TC - 05 - CPU (2)
 date: 2024-09-23
-draft: true
+draft: false
 author: Richey Ward
 summary: Completing the CPU - Part 2
 tags:
@@ -16,126 +16,134 @@ slug: 05-cpu-2
 lastmod: 2024-09-04T12:48:24.071Z
 ---
 
-## Initial
+## Introduction
+
+In this section, we continue building and refining the **Overture** CPU. With the ability to load instructions from memory and manage immediate values, the design starts to take shape. We also introduce conditional logic, making the CPU capable of handling jumps, loops, and custom scripting.
+
+---
 
 ## Program
 
-The instruction input is removed and replaced with a RAM block. The inbound instructions are finally observable and will eventually be editable, allowing custom scripting. Connect the RAM block to where the old input was. Next, connect a `Counter` to the block, which will read it as the pointer to what instruction is needed to be outputted.
+The first step is to replace the manual instruction input with a RAM block. This block will store instructions that can be loaded and eventually edited, allowing for custom scripting. Connect the RAM block where the input was previously located, and add a `Counter` to serve as a pointer, determining which instruction is fetched.
 
 ![Program](program.png)
 
+---
+
 ## Immediate Values
 
-The needs to be an ability to load a value from the code into a register. The `IMMEDIATE` instruction can handle this. When the `IMMEDIATE` flag is set, the next 6 bits of the instruction are immediately stored in `REG 0`.
-
-While techinically the last two bits should be ignored, the simulations show that this can just be used as is. An extra enable condition for `REG 0` is wired to allow input when the `IMMEDIATE` is enabled, and the input value is piped into the register.
+To allow the loading of immediate values into a register, the `IMMEDIATE` instruction is introduced. When this instruction is flagged, the next 6 bits of the instruction are stored directly in `REG 0`. Although the last two bits should technically be ignored, simulations show that using them as-is works fine. An additional enable condition is wired to `REG 0`, allowing input only when the `IMMEDIATE` flag is set, with the input value piped into the register.
 
 ![Immediate Values](<immediate values.png>)
 
+---
+
 ## Turing Complete
 
-The last piece is to be added and the **Overture** is complete.  The `CONDITIONAL` piece that was previously created is needed to be added and it's done.  The condition is checked against the value of `REG 3`. If the condition is met, then the value of the `COUNTER` is reset to the value of what is in `REG 0`.  
+The final piece needed to complete the **Overture** CPU is the conditional logic component, previously designed. This component checks the value of `REG 3` and, if the specified condition is met, resets the `COUNTER` to the value in `REG 0`. This enables loops and jumps within the program.
 
-Adding the ability to control the `COUNTER` means that we can perform loops or jump to other pieces of code when we need to.
-
-Start by adding the `CONDITIONAL` to the diagram, then add the instruction and the value of `REG 3` as the input. The output bit and conditional flag to an `AND` gate, so that if both are positive, the `COUNTER` is overridden. `REG 0` is fed to the `COUNTER` and the diagram is complete.
+To implement this, connect the `CONDITIONAL` component to the diagram, feeding the instruction and `REG 3` into its inputs. The output bit and conditional flag are sent to an `AND` gate, ensuring that the `COUNTER` is overridden only when both conditions are met. `REG 0` is then connected to the `COUNTER`.
 
 ![Complete 1](<complete 1.png>)
 
 ![Complete 2](<complete 2.png>)
 
+---
+
 ## Overture Complete
 
-At this stage, we have reached as similar stage as the end of MHRD, however Turing Complete only really starts to expand at this point. The building of the **Overture** architecture is basic yes, but it is a foundation for more complex designs.
+At this point, we’ve reached a similar stage as the final design in MHRD, but Turing Complete is just beginning to expand. The **Overture** architecture is still basic, but it provides a foundation for more complex designs and operations in the future.
+
+---
 
 ## ADD 5
 
-With the newly created **Overture**, it's time to create some machine code to run on it.  To modify the input code, click on the pencil icon on the `RAM`. This opens the binary editor.  Now what?
-
-The challenge is to create code that reads an input, adds 5 to it, then outputs it.
+With the **Overture** CPU completed, we now move on to writing some machine code to run on it. The goal is to create a program that reads an input, adds 5 to it, and then outputs the result.
 
 ### 1 - Read Input
 
-Figuring out what code to write is tough at the start, but clicking on the 'View instructions Definitions' is useful to getting started.  For the first step, the input must be copied to a place we can use later like `REG 1`, do using the helper, this instruction value is `177`.
+To write the code, click the pencil icon on the `RAM` block to open the binary editor. Using the "View Instructions Definitions" helper, we can determine the correct instruction for copying the input to `REG 1`. This instruction value is `177`.
 
 ![add5 - Read Input](<add5 read input.png>)
 
 ### 2 - Add 5
 
-Next, a `5` must be loaded into `REG 2` but this requires two steps.  First perform an `IMMEDIATE` which will save the value `5` into `REG 0`. Next, the copy from `REG 0` to `REG 2` is performed.
+Next, we need to load the value `5` into `REG 2`, which requires two steps. First, use the `IMMEDIATE` instruction to store `5` in `REG 0`, then copy the value from `REG 0` to `REG 2`.
 
 ![add5 - add5-1](<add5 add 5-1.png>)
 
 ![add5 - add5-2](<add5 add 5-2.png>)
 
-### 3 - Perform calculation
+### 3 - Perform Calculation
 
-Next a `COMPUTE` is performed with the instruction to `ADD`.
+Now perform an `ADD` operation using the `COMPUTE` instruction.
 
 ![add5 - perform calc](<add5 - perform calc.png>)
 
-### 4 - Output result
+### 4 - Output Result
 
-The value of the `ADD` is now in `REG 3`, so just copy that to the `OUTPUT`.
+Finally, copy the result from `REG 3` (where the result of the `ADD` is stored) to the `OUTPUT`.
 
 ![add5 - output](<add5 - output.png>)
 
-The bytes should look like this.  Run the program and it will complete.
+After running the program, the output will display the result of adding 5 to the input. This unlocks the IDE, which will be useful for future challenges.
 
 ![add5 Solution](<add5 solution.png>)
 
-This unlocks the IDE which will be used in the next challenge.
+---
 
 ## Calibrating Laser Cannons
 
-The next challenge is to calculate the circumference of an asteroid using the equation `2*π*r` where `r` is the input.  The value of `π` can be rounded to `3`, so in reality, the input just has to be multiplied by 6.
+The next challenge involves calculating the circumference of an asteroid using the equation `2*π*r`, where `r` is the input. For simplicity, we round `π` to 3, so the calculation becomes multiplying the input by 6.
 
 ### Handling Multiplication
 
-An issue has arisen in that there is no component to multiply a number. Not to worry however as multiplication is just repeated additions.
+There is no multiplication component, but we can simulate multiplication through repeated additions.
 
 ### Assembly Editor
 
-The IDE or Assembly Editor makes writing code for this a lot easier. All that is needed is to map out an operation code (opcode) to a name of your choosing.  Just click on the `add` button in the editor and build your opcode there.
+The IDE makes coding for this task easier by allowing us to map operation codes (opcodes) to custom names. We’ll create a simple multiplication routine using repeated addition.
 
 ### Understanding Register Usage
 
-There are 6 `Register` components, however some have special usages so, it's worth documenting what each ones characteristic is so that when we want store data for later retrieval (like the `r` value or a constant `6`), they are stored in a place that won't get overwritten.
+There are 6 `Register` components, each with specific usage characteristics. It’s important to document these so that we can manage the storage and retrieval of data effectively:
 
 ```txt
-REG 0 -> Stored immediate inputs. Also used when resetting counter
-REG 1 -> First value when using calculate
-REG 2 -> Second value when using calculate
-REG 3 -> Output value of calculate and input of conditional
-REG 4/5 -> Can be used for long term storage
+REG 0 -> Stores immediate inputs and resets the counter.
+REG 1 -> First operand for calculations.
+REG 2 -> Second operand for calculations.
+REG 3 -> Stores the output of calculations and input for conditionals.
+REG 4/5 -> Can be used for long-term storage.
 ```
 
 ### Solution
 
-I had toiled with a possible solution for this, even considering building out a multiplier function, however reviewing some other ways this was tackled showed a simple solution, which is basically:
+Here’s a simple solution to multiply the input by 6:
 
 ```txt
 Grab input (e.g. 10)
 Double it (20)
-Add original input (30)
+Add the original input (30)
 Double again (60)
 ```
 
-I've added some self explanitory instructions to achieve this.
+The code to achieve this:
 
 ```matlab
 in_to_r1  # grab input
 r1_to_r2  # copy to r2
-ADD       # r1+r2
+ADD       # r1 + r2
 r3_to_r1  # copy output to r1
 r1_to_r2  # copy to r2
-ADD       # r1+r2
+ADD       # r1 + r2
 r3_to_r1  # copy output to r1
-ADD       # r1+r2
+ADD       # r1 + r2
 r3_to_out # result out
 ```
 
-This unlocks the `Robotron 9000` which is a little robot that can be controlled.
+This solution unlocks the `Robotron 9000`, a controllable robot.
+
+---
 
 ## Spacial Invasion
 
@@ -147,7 +155,7 @@ The Robotron starts out behind some boxes and the mission is to shoot all the "r
 
 ### Starting Position
 
-It is not possible to be effective at the starting point, so the Robotron needs to be positioned accordingly.  To move the robot, just output a value to `OUTPUT`.  Robotron (let's just call him 'Rob' from now on) has different values for each action, so the ones used are declared as `const` values.  Rob then needs to turn right, move fowards two squares, turn left then go forward once.
+The Robotron must move to a more effective position before engaging the rats. Using the `OUTPUT` command, the Robotron can turn right, move forward, turn left, and then move forward again.
 
 ```matlab
 const LEFT = 0
@@ -210,9 +218,11 @@ check
 JMP
 ```
 
+---
+
 ## Masking Time
 
-Find out what day of the week a certain date is. As the bottom text says, the `mod 4` of the date is really what's requested.  
+The goal here is to find the day of the week based on a given date. The task simplifies to finding the `mod 4` of the date.
 
 ### Modulus
 
@@ -220,15 +230,15 @@ If you're familiar with basic division, there can be instances where a remainder
 
 ### Getting MOD 4
 
-The nice thing about performing a `mod 4` is that this is identical to the first two bits in the date value:
+To get `mod 4`, we use the first two bits of the date value:
 
 ```txt
 27 % 4 = 3
 27     - 0b00011011
- 3     - 0b00000011
+3      - 0b00000011
 ```
 
-To get the two bits, an `AND` of value `0b11` (3) is used.  This will drop all other bits.  Code for this is small.
+An `AND` operation with `0b11` (3) isolates these bits. The code is simple:
 
 ```matlab
 3
@@ -237,3 +247,7 @@ in_to_r1
 AND
 r3_to_out
 ```
+
+---
+
+This concludes the section. In the next part, we’ll explore more advanced functionality for the **Overture** CPU.
