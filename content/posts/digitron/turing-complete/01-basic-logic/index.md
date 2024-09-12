@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 09 - TC - Basic Logic
+title: Learning Electronics Through Gaming - TC - 01 - Basic Logic
 date: 2024-08-26
 draft: false
 author: Richey Ward
@@ -10,9 +10,9 @@ categories:
     - Digital Electronics
 description: Getting started with Turing Complete
 series:
-    - Electronics Through Gaming
-series_order: 9
-slug: 09-basic-logic
+    - Electronics Through Gaming - TC
+series_order: 1
+slug: 01-basic-logic
 lastmod: 2024-09-01T14:29:03.122Z
 ---
 

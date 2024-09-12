@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 13 - CPU (2)
+title: Learning Electronics Through Gaming - TC - 05 - CPU (2)
 date: 2024-09-23
 draft: true
 author: Richey Ward
@@ -10,9 +10,9 @@ categories:
     - Digital Electronics
 description: Completing the CPU - Part 2
 series:
-    - Electronics Through Gaming
-series_order: 13
-slug: 13-cpu-2
+    - Electronics Through Gaming - TC
+series_order: 5
+slug: 05-cpu-2
 lastmod: 2024-09-04T12:48:24.071Z
 ---
 

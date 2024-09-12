@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 11 - Memory
+title: Learning Electronics Through Gaming - TC - 03 - Memory
 date: 2024-09-09
 draft: false
 author: Richey Ward
@@ -10,9 +10,9 @@ categories:
     - Digital Electronics
 description: Building memory components
 series:
-    - Electronics Through Gaming
-series_order: 11
-slug: 11-memory
+    - Electronics Through Gaming - TC
+series_order: 3
+slug: 03-memory
 lastmod: 2024-09-03T12:50:16.443Z
 ---
 

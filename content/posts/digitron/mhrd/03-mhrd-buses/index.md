@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 03 - MHRD - Buses
+title: Learning Electronics Through Gaming - MHRD - 03 - Buses
 date: 2024-07-15
 draft: false
 author: Richey Ward

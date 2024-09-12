@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 08 - MHRD - Decoder & CPU
+title: Learning Electronics Through Gaming - MHRD - 08 - Decoder & CPU
 date: 2024-08-19
 draft: false
 author: Richey Ward

@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 10 - Arithemetic
+title: Learning Electronics Through Gaming - TC - 02 - Arithemetic
 date: 2024-09-02
 draft: false
 author: Richey Ward
@@ -10,9 +10,9 @@ categories:
     - Digital Electronics
 description: Building arithmetic components
 series:
-    - Electronics Through Gaming
-series_order: 10
-slug: 10-arithmetic
+    - Electronics Through Gaming - TC
+series_order: 2
+slug: 02-arithmetic
 lastmod: 2024-09-01T14:52:52.913Z
 ---
 

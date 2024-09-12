@@ -20,21 +20,27 @@
  weight = 20
 
 [[main]]
- name = "Learning Through Gaming"
+ name = "Learning Through Gaming - MHRD"
  parent = "Digital Electronics"
- pageRef = "series/electronics-through-gaming"
+ pageRef = "series/electronics-through-gaming---mhrd"
  weight = 20
 
-[[main]]
- name = "Flare-On"
- pageRef = "posts/flareon"
- weight = 10
-
-[[main]]
- name = "Flare-On1"
- parent = "Flare-On"
- pageRef = "series/electronics-through-gaming"
+ [[main]]
+ name = "Learning Through Gaming - Turing Complete"
+ parent = "Digital Electronics"
+ pageRef = "series/electronics-through-gaming---tc"
  weight = 20
+
+# [[main]]
+#  name = "Flare-On"
+#  pageRef = "posts/flareon"
+#  weight = 10
+
+# [[main]]
+#  name = "Flare-On1"
+#  parent = "Flare-On"
+#  pageRef = "series/electronics-through-gaming"
+#  weight = 20
 
 
 #[[main]]

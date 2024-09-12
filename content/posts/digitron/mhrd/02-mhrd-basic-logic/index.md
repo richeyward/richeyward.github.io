@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 02 - MHRD - Basic Logic
+title: Learning Electronics Through Gaming - MHRD - 02 - Basic Logic
 author: Richey Ward
 date: 2024-07-08
 tags:

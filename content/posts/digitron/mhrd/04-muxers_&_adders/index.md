@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 04 - MHRD - Muxers & Adders
+title: Learning Electronics Through Gaming - MHRD - 04 - Muxers & Adders
 date: 2024-07-22
 draft: false
 author: Richey Ward

@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 07 - MHRD - ALU (2)
+title: Learning Electronics Through Gaming - MHRD - 07 - ALU (2)
 date: 2024-08-12
 draft: false
 author: Richey Ward

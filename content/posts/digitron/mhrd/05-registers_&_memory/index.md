@@ -1,5 +1,5 @@
 ---
-title: Learning Electronics Through Gaming - 05 - MHRD - Registers & Memory
+title: Learning Electronics Through Gaming - MHRD - 05 - Registers & Memory
 date: 2024-07-29
 draft: false
 author: Richey Ward
