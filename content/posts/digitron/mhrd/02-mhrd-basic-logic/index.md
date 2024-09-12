@@ -9,7 +9,7 @@ categories:
 summary: Building the NOT, AND, OR, and XOR gates.
 draft: false
 series:
-  - Electronics Through Gaming
+  - Electronics Through Gaming - MHRD
 series_order: 2
 lastmod: 2024-09-11T18:30:34.743Z
 slug: 02-mhrd-basic-logic-gates

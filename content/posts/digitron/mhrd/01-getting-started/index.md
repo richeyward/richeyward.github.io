@@ -11,7 +11,7 @@ summary: Covering the foundations of learning Digital Electronics through gaming
 description: Covering the foundations of learning Digital Electronics through gaming
 draft: false
 series:
-  - Electronics Through Gaming
+  - Electronics Through Gaming - MHRD
 series_order: 1
 lastmod: 2024-08-25T14:10:55.377Z
 slug: 01-getting-started

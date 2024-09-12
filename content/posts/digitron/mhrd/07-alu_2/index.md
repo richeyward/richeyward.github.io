@@ -10,7 +10,7 @@ categories:
   - Digital Electronics
 description: Finalizing the building of the ALU
 series:
-  - Electronics Through Gaming
+  - Electronics Through Gaming - MHRD
 series_order: 7
 slug: 07-alu-2
 lastmod: 2024-08-25T14:28:42.707Z

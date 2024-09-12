@@ -10,7 +10,7 @@ categories:
   - Digital Electronics
 description: Constructing the core calculation unit, the ALU, in MHRD.
 series:
-  - Electronics Through Gaming
+  - Electronics Through Gaming - MHRD
 series_order: 6
 slug: 06-alu-1
 lastmod: 2024-09-11T21:59:44.530Z

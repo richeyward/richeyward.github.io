@@ -9,7 +9,7 @@ tags:
 categories:
   - Digital Electronics
 series:
-  - Electronics Through Gaming
+  - Electronics Through Gaming - MHRD
 series_order: 4
 slug: 04-muxers-and-adders
 lastmod: 2024-08-25T14:11:38.990Z
@@ -217,8 +217,6 @@ A full adder extends the half adder by adding an additional input called `carryI
 Here’s the truth table for the full adder:
 
 ![Full Adder Truth Table](f1-truthtable.png)
-
-To accommodate for the extra bit, two `MUX` components are added and 
 
 The wiring for the full adder looks like this:
 

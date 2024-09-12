@@ -10,7 +10,7 @@ categories:
     - Digital Electronics
 description: Combining all the parts to make the CPU
 series:
-    - Electronics Through Gaming
+  - Electronics Through Gaming - MHRD
 series_order: 8
 slug: 08-decoder_and_cpu
 lastmod: 2024-09-11T22:09:20.567Z

@@ -11,7 +11,7 @@ categories:
 lastmod: 2024-09-11T21:52:23.110Z
 description: Creating registers and memory to store data values in MHRD
 series:
-    - Electronics Through Gaming
+  - Electronics Through Gaming - MHRD
 series_order: 5
 slug: 05-registers_and_memory
 ---

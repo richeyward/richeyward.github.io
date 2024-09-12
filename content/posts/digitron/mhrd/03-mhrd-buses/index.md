@@ -12,7 +12,7 @@ lastmod: 2024-09-11T18:32:52.813Z
 slug: 03-buses
 description: Expanding our new gates to handle multiple bit buses in MHRD.
 series:
-    - Electronics Through Gaming
+  - Electronics Through Gaming - MHRD
 series_order: 3
 ---
 
