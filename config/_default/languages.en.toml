@@ -1,0 +1,13 @@
+disabled = false
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "Richey Ward"
+
+[params]
+displayName = "EN"
+isoCode = "en"
+rtl = false
+dateFormat = "2006-01-02"
+author = { name = "Richey Ward", email = "me@richeyward,com", image = "bio-photo.jpg", imageQuality = 96, headline = "Threat Hunter, Reverse Engineer, CTFer", bio = "Threat Hunter, Reverse Engineer, CTFer", links = [ { email = "mailto:me@richeyward.com" }, { github = "https://github.com/richeyward" }, { linkedin = "https://www.linkedin.com/in/richey-ward-46497722/" } ] }
+logo = "bio-image.jpg"

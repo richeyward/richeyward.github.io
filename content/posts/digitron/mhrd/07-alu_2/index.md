@@ -15,17 +15,20 @@ series_order: 7
 slug: 07-alu-2
 lastmod: 2024-08-25T14:28:42.707Z
 ---
-## Initial
 
-Now that the concept of the ALU has been documented, the wiring of the device comes next. There are multiple ways to complete this challenge however I believe I have crafted one of the better ways to perform this.
+## Introduction
+
+With the core concepts of the ALU now established, the next step involves wiring the device. There are various ways to tackle this, but I believe the following method strikes a good balance between simplicity and performance.
+
+---
 
 ## ALU4B - Wiring
 
-Firstly, let's start with the predefined inputs/outputs and I've added the parts required:
+Let’s begin with the predefined inputs and outputs, along with the necessary components for the ALU:
 
 ```matlab
 Inputs: in1[4], in2[4], opCode[4];
-Outputs; out[4], negative, zero;
+Outputs: out[4], negative, zero;
 
 Parts:
   m1 MUX4B,
@@ -41,9 +44,9 @@ Parts:
   o OR4W;
 ```
 
-### opCode[4] - Negating in1
+### Step 1: opCode[4] - Negating `in1`
 
-If opCode[4] is true, then the value of `in1` is bitwise flipped. To do this in MHRD, the input of `in1` is fed into a NOT4B `n1` gate to handle the flipping. Next the output of `in1` and `n1` are fed into a MUX4B gate `m1`, using the opCode[4] as the `sel` will select if `in1` is negated or not. The wiring for this is:
+If `opCode[4]` is true, the value of `in1` will be bitwise negated. To achieve this, feed `in1` into a `NOT4B` gate (`n1`). The original `in1` value and the negated output from `n1` are then routed into the inputs of a `MUX4B` gate (`m1`). The `opCode[4]` value is used as the selector (`sel`) to determine whether `in1` is passed through unchanged or negated.
 
 ```matlab
 in1 -> m1.in1,
@@ -52,9 +55,9 @@ n1.out -> m1.in2,
 opCode[4] -> m1.sel;
 ```
 
-### opCode[3] - Negating in2
+### Step 2: opCode[3] - Negating `in2`
 
-The wiring for this is identical to the above, just with different components:
+This step is identical to Step 1 but for `in2`. Here, we route `in2` through a `NOT4B` gate (`n2`) and use another `MUX4B` (`m2`) to either negate or pass through the value based on the state of `opCode[3]`.
 
 ```matlab
 in2 -> m2.in1,
@@ -63,9 +66,9 @@ n2.out -> m2.in2,
 opCode[3] -> m2.sel;
 ```
 
-### opCode[2] - Selecting ADD or NAND
+### Step 3: opCode[2] - Selecting Between ADD and NAND
 
-If `opCode[2]` is `0`, then the inputs of the two MUX4Bs are fed into an ADDER4B `a` gate, otherwise they are fed into an NAND4B `nand` gate.  The trick here is to not route the inputs into each component but rather select what output of each to select. This will be performed using a third MUX4B gate `m3`;
+If `opCode[2]` is `0`, the outputs of `m1` and `m2` are passed into an `ADDER4B` gate (`a`). If `opCode[2]` is `1`, the outputs are passed into a `NAND4B` gate (`nand`). Instead of wiring inputs to both the adder and NAND gates, we use a `MUX4B` (`m3`) to select the output of the correct operation.
 
 ```matlab
 m1.out -> a.in1,
@@ -77,21 +80,21 @@ nand.out -> m3.in2,
 opCode[2] -> m3.sel;
 ```
 
-### opCode[1] - Negating out
+### Step 4: opCode[1] - Negating the Output
 
-Very similar to the first two opCodes, the output is fed into a third NOT4B `n4`, and the output of that alongside the original output is fed into a fourth MUX4B `m4` using `opCode[1]` as the `sel`. The output of `m4` is then sent to `out[4]`.
+To potentially negate the final output, route `m3.out` into a `NOT4B` gate (`n3`). A fourth `MUX4B` (`m4`) selects whether the output remains unchanged or is negated, based on the value of `opCode[1]`. The output from `m4` is then sent to `out[4]`.
 
 ```matlab
 m3.out -> m4.in1,
 m3.out -> n3.in,
 n3.out -> m4.in2,
-opCode[1] -> m4.sel
+opCode[1] -> m4.sel,
 m4.out -> out;
 ```
 
 ### Negative Flag
 
-For reasons that become apparent later, two flags are also outputted from the ALU, the first being the `negative` flag. This represents when a number is negative.  As discussed in the previous post, a number is potentially negative when the MSB is set to `1`.  As the bits are identical, the MSB of `m4` is piped to the `negative` flag.
+The `negative` flag indicates when the result is negative. As discussed previously, a number is considered negative when the most significant bit (MSB) is `1`. To implement this, route the MSB of `m4.out` to the `negative` output.
 
 ```matlab
 m4.out[4] -> negative;
@@ -99,7 +102,7 @@ m4.out[4] -> negative;
 
 ### Zero Flag
 
-To check if a number is != `0`, the output of m4 can be piped into an OR4B `o` gate, as if any bit in the output is positive, then the output cannot be zero.  Obviously, the opposite is what's requested, so a simple NOT `n` gate is used to negate this.
+The `zero` flag is used to check if the result is `0`. This can be done by piping the output of `m4` into an `OR4W` gate (`o`). If any bit in the result is non-zero, the output cannot be zero. Since we need the inverse of this, the output of the `OR4W` gate is negated using a simple `NOT` gate (`n`).
 
 ```matlab
 m4.out -> o.in,
@@ -107,26 +110,27 @@ o.out -> n.in,
 n.out -> zero;
 ```
 
-Putting all of this together builds out a successfully operating ALU. Successfully creating this component unlocks the ALU16B component which performs the same actions as the ALU4B but with 16-bit inputs/outputs.
+This wiring successfully completes the ALU, and with this component built, the 16-bit version (ALU16B) is unlocked, which performs the same operations on 16-bit inputs and outputs.
+
+---
 
 ## COUNTER4B
 
-The last remaining component in this section is the COUNTER4B which is useful for figuring out what part of the program we intend to run. The counter will increment by one per cycle if the `load` flag is `0`. If the flag is `1`, then the counter is loaded with the value of `in`. Also, it is reset to `0` if the `reset` flag is used.
+The next important component is the `COUNTER4B`, which is useful for tracking the execution state of a program. The counter increments by 1 per cycle when the `load` flag is `0`. When `load` is `1`, the counter is set to the input value. It is reset to `0` when the `reset` flag is active.
 
 ![COUNTER4B](counter4b.png)
 
-First thing is to use a REGiSTER4B as the counter, and output that into an ADDER4B with the `carryIn` flag set to always be `1` which will continually increment the counter.  Next is to loop back the value to two MUX4Bs in order. The first one will handle the `load` input as its `sel`.  If `load` is `1` then it will use the input value instead. This is then outputted to the second MUX4B that uses the `reset` input as its `sel`.  As the value is set to `0` when reset, there is no need for a second input. Finally the output of the second MUX4B is inputted to the REGISTER4B that we started with. Note that the `load` input of the register is always set to `1`.  Wiring is as follows;
+The counter is essentially a `REGISTER4B` that loops back its output to an `ADDER4B`, where the `carryIn` is always `1`, so the value increments each cycle. Two `MUX4B` components are then used: the first handles the `load` input, and the second handles the `reset` input. The wiring looks like this:
 
 ```matlab
-Inputs; in[4], load, reset;
+Inputs: in[4], load, reset;
 Outputs: out[4];
 
 Parts:
   r REGISTER4B,
   a ADDER4B,
   m1 MUX4B,
-  m2 MUX4B
-;
+  m2 MUX4B;
 
 Wires:
   r.out -> a.in1,
@@ -141,8 +145,10 @@ Wires:
   m2.out -> r.in;
 ```
 
-Completing this unlocks the COUNTER16B component, and the final phase of building the MHRD CPU is upon us.
+This completes the `COUNTER4B` and unlocks the `COUNTER16B`, which functions similarly but with 16-bit inputs and outputs.
+
+---
 
 ## Conclusion
 
-The ALU is now ready and all the major pieces are completed. The last stage of creating the CPU is all that remains.
+With the ALU now fully operational and the counter implemented, the foundational components for the CPU are complete. The next phase will involve integrating these components to build the final stages of the MHRD CPU.

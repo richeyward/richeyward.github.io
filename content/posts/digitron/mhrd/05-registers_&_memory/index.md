@@ -3,35 +3,41 @@ title: Learning Electronics Through Gaming - 05 - MHRD - Registers & Memory
 date: 2024-07-29
 draft: false
 author: Richey Ward
-summary: Creating registers and memory to hold data values
+summary: Creating registers and memory to store data values
 tags:
     - MHRD
 categories:
     - Digital Electronics
-lastmod: 2024-08-25T14:12:23.329Z
-description: Creating registers and memory to hold data values
+lastmod: 2024-09-11T21:52:23.110Z
+description: Creating registers and memory to store data values in MHRD
 series:
     - Electronics Through Gaming
 series_order: 5
 slug: 05-registers_and_memory
 ---
-We turn our attention now to using storage of data. Data storage is crucial for performing calculations for example where the input values to be calculated are stored before calculation as well as the output afterwards.  In cases like this, a *register* is the most common component used.
+
+## Introduction
+
+In this post, we turn our attention to data storage. Data storage is crucial for performing calculations, where input values are stored before processing, and outputs are held
+afterwards. The most common component for storing data in these scenarios is a *register*.
+
+---
 
 ## Registers
 
-Registers are at the very core of a CPU.  A register is a component that can store and hold a value that can be called back later. In programming terms it is similar to a variable.  For a register to work, it must have an input of the value to be stored, and a `load` input that tells the register to read the input and store it.
+Registers are at the heart of a CPU. A register is a component that can store a value and hold it until it is needed. In programming terms, it functions similarly to a variable.
+To work, a register requires an input value and a `load` signal that instructs the register to store the input value.
 
-In MHRD, the *DFF* (D-Flip-Flop) component should be unlocked by now, which is a device that takes an input and outputs the value of the input one clock cycle later.  Clock cycles determine how fast a CPU can run and is set by a *clock* component which will be discussed later.  As you can see below, the out value is determined by the value of the input of the previous cycle.
+In MHRD, the *DFF* (D-Flip-Flop) component is used for building registers. The DFF stores an input value and outputs it one clock cycle later. Clock cycles, which determine the
+speed of a CPU, are managed by a *clock* component, which we will discuss later. Below is an example of a DFF:
 
 ![DFF](dff.png)
 
-As mentioned in the documentation for the register component, there is similar behaviour with it, so a clue is given that we need to use a DFF for building out the register.
+As the documentation suggests, we use DFFs to construct registers. The register takes an `input` bit and a `load` signal. When the `load` is active, the input value is stored in
+the register, and the stored value is outputted on the `out` pin.
 
-![Register](register.png)
-
-The register takes an `input` bit, and also a `load` switch which when positive, tells the register to store the value of the `input` into the register. The value of whatever is stored in the register is then outputted to the `out` pin.
-
-The trick to this is repeatedly taking the output of the register and feeding it back to the register input *except* when the `load` is set true, where it would take the input of the `in` value instead.  This can be done using a MUX.  Wiring is as follows;
+The trick is to feed the register’s output back into its input unless the `load` is active. When `load` is active, the input value is stored instead. This can be achieved using a
+multiplexer (MUX). The wiring is as follows:
 
 ```matlab
 Inputs: in, load;
@@ -49,13 +55,18 @@ Wires:
  d.out -> m.in1;
 ```
 
-This component can now store a bit when desired, and repeatedly output it.
+This setup allows the register to store and repeatedly output a value until a new one is loaded.
+
+---
 
 ## Register4B
 
-Storing just 1-bit is not very useful. In order to store larger values, more bit 1-bit registers are needed. A 4-bit register can hold a value from 0 to 15.  As we have already build out a 1-bit register, we just need to expand that out 4 times.
+While a 1-bit register can be useful, storing larger values requires more bits. A 4-bit register can store values from 0 to 15. As we’ve already built a 1-bit register, we can
+extend this design to create a 4-bit register by using four 1-bit registers.
 
-![Register4b](register4b.png)
+![Register4B](register4b.png)
+
+The wiring for a 4-bit register is as follows:
 
 ```matlab
 Inputs: in[4], load;
@@ -82,31 +93,40 @@ Wires:
  r4.out -> out[4];
 ```
 
-This design also unlocks the REGISTER16B design which again is a further extension of the same concept.
+This design also unlocks the REGISTER16B, which is a further extension of this concept.
+
+---
 
 ## RAM4W16B
 
-As mentioned, registers are really useful in a CPU for calculations, but what it you wanted to store a bunch of data? The answer is *Random Access Memory* or *RAM* which is vital for most computers to function.  RAM can be written to and recalled at a later stage just like a register, in fact RAM is in essence a bunch of registers tied together.  To in order to access a register to read/write, an *address* is assigned to each.  This component only has 4 registers so it's quite small but a good place to start.
+Registers are excellent for CPU calculations, but what if you need to store large amounts of data? The answer is *Random Access Memory* (RAM), which is essential for most
+computers. RAM allows data to be written and recalled later, much like registers, except it consists of multiple registers linked together. Each register is assigned an
+*address* for reading and writing. In this case, we start small, with four registers.
 
 ![RAM4W16B](ram4w16b.png)
 
-### What the 0xFF?
+### Understanding Hexadecimal
 
-If you're confused by all the `F` values in the example above, it's a good time to talk about hexadecimal notation.  Humans count to 10 as (most of us) have 10 fingers.  As far as I know, computers have zero fingers so are not hindered by this primitive limitation.  Using 1-bit, a computer can only count to 1, using 4-bits however they can count up to 15 (starting from 0).  Numbers from 0-9 are great as they only take up one character of information, however base-10 numbers are called so as there's only 10 of them and when you add 1 to 9, you can no longer use one character.  As computers love using numbers from 0-15 and multiples of such, hexadecimal notation is preferred. In hex, the decimal number 10 is represented as `A`, 11 as `B` up to 15 which is `F`. Hex numbers are prepended with `0x` to differentiate between decimal and hex.
+If the `F` values in the example above seem confusing, it’s a good time to discuss hexadecimal notation. While humans count using base-10 (decimals) due to having 10 fingers,
+computers, using binary, work in powers of 2. A single bit allows values of 0 or 1, but 4 bits can represent numbers from 0 to 15. In hexadecimal (base-16), values from 0 to 9
+are the same as in decimal, but from 10 to 15, letters are used: `A`, `B`, `C`, `D`, `E`, `F`.
 
-You may recall that a *byte* is the standard unit for data which comprises of 8 bits.  As hex only represents 4 bits, another character is added to represent the other 4 bits. The highest value a byte can hold is 255 which in hex is `0xFF`. The inputs above are 2 bytes (or 16 bits) in size, and the value of the 4th input is `0xFFFF` which is 255 x 255 (65535). It's a little tough at first to think in hex over decimal however you will quickly adapt.
+You may recall that a *byte* consists of 8 bits, which can represent numbers up to 255. In hexadecimal, the value 255 is represented as `0xFF`. This format allows for more
+efficient data representation, especially when dealing with larger values.
 
 ### Wiring
 
-As there are 16 bits as input, you're probably thinking that the wiring of this will be a nightmare which it would be if there wasn't a handy shortcut we can use. In MHRD, if an input has the same byte size as a component input, there is no need to wire them individually by bit but as the full name instead.
+Since there are 16-bit inputs, wiring each bit individually would be cumbersome. Fortunately, MHRD provides a shortcut: if an input matches the component’s byte size, it can be
+wired as a full byte instead of bit by bit.
 
-The first components to line up are 4 register16Bs which will store the values. Next is to wire up the `in` to all registers which is harmless as the value will not be stored unless the `load` value is active.  Next item is tackling the address which easily handled by an unlocked piece DEMUX4W. The DEMUX4W has 1 input for the `load` value, a 2 bit `sel` which can take the address, and 4 outputs that can be wired up to the `load` of each register.  The output is similarly handled, firstly the output of the selected address can be handled using another unlocked piece, the MUX4W16B which takes 4 16-bit inputs, a two bit `sel` which is again for the address, and one output which is piped to the `out` output.
+To store values, we use four 16-bit registers. The `in` is connected to all registers, but a value will only be stored if the `load` signal is active. The address is handled by a
+DEMUX4W, which routes the `load` signal to the appropriate register. For output, a MUX4W16B is used to select the correct register based on the address.
 
-Wiring is as follows:
+The wiring is as follows:
 
 ```matlab
 Inputs: in[16], load, address[2];
-OutputsL out[16];
+Outputs: out[16];
 
 Parts:
  r1 REGISTER16B,
@@ -114,7 +134,7 @@ Parts:
  r3 REGISTER16B,
  r4 REGISTER16B,
  loader DEMUX4W,
- regout MUX4W16B,
+ regout MUX4W16B;
 
 Wires:
  in -> r1.in,
@@ -135,8 +155,11 @@ Wires:
  regout.out -> out;
 ```
 
-Designed unlocked: RAM64K16B
+This design unlocks RAM64K16B, which provides a significant amount of memory.
+
+---
 
 ## Conclusion
 
-Having the registers and RAM components unlocked is a big step towards our goal of building a simple computer. The component last unlocked gives 64k (65535) bytes of memory to play with which when you're programming at such a low level can be massive.  Registers also also a vital component of a CPU.
+Unlocking registers and RAM components marks a major milestone towards building a simple computer. With 64K (65535) bytes of memory, we can handle larger and more complex data
+processing tasks. Registers are essential for CPU operations, while RAM provides the necessary storage for more extensive computations.

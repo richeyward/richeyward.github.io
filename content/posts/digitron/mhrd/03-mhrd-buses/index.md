@@ -3,26 +3,31 @@ title: Learning Electronics Through Gaming - 03 - MHRD - Buses
 date: 2024-07-15
 draft: false
 author: Richey Ward
-summary: Expanding our new gates to handle multiple bit buses
+summary: Expanding our gates to handle multiple bit buses
 tags:
     - MHRD
 categories:
     - Digital Electronics
-lastmod: 2024-08-25T14:11:23.189Z
+lastmod: 2024-09-11T18:32:52.813Z
 slug: 03-buses
-description: Expanding our new gates to handle multiple bit buses
+description: Expanding our new gates to handle multiple bit buses in MHRD.
 series:
     - Electronics Through Gaming
 series_order: 3
 ---
 
-## Initial
+## Introduction
 
-We have a good collection of logic gates available to us, but there's still not a whole lot that we can do with them, as they only take in singular bits of information.  With a single binary input, we can only represent the numbers `1` and `0`.  If we want to start using numbers higher than this, more inputs in parallel must be used. Using 4 inputs, we can represent the numbers 0 to 15.
+We now have a good collection of logic gates, but so far, they only handle single bits of information. With a single binary input, we can only represent the values `1` and `0`.
+To work with higher numbers, we need to process multiple bits in parallel. For instance, using 4 inputs, we can represent numbers from 0 to 15.
 
-### Understanding multiple bits
+---
 
-The first input would be the standard `1` or `0` mapping, but if we want to show the number `2`, an extra input must be used. When that is positive, it means that the value represented contains a 2. Further bits added can represent further values in multiples of 2, for example a third represents `4` and a fourth stands for `8`. A partial list of numbers would look like this:
+## Understanding Multiple Bits
+
+In a single-bit system, `1` and `0` are the only values available. To represent the number `2`, however, we need an additional input. When that input is active, it indicates
+the presence of `2` in the total value. Each additional input represents higher powers of 2. For example, the third bit represents `4` and the fourth bit represents `8`.
+Here’s a simple breakdown:
 
 ```md
 0 - 0000
@@ -36,108 +41,131 @@ The first input would be the standard `1` or `0` mapping, but if we want to show
 ...
 ```
 
-The concept of joining together multiple binary inputs is called a *bus* which is what will be explored in this post. Two main uses of buses are like above, representing larger values, and also performing logic calculations from more than two inputs.
+The concept of combining multiple binary inputs is called a *bus*. Buses serve two main purposes: representing larger values and performing logical operations on multiple inputs.
 
-MHRD has presented us with three new challenges. Let's explore them to see the potential of each
+---
+
+## MHRD Challenges
+
+MHRD presents several new challenges that demonstrate the power of buses. Let’s explore three of them and see how we can implement each one.
+
+---
 
 ## NOT4B
 
-NOT4B stand for NOT 4-Bit, in that a NOT instruction is taken on 4 inputs. Pretty simple. MHRD documentation follows:
+The **NOT4B** (NOT 4-Bit) gate applies a NOT operation to each of the four inputs. MHRD’s documentation explains how to handle this. Essentially, each of the four bits is
+processed by its own NOT gate.
 
 ![NOT4B](not4b.png)
 
-This takes 4 bytes as input, and they are flipped using 4 NOT gates.  There's a new terminology where multiple similar inputs are represented with brackets (`[]`).
-The wiring is:
+Here’s the wiring for the NOT4B gate:
 
 ```matlab
 Inputs in[4];
 Outputs out[4];
 
 Parts:
- n1 NOT,
- n2 NOT,
- n3 NOT,
- n4 NOT;
+  n1 NOT,
+  n2 NOT,
+  n3 NOT,
+  n4 NOT;
 
 Wires:
- in[1] -> n1.in,
- in[2] -> n2.in,
- in[3] -> n3.in,
- in[4] -> n4.in,
- n1.out -> out[1],
- n2.out -> out[2],
- n3.out -> out[3],
- n4.out -> out[4];
+  in[1] -> n1.in,
+  in[2] -> n2.in,
+  in[3] -> n3.in,
+  in[4] -> n4.in,
+  n1.out -> out[1],
+  n2.out -> out[2],
+  n3.out -> out[3],
+  n4.out -> out[4];
 ```
 
-This just takes each input, and inputs each into a NOT gate, and outputs it accordingly.
+This setup applies a NOT operation to each of the four inputs individually, producing the expected inverted outputs.
+
+---
 
 ## AND4B
 
-Similar to the above, AND4B stands for a 4-bit AND gate. As there's two inputs in each AND gate, there will be a total of 8 inputs, in1[4] and in2[4].
+Similar to NOT4B, **AND4B** performs a 4-bit AND operation. Since AND gates have two inputs, we have a total of eight inputs, organised as in1[4] and in2[4].
 
 ![AND4B](and4b.png)
 
-Wiring up is the same as the not4b, just taking into consideration the two inputs instead of one.
+Here’s the wiring for the AND4B gate:
 
 ```matlab
 Inputs: in1[4], in2[4];
 Outputs: out[4];
 
 Parts:
- a1 AND,
- a2 AND,
- a3 AND,
- a4 AND;
+  a1 AND,
+  a2 AND,
+  a3 AND,
+  a4 AND;
 
 Wires:
- in1[1] -> a1.in1,
- in1[2] -> a2.in1,
- in1[3] -> a3.in1,
- in1[4] -> a4.in1,
- in2[1] -> a1.in2,
- in2[2] -> a2.in2,
- in2[3] -> a3.in2,
- in2[4] -> a4.in2,
- a1.out -> out[1],
- a2.out -> out[2],
- a3.out -> out[3],
- a4.out -> out[4];
+  in1[1] -> a1.in1,
+  in1[2] -> a2.in1,
+  in1[3] -> a3.in1,
+  in1[4] -> a4.in1,
+  in2[1] -> a1.in2,
+  in2[2] -> a2.in2,
+  in2[3] -> a3.in2,
+  in2[4] -> a4.in2,
+  a1.out -> out[1],
+  a2.out -> out[2],
+  a3.out -> out[3],
+  a4.out -> out[4];
 ```
 
-When this is completed, you are informed that your partner in the game has created a few designs for you, an XOR4B and OR4B.
+This wiring ensures that each bit from in1 and in2 is compared, and the result is output accordingly.
+
+---
 
 ## OR4W
 
-This design is different than a 4B design as it takes 4 inputs (4-way) but only one output.  A OR4W design is useful for checking if any of the 4 inputs is true.
+The **OR4W** (OR 4-Way) gate works slightly differently from the previous gates. Here, we take four inputs but only produce one output. This is useful for checking if any of the
+four inputs are `1`.
 
 ![OR4W](or4w.png)
 
-This can be achieved by using three OR gates. Gate 1 will take the first two inputs, gate 2 the next two, and gate three will take the inputs from the first two gates.  
+To achieve this, we use three OR gates. The first two gates handle two inputs each, and the final gate combines the outputs of the first two.
 
 ![OR4W Diagram](or4w%20diagram.png)
+
+Here’s the wiring for the OR4W gate:
 
 ```matlab
 Inputs: in[4];
 Outputs: out;
 
 Parts:
- o1 OR,
- o2 OR,
- o3 OR;
+  o1 OR,
+  o2 OR,
+  o3 OR;
 
 Wires:
- in[1] -> o1.in1,
- in[2] -> o1.in2,
- in[3] -> o2.in1,
- in[4] -> o2.in2,
- o1.out -> o3.in1,
- o2.out -> o3.in2,
- o3.out -> out;
+  in[1] -> o1.in1,
+  in[2] -> o1.in2,
+  in[3] -> o2.in1,
+  in[4] -> o2.in2,
+  o1.out -> o3.in1,
+  o2.out -> o3.in2,
+  o3.out -> out;
 ```
 
-Completing this design will also unlock the following gates: XOR16B, OR16W OR16B AND16B NOT16B NAND16B NAND4B.  It should be fairly obvious what is performed by each judging by the name alone.
+This setup allows us to check if any of the four inputs is `1`.
+
+---
+
+## Next Steps
+
+After completing these tasks, MHRD unlocks more advanced gates, such as XOR16B, OR16W, AND16B, NOT16B, NAND16B, and NAND4B. By their names, the function of these gates should be
+clear.
+
+---
 
 ## Conclusion
 
-The basic gates are now completed.  We now move to building out the next layer of more complex components.
+We’ve now expanded our repertoire to include buses and multiple-bit logic gates. These gates are key for processing larger sets of data and making more complex logical decisions.
+In the next post, we will explore how to use buses to build more advanced components and systems.

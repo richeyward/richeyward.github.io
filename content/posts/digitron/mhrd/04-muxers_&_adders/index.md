@@ -3,7 +3,7 @@ title: Learning Electronics Through Gaming - 04 - MHRD - Muxers & Adders
 date: 2024-07-22
 draft: false
 author: Richey Ward
-summary: Selecting inputs via MUXERs and adding bits together
+summary: Selecting inputs via multiplexers (MUX) and adding bits together using adders.
 tags:
   - MHRD
 categories:
@@ -13,33 +13,33 @@ series:
 series_order: 4
 slug: 04-muxers-and-adders
 lastmod: 2024-08-25T14:11:38.990Z
-description: Selecting inputs via MUXERs and adding bits together
+description: Selecting inputs via multiplexers (MUX) and adding bits together using adders.
 ---
-## Initial
 
-The time has come to start building out the next layer of components.  These are slightly more advanced and complex but shouldn't be too difficult to figure out.  
+## Introduction
 
-## MUX
+It's time to move to the next level of components. In this post, we’ll be building more complex but manageable components: multiplexers (MUX) and adders.
 
-A Multiplexer (MUX) component is a very useful piece of technology in that it takes two normal inputs, and depending on the value set on the third input called `sel`, will output the value of the corresponding input. If `sel` is set to `0`, then the value of `in1` is outputted, otherwise the value of `in2` is outputted.
+---
 
-It looks like this:
+## Multiplexer (MUX)
+
+A multiplexer (MUX) is an essential component that takes two inputs and, depending on a third input called `sel` (selector), outputs the value of either `in1` or `in2`. If `sel`
+is `0`, `in1` is outputted; if `sel` is `1`, `in2` is outputted.
+
+Here’s a diagram of the MUX:
 
 ![MUX](mux.png)
 
-A logical arrangement of a MUX component is below
-
-![MUX Diagram](mux%202.png)
-
-To understand how we can build this, let's look at the behaviour if `sel` is set to `1`.  The output is only true if both `sel` and `in2` are true.  This can be calculated via an AND gate:
+Let’s break it down further: when `sel` is `1`, the output is true if both `sel` and `in2` are true, which is achieved using an AND gate.
 
 ![MUX Diagram](mux%20diagram1.png)
 
-The same can also be done for `in1` however as `sel` is false, it has to be inverted via a NOT gate.  The outputs of both ANDs are then fed into an OR gate.
+For `in1`, as `sel` is false, it must be inverted via a NOT gate. The outputs of the two AND gates are then fed into an OR gate.
 
 ![MUX Diagram 2](mux%20diagram2.png)
 
-The code for this is:
+The MHRD code for wiring the MUX looks like this:
 
 ```matlab
 Inputs: in1, in2, sel;
@@ -62,21 +62,23 @@ Wires:
  o.out -> out;
 ```
 
-## DEMUX
+---
 
-Demutiplexers (DEMUX) are used to perform the opposite of a MUX, in that there is one input and two outputs, and a selector to choose which output to use.  This is similar to construct albeit a little simpler.
+## Demultiplexer (DEMUX)
+
+A demultiplexer (DEMUX) performs the opposite function of a MUX: it takes one input and routes it to one of two outputs, based on the value of the selector input.
 
 ![DEMUX](demux.png)
 
-A logical arrangement of the DEMUX component is below
+Here’s a logical arrangement of the DEMUX:
 
 ![DEMUX Diagram](demux%20diagram.png)
 
-Looking at the truth table, we can see that positive outputs occur once for each output so two AND gates are to be used, as well as a NOT to flip the selector. This is actually very similar to the last component removing the OR gate.  
+The truth table shows that each output is activated by different selector conditions. Two AND gates and a NOT gate are used to route the input based on the selector value.
 
 ![DEMUX Diagram 2](demux%20diagram2.png)
 
-Wiring is as follows:
+The wiring for the DEMUX is as follows:
 
 ```matlab
 Inputs: in, sel;
@@ -95,16 +97,17 @@ Wires:
  sel -> a2.in2,
  a1.out -> out1,
  a2.out -> out2;
- 
 ```
+
+---
 
 ## MUX4B
 
-Like before, a MUX can be extended for a bus. Same concept except a 4bit bus as input 1 and 2, and one selector.
+The MUX4B is an extension of the standard MUX to handle a 4-bit bus. It takes two 4-bit inputs and a single selector.
 
 ![MUX4B](mux4b.png)
 
-As we already have the MUX component built, we just extend from that.
+The wiring for the MUX4B looks like this:
 
 ```matlab
 Inputs: in1[4], in2[4], sel;
@@ -135,17 +138,21 @@ Wires:
  m4.out -> out[4];
 ```
 
+---
+
 ## DEMUX4W
 
-As the name implies, this is a Demultiplexer with 4 outputs.  What's new is that the selector has to be 2 bits in size as 4 outputs cannot be chosen with one only.
+As the name suggests, DEMUX4W is a demultiplexer with four outputs. This requires a 2-bit selector since four outputs cannot be selected with only one bit.
 
 ![DEMUX4W](demux4w.png)
 
-The first bit in the selector decides if it goes to out1/3 or out2/4.   The next is a further reduction to see if it goes to out1/2 or out3/4.  We just need 3 DEMUX components for this.
+The first bit in the selector decides whether the output is routed to out1/out3 or out2/out4. The second bit further narrows it down to one of the four outputs.
+
+The wiring is:
 
 ```matlab
 Inputs: in, sel[2];
-Outputs out1, out2, out3, out4;
+Outputs: out1, out2, out3, out4;
 
 Parts:
  d1 DEMUX,
@@ -165,19 +172,22 @@ Wires:
  sel[1] -> d3.sel;
 ```
 
-Completing this unlocks MUX4W16B, MUX16B and DFF components.  The DFF will be discussed in the future.
+Completing this will unlock further components such as MUX4W16B, MUX16B, and DFF, which we will discuss later.
 
-## HALF ADDER
+---
 
-A core action of a CPU is the ability to add numbers together.  This component is the beginning of getting there.  A half adder takes two inputs and adds them together.  If both are `0`, then so is the output.  If one input is true then so is the output. If both are positive however, then the output is `0` and a second output called `carry` is set to `1`.
+## Half Adder
+
+A half adder is the foundational component of a CPU that enables basic addition. It takes two inputs and adds them. If both are `0`, the output is `0`. If one is `1`, the output
+is `1`. If both are `1`, the output is `0` but the **carry** output is set to `1`.
 
 ![Half Adder](halfadder.png)
 
-Adders can be joined together to add larger numbers together. The `carry` flag means something along the lines of "I can't represent this value, so I'm handing it off to something else".
-
-Looking at the two outputs of this, the mappings should be familiar. The `out` is an XOR and the `carry` is an AND.  Let's just use those as our components.
+The half adder uses an XOR gate for the output and an AND gate for the carry.
 
 ![Half Adder Diagram](halfadder-diagram.png)
+
+Here’s the wiring:
 
 ```matlab
 Inputs: in1, in2;
@@ -196,25 +206,21 @@ Wires:
  a.out -> carry;
 ```
 
-This is called a half adder as it can only calculate two inputs, and cannot input a carry from another adder. The next piece will also include a carry input.
+---
 
-## FULLADDER
+## Full Adder
 
-A full adder is similar to the half adder as mentioned however it will also include a new input `carryIn`. As the name implies, this takes in a third input of a carry from another adder.  This will be used to add values of larger bits together.
+A full adder extends the half adder by adding an additional input called `carryIn`, which is used to add bits from previous additions. This is crucial for adding larger numbers.
 
 ![Full Adder](fulladder.png)
 
-The truth table for this is:
+Here’s the truth table for the full adder:
 
 ![Full Adder Truth Table](f1-truthtable.png)
 
-Looking back at the truth table, the `out` is an XOR, then an inverted XOR, so XOR the inputs, and the output and its negative are inputted into a MUX which is controlled by the `carryIn` bit.  
+To accommodate for the extra bit, two `MUX` components are added and 
 
-The `carryOut` value is an AND gate when `carryIn` is `0` and an OR gate when it is `1`. Using another MUX, this is easy to create.
-
-![Full Adder](fulladder-diagram.png)
-
-Wiring this up:
+The wiring for the full adder looks like this:
 
 ```matlab
 Inputs: carryIn, in1, in2;
@@ -246,17 +252,15 @@ Wires:
  m2.out -> carryOut;
 ```
 
-As you can guess, these can be chained to represent larger numbers which will be demonstrated next.
+---
 
-## ADDER4B
+## Adder4B
 
-Our last component is joining multiple adders together to add 2 4-bit values together.
+Finally, we can chain multiple full adders to add two 4-bit numbers together.
 
 ![Adder4B](adder4b.png)
 
-If you understand the role of the carry bit, then this should be trivial to create. All we need are 4 FULLADDERs chained up correctly.  Note that some adders use a HALFADDER for the least significant bit (LSB) however as there is a `carryIn` input, we cannot do that.
-
-Wiring is:
+The wiring for the 4-bit adder is:
 
 ```matlab
 Inputs: in1[4], in2[4], carryIn;
@@ -290,8 +294,9 @@ Wires:
  f4.carryOut -> carryOut;
 ```
 
-New design unlocked: ADDER16B
+---
 
 ## Conclusion
 
-We can now add two 4-bit values together, even 2 16-bit values which is the first component used in the *Arithmetic Logic Unit* (ALU).
+We have now built multiplexers, demultiplexers, half adders, and full adders. These components allow us to perform logical operations and arithmetic on multiple bits, a crucial
+step in constructing more complex systems, such as an Arithmetic Logic Unit (ALU).

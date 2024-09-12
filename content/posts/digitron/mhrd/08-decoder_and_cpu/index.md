@@ -13,35 +13,41 @@ series:
     - Electronics Through Gaming
 series_order: 8
 slug: 08-decoder_and_cpu
-lastmod: 2024-08-25T22:26:54.946Z
+lastmod: 2024-09-11T22:09:20.567Z
 ---
 
-## Initial
+## Introduction
 
-The home stretch to building out a fully functioning CPU is almost upon us, however one final component remains before that, the DECODER.
+We're now in the final stretch of building a fully functioning CPU. But before we reach the finish line, there's one final piece to construct: the DECODER.
+
+---
 
 ## DECODER
 
-The DECODER takes a 16-bit input and will perform some basic preprocessing on it.
+The **DECODER** takes a 16-bit input and performs basic preprocessing on it.
 
-![Decoder 1](decoder-1.png)
-![Decoder 2](decoder-2.png)
+![Decoder 1](decoder-1.png)  
+![Decoder 2](decoder-2.png)  
 ![Decoder 3](decoder-3.png)
 
-### Decoding the input
+---
 
-Note that the input is not treated as one large input but multiple ones.  Firstly, if the MSB `instr[16]` is `1`, then the documentation states that the value stored in `instr[1:15]` is sent to the `memory register`. As the register is a part outside of the decoder, the first 15 bytes can be sent raw to the `constant` output.
+### Decoding the Input
 
-If `instr[16]` is set, a number of flags are set which will be handled later, but it also is the value of `cToM` so this will be piped to that output
+The input is treated as multiple smaller parts rather than one large input. If the MSB (`instr[16]`) is `1`, the documentation specifies that the value stored in `instr[1:15]` is sent to the `memory register`. Since the register is part of another section, the first 15 bits are sent directly to the `constant` output.
+
+When `instr[16]` is set, a number of flags are activated, which will be handled later. The value of `instr[16]` is also used to set `cToM`, which is piped to the appropriate output.
 
 ```matlab
 instr[1:15] -> constant,
 instr[16] -> cToM,
 ```
 
+---
+
 ### Destination
 
-The destination bits handle where the data will be sent to.  It appears there are three destinations, `A`, `M` and `D` and each destination has its own output flag, `loadA`, `loadM`, and `loadD`. Depending on the value of these bits, one of those may be set to `1`.
+The destination bits control where data is sent. There are three possible destinations: `A`, `M`, and `D`, with each having its own output flag: `loadA`, `loadM`, and `loadD`. Based on the values of the destination bits, one of these flags may be set to `1`.
 
 ```txt
 Destination = 00 -> Set all flags to 0
@@ -50,7 +56,7 @@ Destination = 10 -> Set only loadM to 1
 Destination = 11 -> Set only loadD to 1
 ```
 
-This looks like a job for a DEMUX4W that takes a 2-bit input as a sel, and has 1 outputs.  Adding one to the parts list (as `d1`) and setting a constant of 1 as the input and ignoring the first output, the following wiring occurs.  Note that further finessing of this will be required later.
+This can be managed using a `DEMUX4W` that takes a 2-bit input as the selector (`sel`) and produces four outputs. We set a constant `1` as the input, and the wiring will look like this (further refinement will be required later):
 
 ```matlab
 1 -> d1.in,
@@ -60,9 +66,11 @@ d1.out3 -> loadM,
 d1.out4 -> loadD;
 ```
 
-### Operands, opcodes and jmpIfZ
+---
 
-The next few input bits are straightforward in that they can just be directly piped to the respective outputs.
+### Operands, Opcodes, and `jmpIfZ`
+
+The next few input bits can be directly routed to their respective outputs:
 
 ```matlab
 instr[13] -> op1,
@@ -71,9 +79,11 @@ instr[7:10] -> opCode,
 instr[6] -> jmpIfZ;
 ```
 
-### Fixing the load outputs and jmpIfZ
+---
 
-By now, running the verification shows that around 60% of the tests pass. Looking at the failing results, it appears that the load* outputs and `jmpIfZ` are still being set while using the `cToM` (constant to memory). To solve this, let's add some MUXs so that if `cToM` (`instr[16]`) is set, its value is ignored.  Start by creating three MUXs (`m1`, `m2`, `m3`) and an `OR` (`o`) and instead of directly inputting the output of the `DEMUX4W` used earlier to the load outputs, they are intercepted by the new components. As `loadA`, `loadD`, and `jmpIfZ` are supposed to be `0` in this instance, they are loaded into the MUXs and no second input is needed.  As `loadM` is required to be `1` however, this can be attached to `o` alongside `instr[16]`.
+### Fixing the `load` Outputs and `jmpIfZ`
+
+At this point, running verification shows that about 60% of the tests pass. The issue lies with the `load` outputs and `jmpIfZ`, which are still being set when `cToM` is active. To resolve this, we introduce MUXes so that if `cToM` (`instr[16]`) is set, it takes precedence. Three MUXes (`m1`, `m2`, `m3`) and an `OR` gate (`o`) are added to handle the outputs. In the case of `loadA`, `loadD`, and `jmpIfZ`, these are set to `0` when `cToM` is `1`. However, `loadM` should be set to `1`, so we use an `OR` gate for this.
 
 ```matlab
 d1.out2 -> m1.in1,  // loadA
@@ -90,57 +100,52 @@ m3.out -> jmpIfZ,
 o.out -> loadM;
 ```
 
-Updating and running this will solve the `DECODER` challenge.
+After updating and running this, the `DECODER` will be functioning as expected.
+
+---
 
 ## CPU
 
-The last challenge is upon us and will test everything learned up to date.  For this, 5 parts are already included in the design, so let's get familiar with them.
+The final challenge combines all the components we've built so far. Here are the five main parts included in the design:
 
 ```txt
 decoder DECODER      
-// The decoder unit just designed. Will be used to handle 
-// instruction input
+// The decoder we just designed, used to handle instruction input.
 
 mReg REGISTER16B     
-// The Memory Register - used to reference addresses in 
-//the data RAM
+// The Memory Register - used to store addresses in the data RAM.
 
 aReg REGISTER16B     
-// The Arithethic Register - Temporary storage of 
-//computation results
+// The Arithmetic Register - for temporary storage of computation results.
 
 pc COUNTER16B        
-// The Program Counter. This is used to determine what address 
-// in the program is being used
+// The Program Counter - determines which address is being accessed in the program.
 
 alu ALU16B           
-// The Arithmetic Logic Unit. Used to perform the calculations 
-// set in the opcodes
+// The Arithmetic Logic Unit - handles the calculations specified by the opcodes.
 ```
 
-There are also a number of inputs and outputs to discuss also...
+There are several key inputs and outputs to consider:
 
 ![CPU Diagram](cpu%20diagram.png)
 
-External to the CPU, there is a RAM element which contains the instructions to be executed and a secondary RAM element containing the data to be processed.  To control these, two outputs (`instrAddr` and `dataAddr`) are used to request the data at the addresses specified. In turn, the data is returned as CPU inputs called `instr` and `data` respectively. According to the documentation, the `in` and `load` inputs of the instruction RAM is not used however in the data RAM, the `in` bus is connected to the `result` CPU output and the `load` is connected to the `write` output.
+Externally, we have two RAM units: one for instructions and one for data. The `instrAddr` and `dataAddr` outputs request the data at specified addresses, and the `instr` and `data` inputs return that data. The `in` and `load` inputs for the instruction RAM are not used, but in the data RAM, the `in` bus is connected to the CPU’s `result` output, and the `load` is connected to the `write` output.
 
-Finally, the `reset` pin is set to `1` to start the program.
+The `reset` pin is set to `1` to start the program.
 
-### Behavioural Specfications
+---
 
-There are a number of behavioural specifications also documented which will be stepped through and built top to bottom.
+### Behavioural Specifications
 
-`After the instruction has been decoded by the DECODER, the CPU uses the DECODER outputs to ensure the following behaviour`
-
-Okay, so the first item on the agenda is hooking up this.
+The CPU uses the decoder outputs to follow the documented behavioural specifications:
 
 ```matlab
 instr -> decoder.instr,
 ```
 
-`If the "cToM" and "loadM" output of the decoder is "1", the "constant" output has to be loaded into the MR`
+1. **If `cToM` and `loadM` are both `1`, the `constant` output must be loaded into `MR`:**
 
-This can be simplified slightly.  If `cToM` is positive, it will always load the constant to `MR`. Also, if `loadM` is positive, then it will always be used to load something into `MR`.  Adding a `MUX16B` (`m1`) helps with this.
+This can be simplified: whenever `cToM` is `1`, the `constant` is loaded into `MR`. If `loadM` is `1`, it will load the value into `MR`. A `MUX16B` (`m1`) will handle this.
 
 ```matlab
 decoder.cToM -> m1.sel,
@@ -149,109 +154,103 @@ m1.out -> mReg.in,
 decoder.loadM -> mReg.load,
 ```
 
-`If "loadM is "1" and "cToM" is "0", the result of the APU operation has to be loaded into the MR`
-
-This tells us what the other input into `m1` will be, the `alu` output.
+2. **If `loadM` is `1` and `cToM` is `0`, the result of the ALU must be loaded into `MR`:**
 
 ```matlab
-alu.out -> m1.in1
+alu.out -> m1.in1;
 ```
 
-`If "loadA" is "1", the result of the ALU operation has to be loaded into the AR`
-
-Simple as this has already been done for the `MR`.
+3. **If `loadA` is `1`, the result of the ALU must be loaded into `AR`:**
 
 ```matlab
 decoder.loadA -> aReg.load,
-alu.out -> aReg.in,
+alu.out -> aReg.in;
 ```
 
-`The "write" output of the CPU has to have the same value as the "loadD" output of the DECODER`
+4. **The `write` output of the CPU must have the same value as `loadD`:**
 
 ```matlab
-decoder.loadD -> write,
+decoder.loadD -> write;
 ```
 
-`The "opCode" output of the DECODER has to be directly fed to the ALU`
+5. **The `opCode` output of the decoder must be fed into the ALU:**
 
 ```matlab
-decoder.opCode -> alu.opCode,
+decoder.opCode -> alu.opCode;
 ```
 
-`If the "op1" output of the DECODER is "1", the "constant" has to be fed in to the ALU as the first operand. Otherwise the AR has to be fed into the ALU`
+6. **If `op1` is `1`, the `constant` must be fed into the ALU as the first operand. Otherwise, use the value from `AR`:**
 
-This seems solvable with another `MUX16B` (`m2`).  
+A `MUX16B` (`m2`) will select between these two sources.
 
 ```matlab
 decoder.op1 -> m2.sel,
 aReg.out -> m2.in1,
 decoder.constant -> m2.in2[1:15],
-m2.out -> alu.in1,
+m2.out -> alu.in1;
 ```
 
+7. **For `op2`:**
+
 ```txt
-For the "op2" output of the DECODER:
-"00" -> feed "constant" as second operator into the ALU
-"01" -> feed AR as second operator into the ALU
-"10" -> feed MR as second operator into the ALU
-"11" -> feed data bus as second operator into the ALU
+"00" -> feed `constant` as the second operand
+"01" -> feed `AR` as the second operand
+"10" -> feed `MR` as the second operand
+"11" -> feed the `data` bus as the second operand
 ```
 
-This deals with the second operator. With 4 possible inputs, a `MUX4W16B` (`m3`) is required.
+This requires a `MUX4W16B` (`m3`).
 
-```txt
+```matlab
 decoder.op2 -> m3.sel,
 decoder.constant -> m3.in1[1:15],
 aReg.out -> m3.in2,
 mReg.out -> m3.in3,
 data -> m3.in4,
-m3.out -> alu.in2,
+m3.out -> alu.in2;
 ```
 
-`When feeding "constant" as an operand to the ALU, only the lowest 5 bits of "constant" are used. Thie 5 bit value is padded to 16 bit in accordance to the sign of the value`.
-
-Both references to this are modified to reflect this.
+8. **When feeding `constant` to the ALU, only the lowest 5 bits are used, sign-extended to 16 bits:**
 
 ```matlab
 decoder.constant[1:5] -> m2.in2[1:5],
-decoder.constant[1:5] -> m3.in1[1:5],
+decoder.constant[1:5] -> m3.in1[1:5];
 ```
 
-`If "jmpIfZ" and the "zero" flag of the ALU is "1", load the value of the MR into the PC.`
+9. **If `jmpIfZ` and the ALU’s `zero` flag are both `1`, the value of `MR` must be loaded into the PC:**
 
-Time to use an `AND` (`a`) for this.
+Use an `AND` gate to manage this:
 
 ```matlab
 decoder.jmpIfZ -> a.in1,
 alu.zero -> a.in2,
 a.out -> pc.load,
-mReg.out -> pc.in
+mReg.out -> pc.in;
 ```
 
-Finally a few small specifications remain:
+---
 
-```txt
-- Write the ALU output on the "result" bus
-- Write the MR value on the "dataAddr" bus
-- Write the PC value on the instrAddr bus
-- Set the PC to "0" if the reset input is set
-```
+### Final Wiring
 
-The last few wirings remaining are straightforward:
+Finally, the remaining wiring connections are straightforward:
 
 ```matlab
 alu.out -> result,
 mReg.out -> dataAddr,
+
+
 pc.out -> instrAddr,
 reset -> pc.reset;
 ```
 
-Running this shows the the CPU is complete.
+With this complete, the CPU is operational.
 
 ![CPU Complete](cpu_complete.png)
 
+---
+
 ## Conclusion
 
-The MHRD challenge is completed, from building a basic gate to a simple CPU. I may return to this in the future to look for possible optimizations (lower NAND counts) but the main objective here is complete, in that a fully formed CPU is built.
+This marks the completion of the MHRD challenge, from building basic gates to constructing a fully functional CPU. While I may revisit this project to explore potential optimisations (such as reducing the NAND count), the core objective has been achieved.
 
-Next up, we will attempt to do similar with a more GUI friendly game, Turing Complete. As well as building our own hardware, TC also allows the ability to create your own code to be read by your CPU.  Hope you enjoyed this walkthrough.
+Next up, we’ll tackle similar challenges in a more graphical game, **Turing Complete**, where we’ll not only build hardware but also write code that can be run on our CPU. I hope you enjoyed this walkthrough.

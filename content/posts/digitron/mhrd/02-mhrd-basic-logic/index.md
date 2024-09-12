@@ -6,34 +6,35 @@ tags:
   - MHRD
 categories:
   - Digital Electronics
-summary: Building the NOT, AND, OR and XOR gates.
+summary: Building the NOT, AND, OR, and XOR gates.
 draft: false
 series:
   - Electronics Through Gaming
 series_order: 2
-lastmod: 2024-08-25T14:11:12.957Z
+lastmod: 2024-09-11T18:30:34.743Z
 slug: 02-mhrd-basic-logic-gates
-description: Building the NOT, AND, OR and XOR gates in MHRD.
+description: Building the NOT, AND, OR, and XOR gates in MHRD.
 ---
-## Initial
 
-Now that we have the initial building block of a NAND gate under our belt, the next step is to start building new gates from it.  We will work on NOT, AND, OR, NOR and XOR gates next.  
+## Introduction
+
+With the basic NAND gate under our belt, the next step is to use it to construct other logic gates. In this post, we will focus on building the NOT, AND, OR, and XOR gates.
+
+---
 
 ## NOT Gate
 
-The NOT gate takes one input only and negates it, i.e. turn `1` into `0` and vice versa. This is useful for flipping a bit for example.
+The **NOT** gate takes a single input and negates it, turning `1` into `0` and vice versa. This is useful, for instance, when you need to invert a bit.
 
 ![NOT Gate Symbol](not%20symbol.png)
 
-Below is the MHRD documentation.
-
-![MHRD NOT](mhrd-not.png)
-
-We can replicate the truth table using just a NAND gate but inputting the single NOT input into both NAND inputs. If `in1` and `in2` are both `0` then the output is `1` and vice-versa.  It looks like this:
+In MHRD, we can construct a NOT gate using a single NAND gate by wiring the input into both of the NAND inputs. If both `in1` and `in2` are `0`, the output will be `1`, and if
+both are `1`, the output will be `0`. This replicates the NOT gate's truth table.
 
 ![NOT Gate Diagram](not%20diagram.png)
 
-Designing this in MHRD can be done in the 'Design' tab of the component.  It explains the inputs and outputs given, and you have to declare what parts you intend to use and how they are connected. The design for this part is as follows:
+In MHRD, design this using the 'Design' tab. The component’s inputs and outputs are defined here, and you need to specify which parts to use and how to connect them. Below is
+the design:
 
 ```matlab
 Inputs: in;
@@ -48,26 +49,24 @@ Wires:
   n.out -> out;
 ```
 
-Once this is wired up, run the simulation to check it is correct (CTRL + ENTER).
+After wiring this, run the simulation to check it works as expected (CTRL + ENTER).
 
-![MHRD NOT gate completed](mhrd-not-complete.png)
+![MHRD NOT Gate Completed](mhrd-not-complete.png)
 
-Once a test has completed, other new components for designing appear. Next is the AND gate.
+---
 
 ## AND Gate
 
-As the name implies, the AND gate only outputs `1` if both inputs are also `1`, otherwise `0`. AND gates are useful when you want to check if two or more inputs are true.
+The **AND** gate outputs `1` only if both inputs are `1`, otherwise it outputs `0`. This is useful when checking whether two or more conditions are true.
 
-![AND symbol](and%20symbol.png)
-*AND gate Symbol*
+![AND Symbol](and%20symbol.png)
+*AND Gate Symbol*
 
-![MHRD AND](mhrd-and.png)
+With a NAND and a NOT gate already available, we can easily build an AND gate by inverting the NAND’s output using the NOT gate. Effectively, a NOT NAND becomes an AND gate.
 
-As we have a NAND and a NOT gate, we can invert the output of the NAND using the NOT to get the same results. Double NOTs cancel each other out so a NOT NAND is an AND.
+![AND Diagram](and%20diagram.png)
 
-![AND diagram](and%20diagram.png)
-
-Wiring this up looks like this:
+Wiring this in MHRD looks like this:
 
 ```matlab
 Inputs: in1, in2;
@@ -84,18 +83,20 @@ Wires:
   not.out -> out;
 ```
 
+---
+
 ## OR Gate
 
-Similar to the above, the name gives it away, if any of the inputs is `1` then the output is `1` else `0`. This is useful for checking if any input is true.
+The **OR** gate outputs `1` if at least one of its inputs is `1`, otherwise it outputs `0`. This is useful when you need to check if any one condition is true.
 
 ![OR Symbol](or%20symbol.png)
-*OR gate symbol*
+*OR Gate Symbol*
 
-![MHRD OR](mhrd-or.png)
-
-Taking a look at the output, all outputs are true except when the inputs are all `0` which is the same as a NAND gate except the conditions there are when all inputs are `1`.  This suggests that we need to flip each of the input values with a NOT before feeding into a NAND like so:
+To create an OR gate from a NAND gate, we need to flip both input values with NOT gates before feeding them into the NAND gate, producing the required output.
 
 ![OR Diagram](or%20diagram.png)
+
+The wiring looks like this:
 
 ```matlab
 Inputs: in1, in2;
@@ -112,23 +113,23 @@ Wires:
   n1.out -> nand.in1,
   n2.out -> nand.in2,
   nand.out -> out;
-
 ```
+
+---
 
 ## XOR Gate
 
-The previous gates were fairly intuitive, in that you could figure out the actions of it by the name. This next gate differs from that which is the XOR (Exclusive OR) gate.  XOR gates output `1` if only one input is `1` else `0`.  Their usages are quite varied but for now, just think of it as a difference checker, i.e. if `in1` is different than `in2`, then output `1`.
+The **XOR** (Exclusive OR) gate outputs `1` only if one of the inputs is `1`. If both inputs are the same, the output is `0`. XOR gates are useful when checking for
+differences between two inputs.
 
-![XOR Gate](xor%20symbol.png)
-*XOR gate symbol*
+![XOR Gate Symbol](xor%20symbol.png)
+*XOR Gate Symbol*
 
-![XOR gate in MHRD](mhrd-xor.png)
-
-There's a simple solution to this but also a more complex one with less parts.  One thing you'll notice is that each solution has a NAND count, the lesser the better as parts with a higher NAND count are slower.  Let's go over the two solutions.
+There are two possible designs for an XOR gate. One solution uses more parts but is simpler to understand, while the other uses fewer parts but is more complex.
 
 ### Solution 1
 
-The truth table is identical to an OR table except for one condition and the same as a NAND gate. We can use the outputs of both and AND them like so:
+This design is similar to an OR gate but with a different handling for the inputs. It uses both an OR gate and a NAND gate to achieve the correct result.
 
 | OR out | NAND out | OUT |
 | ------ | -------- | --- |
@@ -137,10 +138,7 @@ The truth table is identical to an OR table except for one condition and the sam
 | 1      | 1        | 1   |
 | 1      | 0        | 0   |
 
-The diagram is a representation of the above
-![XOR Diagram](xor%20diagram1.png)
-
-The wiring of this is:
+The wiring for this looks like this:
 
 ```matlab
 Inputs: in1, in2;
@@ -161,13 +159,16 @@ Wires:
  a.out -> out;
 ```
 
-This diagram has a NAND count of 6, but it can be reduced.
+This solution has a NAND count of 6.
 
 ### Solution 2
 
-This is more complicated to understand but bear with me.   First gate takes both inputs, so it will only output `0` when both are true. Next two gates which are identical except checking on different inputs will output `1` except when its corresponding input is `1` and the other is `0`. Final NAND combines the outputs of both.  It's hard to understand but this is a well regarded diagram, so we will use this instead.
+This approach is more efficient, using fewer parts, but it is slightly more difficult to understand. The first gate outputs `0` when both inputs are `1`, and the two subsequent
+gates handle the cases where one input is `1` and the other is `0`. The final NAND gate combines these outputs to produce the XOR result.
 
 ![XOR Diagram](xor%20diagram2.png)
+
+The wiring for this solution is as follows:
 
 ```matlab
 Inputs: in1, in2;
@@ -177,8 +178,7 @@ Parts:
  n1 NAND,
  n2 NAND,
  n3 NAND,
- n4 NAND; 
-
+ n4 NAND;
 
 Wires:
  in1 -> n1.in1,
@@ -192,12 +192,18 @@ Wires:
  n4.out -> out;
 ```
 
+---
+
 ## De Morgan's Laws
 
-An interesting observation of OR/NOR/AND/NAND is their relationship to one another.  Obviously to convert an OR to a NOR, or an AND to a NAND, all that's needed to do is invert the output.  What's also interesting is that an OR can be converted to a NAND, and a NOR to an AND but inverting the inputs also.  This screenshot from Turing Complete represents this nicely.
+It is important to note the relationship between OR/NOR and AND/NAND gates. To convert an OR gate to a NOR gate or an AND gate to a NAND gate, you simply need to invert the
+output. Moreover, an OR gate can be converted to a NAND gate by inverting the inputs as well. The following screenshot from **Turing Complete** demonstrates this concept.
 
 ![De Morgan's Laws](demorgans.png)
 
+---
+
 ## Conclusion
 
-We've expanded out the NAND gate to build out four new but very powerful gates.  Next we will introduce the topic of using *buses* to compute larger bits of data.
+We have now expanded on the NAND gate by constructing the NOT, AND, OR, and XOR gates. In the next post, we will explore the concept of *buses* and how they are used to compute
+larger amounts of data.
