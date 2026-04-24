@@ -12,7 +12,7 @@ series:
   - Electronics Through Gaming - MHRD
 series_order: 4
 slug: 04-muxers-and-adders
-lastmod: 2024-08-25T14:11:38.990Z
+lastmod: 2026-04-24T18:44:36.972Z
 description: Selecting inputs via multiplexers (MUX) and adding bits together using adders.
 ---
 
@@ -103,7 +103,7 @@ Wires:
 
 ## MUX4B
 
-The MUX4B is an extension of the standard MUX to handle a 4-bit bus. It takes two 4-bit inputs and a single selector.
+The MUX4B is an extension of the standard MUX to handle a 4-bit bus. It takes two 4-bit inputs and a single selector bit.
 
 ![MUX4B](mux4b.png)
 
@@ -217,6 +217,13 @@ A full adder extends the half adder by adding an additional input called `carryI
 Here’s the truth table for the full adder:
 
 ![Full Adder Truth Table](f1-truthtable.png)
+
+The concept is identical to the Half Adder when the `carryIn` is `0`, however the behaviour changes when it is enabled. Firstly the `out` is flipped, and the `carryOut` changes behaviour from an AND gate to an OR gate. Easiest way to solve this is by:
+
+- Adding an OR to the inputs, and a NOT to the output of the XOR gate.
+- Adding two MUX switches, and use the `carryIn` as the selector
+- When `carryIn` is `0`, use the output like the Half Adder
+- When `carryIn` is `1`, use the negated XOR output, and the OR gate output
 
 The wiring for the full adder looks like this:
 

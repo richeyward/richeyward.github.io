@@ -54,9 +54,11 @@
         {
           "title": "series",
           "name": "series",
-          "type": "choice",
+          "type": "tags",
+          "taxonomyId": "series",
           "choices": [
-            "Electronics Through Gaming"
+            "Electronics Through Gaming - MHRD",
+            "Electronics Through Gaming - TC"
           ]
         },
         {

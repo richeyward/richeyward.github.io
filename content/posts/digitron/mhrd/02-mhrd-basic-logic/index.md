@@ -11,7 +11,7 @@ draft: false
 series:
   - Electronics Through Gaming - MHRD
 series_order: 2
-lastmod: 2024-09-11T18:30:34.743Z
+lastmod: 2026-04-23T21:33:15.204Z
 slug: 02-mhrd-basic-logic-gates
 description: Building the NOT, AND, OR, and XOR gates in MHRD.
 ---
@@ -129,7 +129,9 @@ There are two possible designs for an XOR gate. One solution uses more parts but
 
 ### Solution 1
 
-This design is similar to an OR gate but with a different handling for the inputs. It uses both an OR gate and a NAND gate to achieve the correct result.
+This design is similar to an OR gate but with a different handling for the inputs if both are true. 
+
+It uses both an OR gate and a NAND gate to achieve the correct result.
 
 | OR out | NAND out | OUT |
 | ------ | -------- | --- |
@@ -137,6 +139,9 @@ This design is similar to an OR gate but with a different handling for the input
 | 1      | 1        | 1   |
 | 1      | 1        | 1   |
 | 1      | 0        | 0   |
+
+As you can see, if both inputs are true, then the the output is also true, so an AND gate is needed to combine the inputs of both the OR and NAND. 
+
 
 The wiring for this looks like this:
 

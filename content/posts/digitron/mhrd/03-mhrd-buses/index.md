@@ -5,10 +5,10 @@ draft: false
 author: Richey Ward
 summary: Expanding our gates to handle multiple bit buses
 tags:
-    - MHRD
+  - MHRD
 categories:
-    - Digital Electronics
-lastmod: 2024-09-11T18:32:52.813Z
+  - Digital Electronics
+lastmod: 2026-04-24T14:37:46.844Z
 slug: 03-buses
 description: Expanding our new gates to handle multiple bit buses in MHRD.
 series:
@@ -25,8 +25,8 @@ To work with higher numbers, we need to process multiple bits in parallel. For i
 
 ## Understanding Multiple Bits
 
-In a single-bit system, `1` and `0` are the only values available. To represent the number `2`, however, we need an additional input. When that input is active, it indicates
-the presence of `2` in the total value. Each additional input represents higher powers of 2. For example, the third bit represents `4` and the fourth bit represents `8`.
+In a single-bit system, `1` and `0` are the only values available. To represent the number `2`, however, we need an additional bit. When that bit is active, it indicates
+the presence of `2` in the total value. Each additional bit represents higher powers of 2. For example, the third bit represents `4` and the fourth bit represents `8`.
 Here’s a simple breakdown:
 
 ```md
@@ -41,7 +41,7 @@ Here’s a simple breakdown:
 ...
 ```
 
-The concept of combining multiple binary inputs is called a *bus*. Buses serve two main purposes: representing larger values and performing logical operations on multiple inputs.
+The concept of combining multiple bits is called a *bus*. Buses serve two main purposes: representing larger values and performing logical operations on multiple inputs.
 
 ---
 

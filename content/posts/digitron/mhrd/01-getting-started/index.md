@@ -13,7 +13,7 @@ draft: false
 series:
   - Electronics Through Gaming - MHRD
 series_order: 1
-lastmod: 2024-08-25T14:10:55.377Z
+lastmod: 2026-04-23T20:07:53.722Z
 slug: 01-getting-started
 ---
 
