@@ -1,20 +1,25 @@
 ---
 title: Flare-On1 - 03 - Shellolololol
-slug: flare-on1-03-shellolololol
+draft: false
+date: 2024-10-07
 author: Richey Ward
-date: 2023-11-27
 tags:
   - Flare-On
-  - Flare-On1
+  - Flare-On-01
 categories:
   - CTF
-draft: true
-summary: "A file called 'such_evil' is contained in the zip. The `file` command shows it to be a PE32 executable. "
+description: Challenge 3 of Flare-On 1.
+summary: Challenge 3 of Flare-On 1.
+slug: 03-shellolololol
+series:
+  - Flare-On-01
+series_order: 3
+lastmod: 2026-04-24T19:04:59.033Z
 ---
 
 ## Initial
 
-A file called 'such_evil' is contained in the zip. The `file` command shows it to be a PE32 executable. When executed it promply crashes. Note: After I completed this, I read up on other people's solutions for this challenge and it appears that it executed for them. It may have been incompatible with my Windows 10 system for some reason.
+A file called 'such_evil' is contained in the zip. The `file` command shows it to be a PE32 executable. When executed it promptly crashes. Note: After I completed this, I read up on other people's solutions for this challenge and it appears that it executed for them. It may have been incompatible with my Windows 10 system for some reason.
 
 As execution is currently not an option, static analysis our first path. For this challange I decided to use [Cutter](https://github.com/rizinorg/cutter) which is used to disassemble code. It will also come in use later as Cutter can take shellcode bytes as input.
 
@@ -220,7 +225,7 @@ Even though we now have the flag, there's one more piece left after the flag. We
 17 00 04 60 09 0a 04 0f 2c 0c 00 2b 55 02 a9 92 
 8e 2c 65 45 a1 30 31 9e b6 50
 ```
-Unsurprinsingly, it's one more XOR decrypt with the key `aaaaaand i'm spent`. 
+Unsurprisingly, it's one more XOR decrypt with the key `aaaaaand i'm spent`. 
 
 ![](03-08.png)
 

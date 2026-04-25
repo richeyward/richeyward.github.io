@@ -5,12 +5,16 @@ draft: false
 author: Richey Ward
 tags:
     - Flare-On
-    - Flare-On1
+    - Flare-On-01
 categories:
     - CTF
 description: Challenge 1 of Flare-On 1.
 summary: Challenge 1 of Flare-On 1.
+series:
+    - Flare-On-01
+series_order: 1
 slug: 01-bob-roge
+lastmod: 2026-04-24T18:54:33.948Z
 ---
 
 ## Initial

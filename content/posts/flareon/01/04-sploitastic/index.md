@@ -1,15 +1,20 @@
 ---
 title: Flare-On1 - 04 - Sploitastic
-slug: flare-on1-04-sploitastic
+draft: false
+date: 2024-10-14
 author: Richey Ward
-date: 2023-12-04
-draft: true
 tags:
   - Flare-On
-  - Flare-On1
+  - Flare-On-01
 categories:
   - CTF
-description: This challenge starts with a single PDF file. As with most CTF files I examine, I normally transfer them...
+description: Challenge 4 of Flare-On 1.
+summary: Challenge 4 of Flare-On 1.
+slug: 04-sploitastic
+series:
+  - Flare-On-01
+series_order: 4
+lastmod: 2026-04-24T19:17:13.625Z
 ---
 
 ## Initial
