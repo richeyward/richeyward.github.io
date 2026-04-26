@@ -1,4 +1,4 @@
-I try to post weekly about:
+I post whenever I can about:
 
 ## FlareOn
 

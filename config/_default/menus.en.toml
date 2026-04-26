@@ -36,6 +36,12 @@
  pageRef = "series/flare-on-01"
  weight = 20
 
+[[main]]
+ name = "Flare-On2"
+ parent = "Flare-On"
+ pageRef = "series/flare-on-02"
+ weight = 20
+
 
 #[[main]]
 #  name = "example sub-menu 2"
