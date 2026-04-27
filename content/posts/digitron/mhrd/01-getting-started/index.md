@@ -1,10 +1,10 @@
 ---
 title: Learning Electronics Through Gaming - 01 - Getting Started
 author: Richey Ward
-date: 2024-07-01
+date: 2026-04-27
 tags:
   - MHRD
-  - TuringComplete
+  - Turing_Complete
 categories:
   - Digital Electronics
 summary: Covering the foundations of learning Digital Electronics through gaming
@@ -13,7 +13,7 @@ draft: false
 series:
   - Electronics Through Gaming - MHRD
 series_order: 1
-lastmod: 2026-04-23T20:07:53.722Z
+lastmod: 2026-04-27T10:40:06.082Z
 slug: 01-getting-started
 ---
 
