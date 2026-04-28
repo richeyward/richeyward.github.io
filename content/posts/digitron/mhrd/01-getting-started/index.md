@@ -57,7 +57,7 @@ this field. Two games in particular, **MHRD** and **Turing Complete**, stand out
 and you design circuits using a text-based syntax. It starts by teaching simple logic circuits and progressively moves to more complex systems, culminating in building a
 working CPU.
 
-![MHRD](mhrd.png)
+![MHRD](01_mhrd.png)
 
 ### Turing Complete
 
@@ -67,7 +67,7 @@ working CPU.
 user interface (GUI) that allows you to design circuits with your mouse. The game also gives you the freedom to design your own CPU and write a programming language to run
 on it, offering almost unlimited possibilities.
 
-![Turing Complete](turing-complete.png)
+![Turing Complete](02_turing-complete.png)
 
 In this series, we will start with **MHRD** to build a solid foundation in hardware design and then apply that knowledge to **Turing Complete** for more advanced projects.
 
@@ -111,12 +111,12 @@ and output combinations for a NAND gate. Since there are two inputs with two pos
 The following is a graphical representation of a NAND gate. The `D` shape represents an AND gate, and the small circle (called a "bubble") indicates negation or inversion.
 If you remove the bubble, you are left with an AND gate.
 
-![NAND Gate Symbol](nand-symbol.png)
+![NAND Gate Symbol](03_nand-symbol.png)
 
 As you can see from the truth table, the NAND gate will output `1` unless both inputs are `1`. In **MHRD**, you will have the opportunity to experiment with this gate and
 observe its behaviour.
 
-![NAND in MHRD](mhrd-nand.png)
+![NAND in MHRD](04_mhrd-nand.png)
 
 ---
 
@@ -124,3 +124,6 @@ observe its behaviour.
 
 Now that we have explored the basic building block of the NAND gate, we are ready to begin constructing more complex circuits. In the next post, we will see how combining
 logic gates can lead to more advanced, functional circuits, laying the groundwork for even greater projects.
+
+
+*Note: This was originally published in July 2024*
