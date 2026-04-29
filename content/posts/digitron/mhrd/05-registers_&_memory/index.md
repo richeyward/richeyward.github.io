@@ -1,13 +1,13 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 05 - Registers & Memory
-date: 2024-07-29
+date: 2026-05-01
 draft: false
 author: Richey Ward
 summary: Creating registers and memory to store data values
 tags:
-    - MHRD
+  - MHRD
 categories:
-    - Digital Electronics
+  - Digital Electronics
 lastmod: 2024-09-11T21:52:23.110Z
 description: Creating registers and memory to store data values in MHRD
 series:
@@ -31,7 +31,7 @@ To work, a register requires an input value and a `load` signal that instructs t
 In MHRD, the *DFF* (D-Flip-Flop) component is used for building registers. The DFF stores an input value and outputs it one clock cycle later. Clock cycles, which determine the
 speed of a CPU, are managed by a *clock* component, which we will discuss later. Below is an example of a DFF:
 
-![DFF](dff.png)
+![DFF](01_dff.png)
 
 As the documentation suggests, we use DFFs to construct registers. The register takes an `input` bit and a `load` signal. When the `load` is active, the input value is stored in
 the register, and the stored value is outputted on the `out` pin.
@@ -64,7 +64,7 @@ This setup allows the register to store and repeatedly output a value until a ne
 While a 1-bit register can be useful, storing larger values requires more bits. A 4-bit register can store values from 0 to 15. As we’ve already built a 1-bit register, we can
 extend this design to create a 4-bit register by using four 1-bit registers.
 
-![Register4B](register4b.png)
+![Register4B](02_register4b.png)
 
 The wiring for a 4-bit register is as follows:
 
@@ -103,7 +103,7 @@ Registers are excellent for CPU calculations, but what if you need to store larg
 computers. RAM allows data to be written and recalled later, much like registers, except it consists of multiple registers linked together. Each register is assigned an
 *address* for reading and writing. In this case, we start small, with four registers.
 
-![RAM4W16B](ram4w16b.png)
+![RAM4W16B](03_ram4w16b.png)
 
 ### Understanding Hexadecimal
 
