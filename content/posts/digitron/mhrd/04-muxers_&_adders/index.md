@@ -307,3 +307,5 @@ Wires:
 
 We have now built multiplexers, demultiplexers, half adders, and full adders. These components allow us to perform logical operations and arithmetic on multiple bits, a crucial
 step in constructing more complex systems, such as an Arithmetic Logic Unit (ALU).
+
+*Note: This was originally published in July 2024*

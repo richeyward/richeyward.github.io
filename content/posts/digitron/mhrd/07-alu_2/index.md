@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 07 - ALU (2)
-date: 2024-08-12
+date: 2026-05-03
 draft: false
 author: Richey Ward
 summary: Finalizing the building of the ALU
@@ -13,7 +13,7 @@ series:
   - Electronics Through Gaming - MHRD
 series_order: 7
 slug: 07-alu-2
-lastmod: 2024-08-25T14:28:42.707Z
+lastmod: 2026-04-29T19:46:46.772Z
 ---
 
 ## Introduction
@@ -94,7 +94,7 @@ m4.out -> out;
 
 ### Negative Flag
 
-The `negative` flag indicates when the result is negative. As discussed previously, a number is considered negative when the most significant bit (MSB) is `1`. To implement this, route the MSB of `m4.out` to the `negative` output.
+The `negative` flag indicates when the result is negative. As mentioned previously, a number is considered negative when the most significant bit (MSB) is `1`. To implement this, route the MSB of `m4.out` to the `negative` output.
 
 ```matlab
 m4.out[4] -> negative;
@@ -118,9 +118,9 @@ This wiring successfully completes the ALU, and with this component built, the 1
 
 The next important component is the `COUNTER4B`, which is useful for tracking the execution state of a program. The counter increments by 1 per cycle when the `load` flag is `0`. When `load` is `1`, the counter is set to the input value. It is reset to `0` when the `reset` flag is active.
 
-![COUNTER4B](counter4b.png)
+![COUNTER4B](01_counter4b.png)
 
-The counter is essentially a `REGISTER4B` that loops back its output to an `ADDER4B`, where the `carryIn` is always `1`, so the value increments each cycle. Two `MUX4B` components are then used: the first handles the `load` input, and the second handles the `reset` input. The wiring looks like this:
+The counter is just a `REGISTER4B` that loops back its output to an `ADDER4B`, where the `carryIn` is always `1`, so the value increments each cycle. Two `MUX4B` components are then used: the first handles the `load` input, and the second handles the `reset` input. The wiring looks like this:
 
 ```matlab
 Inputs: in[4], load, reset;
@@ -152,3 +152,5 @@ This completes the `COUNTER4B` and unlocks the `COUNTER16B`, which functions sim
 ## Conclusion
 
 With the ALU now fully operational and the counter implemented, the foundational components for the CPU are complete. The next phase will involve integrating these components to build the final stages of the MHRD CPU.
+
+*Note: This was originally published in July 2024*

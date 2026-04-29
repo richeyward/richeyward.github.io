@@ -163,3 +163,5 @@ This design unlocks RAM64K16B, which provides a significant amount of memory.
 
 Unlocking registers and RAM components marks a major milestone towards building a simple computer. With 64K (65535) bytes of memory, we can handle larger and more complex data
 processing tasks. Registers are essential for CPU operations, while RAM provides the necessary storage for more extensive computations.
+
+*Note: This was originally published in July 2024*

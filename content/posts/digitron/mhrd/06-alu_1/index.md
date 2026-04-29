@@ -107,3 +107,5 @@ The ALU uses 4-bit opcodes, which define the operation to be performed. Here’s
 ## Conclusion
 
 The ALU is a crucial component for performing both arithmetic and logical operations. By using the breakdown provided above, you should have a clear idea of how to wire the ALU and implement various operations. In the next section, we will explore more advanced features of the ALU, including wiring techniques.
+
+*Note: This was originally published in July 2024*
