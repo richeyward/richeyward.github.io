@@ -8,7 +8,7 @@ tags:
   - MHRD
 categories:
   - Digital Electronics
-lastmod: 2024-09-11T21:52:23.110Z
+lastmod: 2026-04-29T10:22:17.843Z
 description: Creating registers and memory to store data values in MHRD
 series:
   - Electronics Through Gaming - MHRD

@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 06 - ALU (1)
-date: 2024-08-05
+date: 2026-05-02
 draft: false
 author: Richey Ward
 summary: Building the basic Arithmetic Logic Unit (ALU)
@@ -13,7 +13,7 @@ series:
   - Electronics Through Gaming - MHRD
 series_order: 6
 slug: 06-alu-1
-lastmod: 2024-09-11T21:59:44.530Z
+lastmod: 2026-04-29T16:52:49.846Z
 ---
 
 ## Introduction
@@ -26,7 +26,9 @@ The *Arithmetic Logic Unit* (ALU) is the core component of a CPU responsible for
 
 The ALU we are building takes two 4-bit inputs and a 4-bit `opCode`, providing 16 possible operations. There are also two 1-bit outputs, `negative` and `zero`, to indicate when the result is negative or zero, respectively.
 
-![ALU4B](alu4b.png)
+![ALU4B](01_alu4b.png)
+
+
 
 The table below shows example opcodes and their corresponding actions:
 
