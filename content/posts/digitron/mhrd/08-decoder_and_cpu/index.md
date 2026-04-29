@@ -1,13 +1,13 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 08 - Decoder & CPU
-date: 2024-08-19
+date: 2026-05-04
 draft: false
 author: Richey Ward
 summary: Combining all the parts to make the CPU
 tags:
-    - MHRD
+  - MHRD
 categories:
-    - Digital Electronics
+  - Digital Electronics
 description: Combining all the parts to make the CPU
 series:
   - Electronics Through Gaming - MHRD
@@ -26,9 +26,9 @@ We're now in the final stretch of building a fully functioning CPU. But before w
 
 The **DECODER** takes a 16-bit input and performs basic preprocessing on it.
 
-![Decoder 1](decoder-1.png)  
-![Decoder 2](decoder-2.png)  
-![Decoder 3](decoder-3.png)
+![Decoder 1](01_decoder-1.png)  
+![Decoder 2](02_decoder-2.png)  
+![Decoder 3](03_decoder-3.png)
 
 ---
 
@@ -127,7 +127,7 @@ alu ALU16B
 
 There are several key inputs and outputs to consider:
 
-![CPU Diagram](cpu%20diagram.png)
+![CPU Diagram](04_cpu-diagram.png)
 
 Externally, we have two RAM units: one for instructions and one for data. The `instrAddr` and `dataAddr` outputs request the data at specified addresses, and the `instr` and `data` inputs return that data. The `in` and `load` inputs for the instruction RAM are not used, but in the data RAM, the `in` bus is connected to the CPU’s `result` output, and the `load` is connected to the `write` output.
 
@@ -245,7 +245,7 @@ reset -> pc.reset;
 
 With this complete, the CPU is operational.
 
-![CPU Complete](cpu_complete.png)
+![CPU Complete](04_cpu-complete.png)
 
 ---
 
@@ -254,3 +254,5 @@ With this complete, the CPU is operational.
 This marks the completion of the MHRD challenge, from building basic gates to constructing a fully functional CPU. While I may revisit this project to explore potential optimisations (such as reducing the NAND count), the core objective has been achieved.
 
 Next up, we’ll tackle similar challenges in a more graphical game, **Turing Complete**, where we’ll not only build hardware but also write code that can be run on our CPU. I hope you enjoyed this walkthrough.
+
+*Note: This was originally published in July 2024*
