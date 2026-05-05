@@ -1,11 +1,11 @@
 ---
 title: Learning Electronics Through Gaming - TC - 01 - Basic Logic
-date: 2024-08-26
+date: 2026-05-05
 draft: false
 author: Richey Ward
 summary: Getting started with Turing Complete
 tags:
-    - Turing Complete
+    - Turing_Complete
 categories:
     - Digital Electronics
 description: Getting started with Turing Complete
@@ -24,7 +24,7 @@ While we’ll revisit some of the initial building blocks, TC introduces new com
 
 Side note: In TC, you’ve been abducted by aliens who demand you build a functional computer—or face the unpleasant alternative of being eaten.
 
-![Congratulations](congratulations.png)
+![Congratulations](01_congratulations.png)
 
 Let’s dive into the first set of challenges.
 
@@ -32,7 +32,9 @@ Let’s dive into the first set of challenges.
 
 ## Crude Awakening
 
-![Crude Awakening](crude-awakening.png)
+(Note, renamed to *Humble Beginnings* in version 2.0)
+
+![Crude Awakening](02_crude-awakening.png)
 
 This introductory challenge showcases how the toggles in the top left work. It demonstrates that when the input is disabled, the output is also disabled.
 
@@ -42,7 +44,7 @@ This introductory challenge showcases how the toggles in the top left work. It d
 
 We’re already familiar with the NAND gate. The task here is to fill out the output at the bottom to match the expected results of a NAND gate. Once the correct pattern is completed, clicking `check` unlocks the `NAND` gate.
 
-![NAND Diagram](nand-diagram.png)
+![NAND Diagram](03_nand-diagram.png)
 
 ---
 
@@ -50,7 +52,7 @@ We’re already familiar with the NAND gate. The task here is to fill out the ou
 
 Our first new gate in TC, though creating a NOT gate using a NAND gate is trivial. Follow the design, click the `Run` button, and complete the task to unlock the `NOT` gate.
 
-![NOT Diagram](not-diagram.png)
+![NOT Diagram](04_not-diagram.png)
 
 This also unlocks the map for the rest of the challenges.
 
@@ -60,7 +62,7 @@ This also unlocks the map for the rest of the challenges.
 
 To create an AND gate, simply connect both inputs to a NAND gate, then negate the output using a NOT gate. This design unlocks the `AND` gate.
 
-![AND Diagram](and-diagram.png)
+![AND Diagram](05_and-diagram.png)
 
 ---
 
@@ -68,7 +70,7 @@ To create an AND gate, simply connect both inputs to a NAND gate, then negate th
 
 The NOR gate is new to TC and wasn't encountered in MHRD. NOR stands for “NOT OR,” meaning it only outputs true if neither input is true.
 
-![NOR Diagram](nor-diagram.png)
+![NOR Diagram](06_nor-diagram.png)
 
 Since we only have NOT and NAND gates available, use a NAND gate and negate both the inputs and the output to achieve the desired result. This unlocks the `NOR` gate.
 
@@ -78,7 +80,7 @@ Since we only have NOT and NAND gates available, use a NAND gate and negate both
 
 This is similar to the NOR gate, but since we negate the output of the NAND gate, the original output NOT cancels out, so we can remove it. Completing this unlocks the `OR` gate.
 
-![OR Diagram](or-diagram.png)
+![OR Diagram](07_or-diagram.png)
 
 ---
 
@@ -86,11 +88,11 @@ This is similar to the NOR gate, but since we negate the output of the NAND gate
 
 This is a new component not seen in MHRD. The “Always On” component means that the output is always true, regardless of the input. To implement this, a simple NOT gate is connected to the output, ensuring it always outputs `1`.
 
-![Always On Diagram](always-on-diagram.png)
+![Always On Diagram](08_always-on-diagram.png)
 
 This unlocks the “Always On” and “Always Off” components. Additionally, De Morgan's Laws, which describe the relationship between OR, NOR, NAND, and AND gates, are documented here.
 
-![De Morgan’s](demorgans.png)
+![De Morgan’s](09_demorgans.png)
 
 ---
 
@@ -98,7 +100,7 @@ This unlocks the “Always On” and “Always Off” components. Additionally, 
 
 This challenge involves four input ticks, and the task is to output `1` only on the second tick. The condition for the second tick is that `input 1` is `1` and `input 2` is `0`. Use an `AND` gate with a `NOT` gate for `input 2` to replicate this.
 
-![Second Tick](<second tick diagram.png>)
+![Second Tick](<11_second tick diagram.png>)
 
 ---
 
@@ -106,7 +108,7 @@ This challenge involves four input ticks, and the task is to output `1` only on 
 
 This is familiar territory. Following the same diagram used in MHRD, completing this task unlocks the `XOR` gate.
 
-![XOR Diagram](<xor diagram.png>)
+![XOR Diagram](<12_xor diagram.png>)
 
 ---
 
@@ -114,23 +116,21 @@ This is familiar territory. Following the same diagram used in MHRD, completing 
 
 This introduces a new concept: larger input OR gates. However, this is similar to the 4-input OR gate in MHRD. Use two `OR` gates to achieve this, unlocking a 3-input OR gate.
 
-![Bigger OR](<bigger or.png>)
+![](10_bigger-or.png)
 
----
 
 ## Bigger AND Gate
 
 The same wiring method used for the OR gate applies here, but with `AND` gates. Completing this unlocks the 3-input AND gate.
 
-![Bigger AND](<bigger and.png>)
+![Bigger AND](<13_bigger_and.png>)
 
----
 
 ## XNOR Gate
 
 The final component in the basic logic section is the `XNOR` gate, which is simply the negated output of an XOR gate. Completing this unlocks the `XNOR` gate.
 
-![XNOR Diagram](<xnor diagram.png>)
+![XNOR Diagram](<14_xnor diagram.png>)
 
 ---
 
