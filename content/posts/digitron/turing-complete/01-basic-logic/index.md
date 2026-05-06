@@ -86,7 +86,7 @@ This is similar to the NOR gate, but since we negate the output of the NAND gate
 
 ## Always On
 
-This is a new component not seen in MHRD. The “Always On” component means that the output is always true, regardless of the input. To implement this, a simple NOT gate is connected to the output, ensuring it always outputs `1`.
+This is a new component not seen in MHRD. The “Always On” component means that the output is always true, regardless of the input. To implement this, a simple NOT gate is connected to the output, ensuring it always outputs `1`. This unlocks the `Always On` and `Always Off` (outputs `0` always) components.
 
 ![Always On Diagram](08-always_on_diagram.png)
 
@@ -108,7 +108,7 @@ This challenge involves four input ticks, and the task is to output `1` only on 
 
 This is familiar territory. Following the same diagram used in MHRD, completing this task unlocks the `XOR` gate.
 
-![XOR Diagram](<11-xor diagram.png>)
+![XOR Diagram](<11-xor_diagram.png>)
 
 ---
 
@@ -128,12 +128,11 @@ The same wiring method used for the OR gate applies here, but with `AND` gates. 
 
 ## XNOR Gate
 
-The final component in the basic logic section is the `XNOR` gate, which is simply the negated output of an XOR gate. Completing this unlocks the `XNOR` gate.
+The final component in the basic logic section is the `XNOR` gate, which is simply the negated output of an XOR gate. Completing this unlocks the `XNOR` gate. Like when an `XOR` outputs when two inputs are different, this just does the opposite.
 
 ![XNOR Diagram](<14-xnor_diagram.png>)
 
 ---
-
 ## Conclusion
 
 This section of TC builds on much of what we learned from MHRD. With the foundational gates and logic complete, we're now ready to dive into more complex challenges.
