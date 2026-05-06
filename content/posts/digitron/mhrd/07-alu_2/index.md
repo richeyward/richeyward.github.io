@@ -13,7 +13,7 @@ series:
   - Electronics Through Gaming - MHRD
 series_order: 7
 slug: 07-alu-2
-lastmod: 2026-04-29T19:46:46.772Z
+lastmod: 2026-05-06
 ---
 
 ## Introduction
@@ -118,7 +118,7 @@ This wiring successfully completes the ALU, and with this component built, the 1
 
 The next important component is the `COUNTER4B`, which is useful for tracking the execution state of a program. The counter increments by 1 per cycle when the `load` flag is `0`. When `load` is `1`, the counter is set to the input value. It is reset to `0` when the `reset` flag is active.
 
-![COUNTER4B](01_counter4b.png)
+![COUNTER4B](01-counter4b.png)
 
 The counter is just a `REGISTER4B` that loops back its output to an `ADDER4B`, where the `carryIn` is always `1`, so the value increments each cycle. Two `MUX4B` components are then used: the first handles the `load` input, and the second handles the `reset` input. The wiring looks like this:
 

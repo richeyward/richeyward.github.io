@@ -12,7 +12,7 @@ series:
   - Electronics Through Gaming - MHRD
 series_order: 4
 slug: 04-muxers-and-adders
-lastmod: 2026-04-24T18:44:36.972Z
+lastmod: 2026-05-06
 description: Selecting inputs via multiplexers (MUX) and adding bits together using adders.
 ---
 
@@ -29,15 +29,15 @@ is `0`, `in1` is outputted; if `sel` is `1`, `in2` is outputted.
 
 Here’s a diagram of the MUX:
 
-![MUX](01_mux.png)
+![MUX](01-mux.png)
 
 Let’s break it down further: when `sel` is `1`, the output is true if both `sel` and `in2` are true, which is achieved using an AND gate.
 
-![MUX Diagram](02_mux-diagram1.png)
+![MUX Diagram](02-mux_diagram1.png)
 
 For `in1`, as `sel` is false, it must be inverted via a NOT gate. The outputs of the two AND gates are then fed into an OR gate.
 
-![MUX Diagram 2](03_mux-diagram2.png)
+![MUX Diagram 2](03-mux_diagram2.png)
 
 The MHRD code for wiring the MUX looks like this:
 
@@ -68,15 +68,15 @@ Wires:
 
 A demultiplexer (DEMUX) performs the opposite function of a MUX: it takes one input and routes it to one of two outputs, based on the value of the selector input.
 
-![DEMUX](04_demux.png)
+![DEMUX](04-demux.png)
 
 Here’s a logical arrangement of the DEMUX:
 
-![DEMUX Diagram](05_demux-diagram.png)
+![DEMUX Diagram](05-demux_diagram.png)
 
 The truth table shows that each output is activated by different selector conditions. Two AND gates and a NOT gate are used to route the input based on the selector value.
 
-![DEMUX Diagram 2](06_demux-diagram2.png)
+![DEMUX Diagram 2](06-demux_diagram2.png)
 
 The wiring for the DEMUX is as follows:
 
@@ -105,7 +105,7 @@ Wires:
 
 The MUX4B is an extension of the standard MUX to handle a 4-bit bus. It takes two 4-bit inputs and a single selector bit.
 
-![MUX4B](07_mux4b.png)
+![MUX4B](07-mux4b.png)
 
 The wiring for the MUX4B looks like this:
 
@@ -144,7 +144,7 @@ Wires:
 
 As the name suggests, DEMUX4W is a demultiplexer with four outputs. This requires a 2-bit selector since four outputs cannot be selected with only one bit.
 
-![DEMUX4W](08_demux4w.png)
+![DEMUX4W](08-demux4w.png)
 
 The first bit in the selector decides whether the output is routed to out1/out3 or out2/out4. The second bit further narrows it down to one of the four outputs.
 
@@ -181,11 +181,11 @@ Completing this will unlock further components such as MUX4W16B, MUX16B, and DFF
 A half adder is the foundational component of a CPU that enables basic addition. It takes two inputs and adds them. If both are `0`, the output is `0`. If one is `1`, the output
 is `1`. If both are `1`, the output is `0` but the **carry** output is set to `1`.
 
-![Half Adder](09_halfadder.png)
+![Half Adder](09-halfadder.png)
 
 The half adder uses an XOR gate for the output and an AND gate for the carry.
 
-![Half Adder Diagram](10_halfadder-diagram.png)
+![Half Adder Diagram](10-halfadder_diagram.png)
 
 Here’s the wiring:
 
@@ -212,11 +212,11 @@ Wires:
 
 A full adder extends the half adder by adding an additional input called `carryIn`, which is used to add bits from previous additions. This is crucial for adding larger numbers.
 
-![Full Adder](11_fulladder.png)
+![Full Adder](11-fulladder.png)
 
 Here’s the truth table for the full adder:
 
-![Full Adder Truth Table](12_f1-truthtable.png)
+![Full Adder Truth Table](12-f1_truthtable.png)
 
 The concept is identical to the Half Adder when the `carryIn` is `0`, however the behaviour changes when it is enabled. Firstly the `out` is flipped, and the `carryOut` changes behaviour from an AND gate to an OR gate. Easiest way to solve this is by:
 
@@ -225,7 +225,7 @@ The concept is identical to the Half Adder when the `carryIn` is `0`, however th
 - When `carryIn` is `0`, use the output like the Half Adder
 - When `carryIn` is `1`, use the negated XOR output, and the OR gate output
 
-![](14_fulladder-diagram.png)
+![](13_fulladder-diagram.png)
 
 The wiring for the full adder looks like this:
 
@@ -265,7 +265,7 @@ Wires:
 
 Finally, we can chain multiple full adders to add two 4-bit numbers together.
 
-![Adder4B](13_adder4b.png)
+![Adder4B](14-adder4b.png)
 
 The wiring for the 4-bit adder is:
 

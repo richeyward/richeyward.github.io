@@ -8,7 +8,7 @@ tags:
   - MHRD
 categories:
   - Digital Electronics
-lastmod: 2026-04-28T15:50:17.136Z
+lastmod: 2026-05-06
 slug: 03-buses
 description: Expanding our new gates to handle multiple bit buses in MHRD.
 series:
@@ -56,7 +56,7 @@ MHRD presents several new challenges that demonstrate the power of buses. Let’
 The **NOT4B** (NOT 4-Bit) gate applies a NOT operation to each of the four inputs. MHRD’s documentation explains how to handle this. Essentially, each of the four bits is
 processed by its own NOT gate.
 
-![NOT4B](01_not4b.png)
+![NOT4B](01-not4b.png)
 
 Here’s the wiring for the NOT4B gate:
 
@@ -89,7 +89,7 @@ This setup applies a NOT operation to each of the four inputs individually, prod
 
 Similar to NOT4B, **AND4B** performs a 4-bit AND operation. Since AND gates have two inputs, we have a total of eight inputs, organised as in1[4] and in2[4].
 
-![AND4B](02_and4b.png)
+![AND4B](02-and4b.png)
 
 Here’s the wiring for the AND4B gate:
 
@@ -127,11 +127,11 @@ This wiring ensures that each bit from in1 and in2 is compared, and the result i
 The **OR4W** (OR 4-Way) gate works slightly differently from the previous gates. Here, we take four inputs but only produce one output. This is useful for checking if any of the
 four inputs are `1`.
 
-![OR4W](03_or4w.png)
+![OR4W](03-or4w.png)
 
 To achieve this, we use three OR gates. The first two gates handle two inputs each, and the final gate combines the outputs of the first two.
 
-![OR4W Diagram](04_or4w-diagram.png)
+![OR4W Diagram](04-or4w_diagram.png)
 
 Here’s the wiring for the OR4W gate:
 

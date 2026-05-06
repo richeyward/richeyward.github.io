@@ -8,7 +8,7 @@ tags:
   - MHRD
 categories:
   - Digital Electronics
-lastmod: 2026-04-29T10:22:17.843Z
+lastmod: 2026-05-06
 description: Creating registers and memory to store data values in MHRD
 series:
   - Electronics Through Gaming - MHRD
@@ -31,10 +31,14 @@ To work, a register requires an input value and a `load` signal that instructs t
 In MHRD, the *DFF* (D-Flip-Flop) component is used for building registers. The DFF stores an input value and outputs it one clock cycle later. Clock cycles, which determine the
 speed of a CPU, are managed by a *clock* component, which we will discuss later. Below is an example of a DFF:
 
-![DFF](01_dff.png)
+![DFF](01-dff.png)
 
 As the documentation suggests, we use DFFs to construct registers. The register takes an `input` bit and a `load` signal. When the `load` is active, the input value is stored in
 the register, and the stored value is outputted on the `out` pin.
+
+Let's review the Register documentation:
+
+![Register](<02-register.png>)
 
 The trick is to feed the register’s output back into its input unless the `load` is active. When `load` is active, the input value is stored instead. This can be achieved using a
 multiplexer (MUX). The wiring is as follows:
@@ -64,7 +68,7 @@ This setup allows the register to store and repeatedly output a value until a ne
 While a 1-bit register can be useful, storing larger values requires more bits. A 4-bit register can store values from 0 to 15. As we’ve already built a 1-bit register, we can
 extend this design to create a 4-bit register by using four 1-bit registers.
 
-![Register4B](02_register4b.png)
+![Register4B](03-register4b.png)
 
 The wiring for a 4-bit register is as follows:
 
@@ -103,7 +107,7 @@ Registers are excellent for CPU calculations, but what if you need to store larg
 computers. RAM allows data to be written and recalled later, much like registers, except it consists of multiple registers linked together. Each register is assigned an
 *address* for reading and writing. In this case, we start small, with four registers.
 
-![RAM4W16B](03_ram4w16b.png)
+![RAM4W16B](04-ram4w16b.png)
 
 ### Understanding Hexadecimal
 

@@ -13,7 +13,7 @@ series:
   - Electronics Through Gaming - MHRD
 series_order: 8
 slug: 08-decoder_and_cpu
-lastmod: 2024-09-11T22:09:20.567Z
+lastmod: 2026-05-06
 ---
 
 ## Introduction
@@ -26,9 +26,9 @@ We're now in the final stretch of building a fully functioning CPU. But before w
 
 The **DECODER** takes a 16-bit input and performs basic preprocessing on it.
 
-![Decoder 1](01_decoder-1.png)  
-![Decoder 2](02_decoder-2.png)  
-![Decoder 3](03_decoder-3.png)
+![Decoder 1](01-decoder_1.png)  
+![Decoder 2](02-decoder_2.png)  
+![Decoder 3](03-decoder_3.png)
 
 ---
 
@@ -127,7 +127,7 @@ alu ALU16B
 
 There are several key inputs and outputs to consider:
 
-![CPU Diagram](04_cpu-diagram.png)
+![CPU Diagram](04-cpu_diagram.png)
 
 Externally, we have two RAM units: one for instructions and one for data. The `instrAddr` and `dataAddr` outputs request the data at specified addresses, and the `instr` and `data` inputs return that data. The `in` and `load` inputs for the instruction RAM are not used, but in the data RAM, the `in` bus is connected to the CPU’s `result` output, and the `load` is connected to the `write` output.
 
@@ -245,7 +245,7 @@ reset -> pc.reset;
 
 With this complete, the CPU is operational.
 
-![CPU Complete](04_cpu-complete.png)
+![CPU Complete](05-cpu_complete.png)
 
 ---
 
