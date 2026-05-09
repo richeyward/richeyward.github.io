@@ -82,7 +82,7 @@ The Half Adder is identical to the one in MHRD, where the `SUM` output is genera
 
 ## Delayed Lines
 
-This introduces the `Delay Line` module which we encountered in MHRD. It takes in a value, and one tick later outputs that value. This challenge wants a delay of two ticks, so just add two delay lines. This unlocks the `Delay Line` component.
+This introduces the `Delay Line` module which we encountered in MHRD. It takes in a value, and one tick later outputs that value. This challenge wants a delay of two ticks, so just add two delay lines. This unlocks the `Delay Line` module.
 
 ![Delayed Lines](06-delayed_lines.png)
 
@@ -199,4 +199,4 @@ Feed the input into an `8-bit NOT` which is a bitwise flip of the input. You wil
 
 ## Conclusion
 
-With the Arithmetic section completed, we’re ready to tackle the next major topic: Plexers and Decoders
+With the Arithmetic section completed, we’re ready to tackle the next major topic: memory components.
