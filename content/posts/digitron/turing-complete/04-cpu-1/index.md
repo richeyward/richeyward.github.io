@@ -174,6 +174,7 @@ This is slightly more complex where it requires a three input `AND` gate that's 
 This was my solution but I get the feeling there's a more efficient approach. I'll return to this in the future but overall this is efficient and elegant enough for me.
 
 ![](09-conditions.png)
+
 ---
 
 ## Conclusion
