@@ -1,19 +1,19 @@
 ---
 title: Learning Electronics Through Gaming - TC - 05 - CPU (2)
-date: 2024-09-23
+date: 2026-05-11
 draft: false
 author: Richey Ward
 summary: Completing the CPU - Part 2
 tags:
-    - Turing Complete
+  - Turing_Complete
 categories:
-    - Digital Electronics
+  - Digital Electronics
 description: Completing the CPU - Part 2
 series:
-    - Electronics Through Gaming - TC
+  - Electronics Through Gaming - TC
 series_order: 5
 slug: 05-cpu-2
-lastmod: 2024-09-04T12:48:24.071Z
+lastmod: 2026-05-09
 ---
 
 ## Introduction
@@ -22,99 +22,132 @@ In this section, we continue building and refining the **Overture** CPU. With th
 
 ---
 
-## Program
-
-The first step is to replace the manual instruction input with a RAM block. This block will store instructions that can be loaded and eventually edited, allowing for custom scripting. Connect the RAM block where the input was previously located, and add a `Counter` to serve as a pointer, determining which instruction is fetched.
-
-![Program](program.png)
-
----
-
 ## Immediate Values
 
-To allow the loading of immediate values into a register, the `IMMEDIATE` instruction is introduced. When this instruction is flagged, the next 6 bits of the instruction are stored directly in `REG 0`. Although the last two bits should technically be ignored, simulations show that using them as-is works fine. An additional enable condition is wired to `REG 0`, allowing input only when the `IMMEDIATE` flag is set, with the input value piped into the register.
+To allow the loading of immediate values into a register, the `IMMEDIATE` instruction is introduced. When this instruction is flagged, the next 6 bits of the instruction are stored directly in `REG 0`. Although the last two bits should technically be ignored, simulations show that using them as-is works fine. An additional enable condition is wired to `REG 0`, allowing input only when the `IMMEDIATE` flag is set, with the input value piped into the register. A byte switch is also added to only output the value during immediate.
 
-![Immediate Values](<immediate values.png>)
+The trick of just using the 7th bit to disable the source destination decoders no longer worked, so a negated decoder `MOVE` bit does the trick now.
+
+![](01-immediate_values.png)
 
 ---
+
+## Program
+
+Up until now, the `Instruct` input was just something we couldn't control, but this is to be replaced with a block of RAM called `Program`. This will act as our instruction input. Delete the old instruction input and connect the output of `Program` to where the instruct was. Next, it needs to be enabled, so just add an `Always-On` to the enable pin. the RAM is just a long list of registers and it needs to know what register to output. You should also see a `Counter` to the left of this. This will track where in the program it is (called an instruction pointer also). After each tick, the `Counter` increments by 1, moving to the next instruction.
+
+Connect up like so and the program should run. In the future, you'll be able to manipulate the data in this to make your own programs.
+
+![](02-program.png)
+
+This unlocks load and store pins on memory components. 
+
+---
+
 
 ## Turing Complete
 
-The final piece needed to complete the **Overture** CPU is the conditional logic component, previously designed. This component checks the value of `REG 3` and, if the specified condition is met, resets the `COUNTER` to the value in `REG 0`. This enables loops and jumps within the program.
+The final piece needed to complete the **Overture** CPU is the conditional logic component, previously designed. This component checks the value of `REG 3` and, if the specified condition is met, resets the `COUNTER` to the value in `REG 0`. This enables loops and jumps within the program. Cool.
 
 To implement this, connect the `CONDITIONAL` component to the diagram, feeding the instruction and `REG 3` into its inputs. The output bit and conditional flag are sent to an `AND` gate, ensuring that the `COUNTER` is overridden only when both conditions are met. `REG 0` is then connected to the `COUNTER`.
 
-![Complete 1](<complete 1.png>)
+![](03-complete_1.png)
 
-![Complete 2](<complete 2.png>)
+![](04-complete_2.png)
+
 
 ---
 
 ## Overture Complete
 
-At this point, we’ve reached a similar stage as the final design in MHRD, but Turing Complete is just beginning to expand. The **Overture** architecture is still basic, but it provides a foundation for more complex designs and operations in the future.
+Congrats, your first Turing Complete computer is built!  At this point, we’ve reached a similar stage as the final design in MHRD, but Turing Complete is just beginning to expand. The **Overture** architecture is still basic, but it provides a foundation for more complex designs and operations in the future.
 
 ---
 
-## ADD 5
+## Punchcard Programming
 
-With the **Overture** CPU completed, we now move on to writing some machine code to run on it. The goal is to create a program that reads an input, adds 5 to it, and then outputs the result.
+With the **Overture** CPU completed, we now move on to writing some machine code to run on it. The goal is to create a program that reads an input, adds 5 to it, and then outputs the result. The ability to do stuff with the CPU is limited but I promise you, this is the first baby steps into assembly coding.
 
-### 1 - Read Input
+A high level concept for this challenge would be:
 
-To write the code, click the pencil icon on the `RAM` block to open the binary editor. Using the "View Instructions Definitions" helper, we can determine the correct instruction for copying the input to `REG 1`. This instruction value is `177`.
+```
+- Load 5 into Reg 0 (Immediate)
+- Move 5 from Reg 0 to Reg 1 for future use
+- Move input to Reg 2
+- Add (Reg 1 + Reg 2) => Reg 3
+- Move Reg 3 to Output
+```
 
-![add5 - Read Input](<add5 read input.png>)
+To write the code, click the edit icon on the `RAM` block to open the binary editor.  You can see the instructions mapped below each byte.
 
-### 2 - Add 5
+![](05-binary_editor.png)
 
-Next, we need to load the value `5` into `REG 2`, which requires two steps. First, use the `IMMEDIATE` instruction to store `5` in `REG 0`, then copy the value from `REG 0` to `REG 2`.
+Note, at the time of doing this challenge, the instructions are mapped incorrectly so it's misleading. Instead, remember this mapping for instructions (two highest bits)
 
-![add5 - add5-1](<add5 add 5-1.png>)
+```
+00 - Immediate
+01 - ALU
+10 - Move
+11 - Conditional
+```
 
-![add5 - add5-2](<add5 add 5-2.png>)
+There is no requirement for a loop, it will just start at the beginning once complete. This is only 5 instructions long:
 
-### 3 - Perform Calculation
+```
+00 000 101 (5)   - Immediate 5 - (5 to Reg 0)
+10 000 001 (129) - Mov Reg 0 -> Reg 1
+10 110 010 (178) - Mov Input -> Reg 2
+01 000100  (68)  - ADD (Reg 1 + Reg 2)
+01 000 100 (68)  - Immediate 4
+10 011 110 (158) - Mov Reg 3 -> Out
+```
 
-Now perform an `ADD` operation using the `COMPUTE` instruction.
+![](06-add5_solution.png)
+**Instructions incorrectly labelled in this image**
 
-![add5 - perform calc](<add5 - perform calc.png>)
-
-### 4 - Output Result
-
-Finally, copy the result from `REG 3` (where the result of the `ADD` is stored) to the `OUTPUT`.
-
-![add5 - output](<add5 - output.png>)
-
-After running the program, the output will display the result of adding 5 to the input. This unlocks the IDE, which will be useful for future challenges.
-
-![add5 Solution](<add5 solution.png>)
+If you're not aware, it's called *Punchcard Programming* as this was literally how early programs were written, via holes punched in a paper card which were fed into a card reader.
 
 ---
 
-## Calibrating Laser Cannons
+## Assembly Programming
 
-The next challenge involves calculating the circumference of an asteroid using the equation `2*π*r`, where `r` is the input. For simplicity, we round `π` to 3, so the calculation becomes multiplying the input by 6.
+Doing basic instructions via punchcards is tedious and hard. To help us, there is a low level language called *Assembly* which will make our lives easier. In this challenge, we replicate the same logic but in assembly.  It should be fairly intuitive.
 
-### Handling Multiplication
+**Important Note:** When using the `mov` command, the syntax is `mov <dst>, <src>`. 
 
-There is no multiplication component, but we can simulate multiplication through repeated additions.
+If you are unsure of the syntax of a certain command, click the `ISA` button, which will show you the assembly instructions. With that, let's convert our old program into assembly.
 
-### Assembly Editor
+```
+imm 5
+mov r1, r0
+mov r2, in
+add
+imm 4
+mov out, r3
+```
 
-The IDE makes coding for this task easier by allowing us to map operation codes (opcodes) to custom names. We’ll create a simple multiplication routine using repeated addition.
+---
 
-### Understanding Register Usage
+### Register Usage Recap
 
-There are 6 `Register` components, each with specific usage characteristics. It’s important to document these so that we can manage the storage and retrieval of data effectively:
+Now is a good time to understand our registers a little better for future reference. There are 6 `Register` components, each with specific usage characteristics. It’s important to document these so that we can manage the storage and retrieval of data effectively:
 
 ```txt
-REG 0 -> Stores immediate inputs and resets the counter.
+REG 0 -> Stores immediate inputs and used as an address when resetting the counter.
 REG 1 -> First operand for calculations.
 REG 2 -> Second operand for calculations.
 REG 3 -> Stores the output of calculations and input for conditionals.
 REG 4/5 -> Can be used for long-term storage.
 ```
+
+---
+## Circumference
+
+The next challenge involves calculating the circumference while given a radius. The rough calculation is `2*π*r`, where `r` is the input. For simplicity, we round `π` to 3, so the calculation becomes multiplying the input by 6.
+
+### Handling Multiplication
+
+There is no multiplication component, but we can simulate multiplication through repeated additions.
 
 ### Solution
 
@@ -130,124 +163,19 @@ Double again (60)
 The code to achieve this:
 
 ```matlab
-in_to_r1  # grab input
-r1_to_r2  # copy to r2
-ADD       # r1 + r2
-r3_to_r1  # copy output to r1
-r1_to_r2  # copy to r2
-ADD       # r1 + r2
-r3_to_r1  # copy output to r1
-ADD       # r1 + r2
-r3_to_out # result out
-```
-
-This solution unlocks the `Robotron 9000`, a controllable robot.
-
----
-
-## Spacial Invasion
-
-Looking over the documentation, two things are mentioned that will become useful, first, the use of `const` which can declare a constant in the IDE. This makes life easier when trying to keep track of the Robotron's actions. Second is the `label` which is very useful for creating loops.  When using the `label` with a keyword, the address of the label is noted.
-
-The Robotron starts out behind some boxes and the mission is to shoot all the "rats". This is similar to Space Invaders.  Running the code empty will show that the rats make their way down the screen until they reach a certain point and the game is over.  It should also be noted that the Robotron can 'see' directly in front of itself. If there is nothing, then a value of `0` is shown, however if there is something like a rat, then a value is shown, and the robot should then shoot.
-
-![Spacial Invasion](<spacial invasion.png>)
-
-### Starting Position
-
-The Robotron must move to a more effective position before engaging the rats. Using the `OUTPUT` command, the Robotron can turn right, move forward, turn left, and then move forward again.
-
-```matlab
-const LEFT = 0
-const FORWARD = 1
-const RIGHT = 2
-const WAIT = 3
-const SHOOT = 5
-
-# Move to position
-RIGHT
-r0_to_out
-FORWARD
-r0_to_out
-r0_to_out
-LEFT
-r0_to_out
-FORWARD
-r0_to_out
-```
-
-### Waiting and Shooting
-
-![Spacial Invastion - After Moving](<spacial invastion - after moving.png>)
-
-Next, Rob will wait at that position until something appears directly in front of him. The pseudocode for this would be: check in front, if nothing then wait another turn, or if there is something then shoot. As mentioned, loops are very useful for this part.
-
-Two new instructions also: `JEZ` means "Jump if Zero" which is perfect when the input is zero and `JMP` is just "Jump always"
-
-```matlab
-label wait
-WAIT         # Do nothing
-r0_to_out
-label shoot  # Come back here after shooting
-in_to_r3     # Check input
-wait
-JEZ          # Jump back if Zero
-SHOOT        # Shoot if not
-r0_to_out
-shoot
-JMP          # Jump
-```
-
-Rob waits patiently for a rat to appear where he quickly dispatches it until they are all gone.
-
-## Storage Cracker
-
-A simple challenge where a PIN has to be cracked.  I've read some complex solutions on this, and if we wanted to be efficient, this could be an option however I am lazy, so this code is also lazy.
-
-This just simply outputs a number and increments it until the right one is found. No need to fancy tactics.
-
-```matlab
-1
-r0_to_r2
-
-label check
-r3_to_out
-r3_to_r1
-ADD
-check
-JMP
+mov r1, in  // input to r1
+mov r2, r1  // r1 to r2
+add         // add both numbers (double) (r*2)
+mov r1, r3  // copy output back to r1
+add         // add original and doubled number (r*3)
+mov r1, r3
+mov r2, r3  // Copy output to r1,r2
+add         // r*6
+mov out, r3 // output the result
 ```
 
 ---
 
-## Masking Time
+## Conclusion
 
-The goal here is to find the day of the week based on a given date. The task simplifies to finding the `mod 4` of the date.
-
-### Modulus
-
-If you're familiar with basic division, there can be instances where a remainder is returned, i.e. `14 / 5 = 2 remainder 4`. With modulus, it doesn't matter what the result is, only the remainder. So `mod 5` of `14` is `4`. If there is no remainder left, then the value is `0`. The `mod` calculation is represented with a `%`.
-
-### Getting MOD 4
-
-To get `mod 4`, we use the first two bits of the date value:
-
-```txt
-27 % 4 = 3
-27     - 0b00011011
-3      - 0b00000011
-```
-
-An `AND` operation with `0b11` (3) isolates these bits. The code is simple:
-
-```matlab
-3
-r0_to_r2
-in_to_r1
-AND
-r3_to_out
-```
-
----
-
-This concludes the section. In the next part, we’ll explore more advanced functionality for the **Overture** CPU.
+We can now write basic code that our CPUs can run. This is monumental step in getting stuff running. You should be proud of yourself.
