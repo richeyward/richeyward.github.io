@@ -1,7 +1,7 @@
 ---
 title: Flare-On1 - 03 - Shellolololol
-draft: false
-date: 2024-10-07
+draft: true
+date: 2026-05-26
 author: Richey Ward
 tags:
   - Flare-On
@@ -14,22 +14,43 @@ slug: 03-shellolololol
 series:
   - Flare-On-01
 series_order: 3
-lastmod: 2026-04-24T19:04:59.033Z
+lastmod: 2026-05-26
 ---
 
 ## Initial
 
 A file called 'such_evil' is contained in the zip. The `file` command shows it to be a PE32 executable. When executed it promptly crashes. Note: After I completed this, I read up on other people's solutions for this challenge and it appears that it executed for them. It may have been incompatible with my Windows 10 system for some reason.
 
-As execution is currently not an option, static analysis our first path. For this challange I decided to use [Cutter](https://github.com/rizinorg/cutter) which is used to disassemble code. It will also come in use later as Cutter can take shellcode bytes as input.
+As execution is currently not an option, static analysis our main path. For this challange I decided to use [Cutter](https://github.com/rizinorg/cutter) which is used to disassemble code. It will also come in use later as Cutter can take shellcode bytes as input.
 
-Opening the exe in Cutter shows some basic commands but `fcn.00401000` stands out. The function pushes 0x201 bytes of shellcode into the stack and executes it (`call eax`). 
+Opening the exe in Cutter shows some basic functions and commands.  When looking at a binary for the first time in a disassembler it can be quite daunting I know. You should notice that there are quite a few small functions that as a result only perform basic stuff even if you don't understand it. 
+
+### Finding the Hook
+Depending on the binary being analyzed, there are a few ways to find the 'hook', i.e. finding the useful code that can reveal the flag.  Using a strings analyzer to find paintext is one.  In this instance I started looking at the larger functions as if there aren't many, it may be a good place to start.  In this case, `fcn.00401000` stands out. 
+
+This function has many repeating patterns like: 
+
+```asm
+mov eax, 0x32
+mov byte [var_x], al
+```
+
+If you have read other posts by me you should recognize what is happening. First, a value `0x32` is moved (copied) to eax. This is only a 1-byte value.  Next, remember that `al` is reading the smallest byte of `eax`. As the value loaded was only 1 byte, this is identical to the value moved to `eax`. This is pushed to the stack.  
+
+```asm
+lea eax, [var_201h]
+call eax
+```
+
+The last two lines are important. It loads the starting address of where the bytes were loaded to the stack, then the bytes are called. This is classic shellcode behaviour, where code is built somehow within a program and then executed.
 
 ![](03-01.png)
 
 ## Shellcode Extraction
 
-Running the binary in X32Dbg, the code crashed just after the data was loaded into the stack. I was able to extract the shellcode. It is entirely feasible to carve out the bytes using something like python but manual extraction in memory was the simplest.
+You could extract the bytes manually or via a script but the lazy way here is the best, run it in a debugger and dump the stack when you get to that point. 
+
+I ran the binary in X32Dbg, and as expected, the code crashed just after the data was loaded into the stack. I was able to extract the shellcode. 
 
 The bytes are below.
 
