@@ -1,6 +1,6 @@
 ---
 title: Flare-On1 - 03 - Shellolololol
-draft: true
+draft: false
 date: 2026-05-26
 author: Richey Ward
 tags:
