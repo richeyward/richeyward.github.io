@@ -1,0 +1,82 @@
+/* Global readability tweaks for article pages.
+   Keep this small so upgrades to the theme remain easy. */
+
+/* Reduce large side gutters from the default Blowfish body container. */
+body {
+  max-width: 132rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  body {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* Bring the right-side TOC closer to article text on desktop. */
+@media (min-width: 1024px) {
+  article section.prose > .order-first {
+    margin-inline-start: 1.25rem !important;
+    padding-left: 0.75rem !important;
+    max-width: 17rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  article #single_header,
+  article .article-content,
+  article footer {
+    max-width: 104ch !important;
+    margin-inline: auto;
+  }
+}
+
+/* Slightly larger body text for easier reading. */
+article section.prose {
+  font-size: 1.02rem;
+  line-height: 1.68;
+}
+
+/* Keep the combined content + TOC block centered on wide screens. */
+@media (min-width: 1024px) {
+  article section.prose {
+    justify-content: center;
+  }
+}
+
+/* Headings are a bit large by default for long-form posts. */
+article #single_header h1 {
+  font-size: clamp(1.55rem, 1.75vw, 1.9rem);
+  line-height: 1.12;
+}
+
+article section.prose h2 {
+  font-size: clamp(1.22rem, 1.3vw, 1.45rem);
+}
+
+article section.prose h3 {
+  font-size: clamp(1.06rem, 1.1vw, 1.2rem);
+}

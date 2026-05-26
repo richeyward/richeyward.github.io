@@ -1,7 +1,7 @@
 ---
 title: Flare-On1 - 05 - 5get_it
 draft: false
-date: 2026-04-25T15:19:54.619Z
+date: 2026-05-28
 author: Richey Ward
 tags:
   - Flare-On
@@ -14,7 +14,7 @@ slug: 05-5getit
 series:
   - Flare-On-01
 series_order: 5
-lastmod: 2026-04-25T15:19:55.664Z
+lastmod: 2026-05-26
 ---
 
 ## Initial
@@ -23,13 +23,15 @@ This challenge is a file called `5get_it` which the `file` command detects as a 
 
 ### But why ~~male models~~ DLLs? 
 
-Imagine you write a simple text editor from scratch. You start by designing a GUI, but wait.. you gotta write a GUI formatting engine from scratch right? Also, when you save the text file, you have to write code to detect a disk, parse the file structure, write each byte of text to disk and miraculously not FUBAR your OS in the process. Thankfully, Windows has a bunch of built in features that handles all that pain for you, so you just call the *dynamic linked libraries* (DLLs) for GUI stuff, file stuff etc. You can even use third party DLLs or even your own to make life easier. So, instead of starting from scratch, just use other people's code.
+Imagine you write a simple text editor from scratch. You start by designing a GUI, but wait.. you gotta write a GUI formatting engine from scratch right? Also, when you save the text file, you have to write code to detect a disk, parse the file structure, write each byte of text to disk and miraculously not FUBAR your OS in the process. Thankfully, Windows has a bunch of built in features that handles all that pain for you, so you just call the *dynamic linked libraries* (DLLs) for GUI stuff, file stuff etc. You can even use third party DLLs or hell, even your own to make life easier. So, instead of starting from scratch, just use other people's code.
+
+Another good feature of using DLLs is segmenting an application into smaller parts. When you got to change a small bug, you don't need to ship a behemoth blob back to the userbase.
 
 #### DLL Exports
 A DLL will normally contain hundreds if not thousands of functions, many of them useless to the end user. DLLs will however offer some functions as starting points that are available to an application for use, called *Exports*. Think of them as calls you can make from the DLL to do stuff. Imagine a DLL that creates ZiP files, one export may be called 'compressFiles' and another may be 'decompressFiles'.  You will get what it does, and all you got to do is pass parameters to it like file paths, zip name, etc.
 
 #### Do EXEs have Exports?
-Short answer - YES! In fact the main difference between an EXE and a DLL is the fact of a particular export called 'entry' in an EXE. This tells Windows where to start running code. DLLs can have them, but EXEs definitely have to have them.  Anyways, back to the binary.
+Short answer - YES! In fact the one main difference between an EXE and a DLL is the fact of a particular export called 'entry' in an EXE. This tells Windows where to start running code. DLLs can have them, but EXEs definitely have to have them.  Anyways, back to the binary.
 
 ### Entry Analysis
 
@@ -104,7 +106,7 @@ void FUN_1000a680(void)
 }
 ```
 
-##### FUN_1000a680 - Analysis
+##### Analysis
 It's a little daunting when you start looking at code this way, so let's break it down as much as we can. 
 
 ```c
@@ -150,7 +152,7 @@ More complicated calls emerge, but let's break it down again:
 
 A dll file will not run by itself like an exe. You can however run it using `rundll32` and it will behave just like an exe. The string indicates that this function will do precisely that.
 
-##### FUN_1000a680 - Conclusion and Next Steps
+##### Conclusion and Next Steps
 This function:
 - Creates and hides a console window
 - Reads a return value from `FUN_1000a570`
