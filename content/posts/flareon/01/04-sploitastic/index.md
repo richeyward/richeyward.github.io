@@ -1,7 +1,7 @@
 ---
 title: Flare-On1 - 04 - Sploitastic
 draft: false
-date: 2024-10-14
+date: 2026-05-27
 author: Richey Ward
 tags:
   - Flare-On
@@ -14,11 +14,11 @@ slug: 04-sploitastic
 series:
   - Flare-On-01
 series_order: 4
-lastmod: 2026-04-24T19:17:13.625Z
+lastmod: 2026-05-26
 ---
 
 ## Initial
-This challenge starts with a single PDF file. As with most CTF files I examine, I normally transfer them to my [FLARE VM](https://github.com/mandiant/flare-vm). When I attempted to import this file however, it was flagged as malicious by Windows Defender.
+This challenge starts with a single PDF file and is a lot of fun. As with most CTF files that I examine, I normally transfer them to my Windows [FLARE VM](https://github.com/mandiant/flare-vm) as I run Linux natively. When I attempted to import this file however, it was flagged as malicious by Windows Defender.
 
 ![](04-01.png)
 
@@ -36,7 +36,7 @@ There are multiple references to a PDF exploit and one to [CVE-2009-0658](https:
 ## Understanding CVE-2009-0658
 CVE-2009-0658 is an exploitable buffer overflow vulnerability for Abobe Reader. If this was to be opened by a vulnerable version of Adobe Reader, it could potentially perform code execution. Judging by the VT hits, it's likely that this file is weaponized with the exploit.
 
-My first hit of an exploit was from [ExploitDB](https://www.exploit-db.com/exploits/8099) which had a link to a Talos Intelligence [page](http://blog.talosintelligence.com/2009/02/have-nice-weekend-pdf-love.html) documenting details of the exploit. Apparently, unbenknownst to myself, Acrobat Reader at one stage allowed Javascsript to run on PDF documents and the exploit itself executes a specially crafted embedded JS payload.
+My first hit of an exploit was from [ExploitDB](https://www.exploit-db.com/exploits/8099) which had a link to a Talos Intelligence [page](http://blog.talosintelligence.com/2009/02/have-nice-weekend-pdf-love.html) documenting details of the exploit. Apparently, unbenknownst to myself, Acrobat Reader can allow Javascsript to run on PDF documents and the exploit itself executes a specially crafted embedded JS payload.
 
 ## Finding and extracting the payload
 
@@ -195,7 +195,7 @@ This suggests that the exploit when executed may have popped up a messagebox wit
 
 ## Decrypting the flag
 
-Immediately after this, there's a series of XOR opcodes and some bytes pushed to the stack.  As we've seen before, XORing is a great way to hide data from plain sight. One issue here however is that the XORing occurs at offsets of edx, which we do not know the value of. 
+Immediately after this, there's a series of XOR opcodes and some bytes pushed to the stack.  As we've seen before, XORing is a great way to hide data from plain sight. The flow is a little weird however I decided to ignore that and focus on what basic information I can see that would reveal a hidden payload.
 
 ![](04-05.png)
 

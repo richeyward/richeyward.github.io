@@ -14,6 +14,6 @@ I can tell you for a fact that working through these challenges will make you a 
 
 I'm working my way through the challenges, so below is the current status of my progress. Click on completed icons to see my report.
 
-|   | 01 | 02 | 03 |
-| --- | --- | --- | --- |
-| FlareOn 01 (3/7)  |  [✅](01/01-bob-roge)  | [✅](01/02-javascrap) | [✅](01/03-shellolololol) |
+|   | 01 | 02 | 03 | 04 | 
+| --- | --- | --- | --- | --- |
+| FlareOn 01 (4/7)  |  [✅](01/01-bob-roge)  | [✅](01/02-javascrap) | [✅](01/03-shellolololol) | [✅](01/04-sploitastic) |
