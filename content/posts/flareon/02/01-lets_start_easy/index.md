@@ -1,7 +1,7 @@
 ---
 title: " Flare-On2 - 01 - Let's start Easy"
 author: Richey Ward
-date: 2026-04-26T07:27:24.358Z
+date: 2026-05-29
 tags:
   - Flare-On
   - Flare-On-02
@@ -12,6 +12,8 @@ description: Challenge 1 of Flare-On 2.
 series:
   - Flare-On-02
 series_order: 1
+draft: false
+lastmod: 2026-05-28
 ---
 
 Running the binary opens a prompt for a password... okay...

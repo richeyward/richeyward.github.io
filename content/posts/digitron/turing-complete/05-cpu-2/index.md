@@ -103,7 +103,7 @@ There is no requirement for a loop, it will just start at the beginning once com
 ```
 
 ![](06-add5_solution.png)
-**Instructions incorrectly labelled in this image**
+**Instructions incorrectly labelled in this image - BETA VERSION**
 
 If you're not aware, it's called *Punchcard Programming* as this was literally how early programs were written, via holes punched in a paper card which were fed into a card reader.
 
@@ -115,7 +115,7 @@ Doing basic instructions via punchcards is tedious and hard. To help us, there i
 
 **Important Note:** When using the `mov` command, the syntax is `mov <dst>, <src>`. 
 
-If you are unsure of the syntax of a certain command, click the `ISA` button, which will show you the assembly instructions. With that, let's convert our old program into assembly.
+If you are unsure of the syntax of a certain command, click the `ASM/ISA` button, which will show you the assembly instructions. With that, let's convert our old program into assembly.
 
 ```
 imm 5
