@@ -14,7 +14,7 @@ I can tell you for a fact that working through these challenges will make you a 
 
 I'm working my way through the challenges, so below is the current status of my progress. Click on completed icons to see my report.
 
-|   | 01 | 02 | 03 | 04 | 05 | 06 | 07 |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| FlareOn 01 (5/7)  |  [✅](01/01-bob-roge)  | [✅](01/02-javascrap) | [✅](01/03-shellolololol) | [✅](01/04-sploitastic) | [✅](01/05-5get_it) | [:x:]() | [:x:]() | 
-| FlareOn 02 (1/1)  | [✅](02/01-lets_start_easy) |
+|                  | 01                         | 02                   | 03                       | 04                     | 05                 | 06  | 07  |     |
+| ---------------- | -------------------------- | -------------------- | ------------------------ | ---------------------- | ------------------ | --- | --- | --- |
+| FlareOn 01 (5/7) | [✅](01/01-bob-roge)        | [✅](01/02-javascrap) | [✅](01/03-shellolololol) | [✅](01/04-sploitastic) | [✅](01/05-5get_it) | :x: | :x: |     |
+| FlareOn 02 (1/1) | [✅](02/01-lets_start_easy) |                      |                          |                        |                    |     |     |     |
