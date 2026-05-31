@@ -6,3 +6,4 @@ config/_old
 public/
 
 .frontmatter/
+content/posts/drafts/
