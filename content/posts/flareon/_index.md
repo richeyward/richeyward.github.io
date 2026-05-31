@@ -17,4 +17,4 @@ I'm working my way through the challenges, so below is the current status of my 
 |                  | 01                         | 02                   | 03                       | 04                     | 05                 | 06  | 07  | 08  | 09  | 10  | 11  |
 | ---------------- | -------------------------- | -------------------- | ------------------------ | ---------------------- | ------------------ | --- | --- | --- | --- | --- | --- |
 | FlareOn 01 (5/7) | [✅](01/01-bob-roge)        | [✅](01/02-javascrap) | [✅](01/03-shellolololol) | [✅](01/04-sploitastic) | [✅](01/05-5get_it) | :x: | :x: |     |     |     |     |
-| FlareOn 02 (1/1) | [✅](02/01-lets_start_easy) | :x:                  | :x:                      | :x:                    | :x:                | :x: | :x: | :x: | :x: | :x: | :x: |
+| FlareOn 02 (1/11) | [✅](02/01-lets_start_easy) | :x:                  | :x:                      | :x:                    | :x:                | :x: | :x: | :x: | :x: | :x: | :x: |

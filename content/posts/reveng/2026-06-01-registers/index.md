@@ -19,7 +19,7 @@ I was working through a FlareOn challenge and while trying to adopt my 'describe
 
 ## Registers
 
-If you've been following my `Learn Digital Electronics through Gaming`, the topics of `Registers` is well documented but to put it into a simple sentence, it's a physical component inside a CPU that holds a value of bits.  If you take a look at the [Turing Complete article](content/posts/digitron/turing-complete/04-cpu-1/index.md) where registers are used, you'll see multiple registers set up to hold values. Also you'll note that certain registers have different functionalities over others.  
+If you've been following my `Learn Digital Electronics through Gaming`, the topics of `Registers` is well documented but to put it into a simple sentence, it's a physical component inside a CPU that holds a value of bits.  If you take a look at the [Turing Complete article](/posts//digitron/turing-complete/04-cpu-1/index.md) where registers are used, you'll see multiple registers set up to hold values. Also you'll note that certain registers have different functionalities over others.  
 
 ### A/B/C/D Registers
 
@@ -56,7 +56,7 @@ Calling the smaller registers is backwards compatible and there can be uses for 
 
 *From Wikipedia*
 
-![](content/posts/reveng/2026-06-01-registers/feature.png)
+![](feature.png)
 
 ### Usage of AL or similar
 
