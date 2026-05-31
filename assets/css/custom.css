@@ -80,3 +80,15 @@ article section.prose h2 {
 article section.prose h3 {
   font-size: clamp(1.06rem, 1.1vw, 1.2rem);
 }
+
+/* One-line signoff shown at the bottom of every article. */
+article > footer.print\:hidden::after {
+  content: "Powered by beer and not AI, so expect typos.";
+  display: block;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dotted rgba(115, 115, 115, 0.45);
+  font-size: 0.9rem;
+  color: rgb(115, 115, 115);
+  text-align: center;
+}
