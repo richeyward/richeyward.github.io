@@ -9,7 +9,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-  # Daily publish at 05:00Z to allow for scheduled posts
+  # Weekly publish every Monday at 05:00Z for queued posts
   schedule:
     - cron: '0 5 * * MON'
 

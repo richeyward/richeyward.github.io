@@ -1,6 +1,6 @@
 ---
 title: Flare-On1 - 01 - Bob Roge
-date: 2026-05-14
+date: 2026-04-20
 draft: false
 author: Richey Ward
 tags:
@@ -14,7 +14,7 @@ series:
   - Flare-On-01
 series_order: 1
 slug: 01-bob-roge
-lastmod: 2026-05-14
+lastmod: 2026-06-02
 ---
 
 ## Initial

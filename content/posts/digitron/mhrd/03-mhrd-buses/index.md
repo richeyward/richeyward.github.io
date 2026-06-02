@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 03 - Buses
-date: 2026-04-29
+date: 2026-02-02
 draft: false
 author: Richey Ward
 summary: Expanding our gates to handle multiple bit buses
@@ -8,7 +8,7 @@ tags:
   - MHRD
 categories:
   - Digital Electronics
-lastmod: 2026-05-06
+lastmod: 2026-06-02
 slug: 03-buses
 description: Expanding our new gates to handle multiple bit buses in MHRD.
 series:

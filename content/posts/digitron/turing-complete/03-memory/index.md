@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - TC - 03 - Memory
-date: 2026-05-09
+date: 2026-03-30
 draft: false
 author: Richey Ward
 summary: Building memory components
@@ -13,7 +13,7 @@ series:
   - Electronics Through Gaming - TC
 series_order: 3
 slug: 03-memory
-lastmod: 2026-05-09
+lastmod: 2026-06-02
 ---
 
 

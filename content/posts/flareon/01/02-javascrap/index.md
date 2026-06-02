@@ -1,7 +1,7 @@
 ---
 title: Flare-On1 - 02 - Javascrap
 draft: false
-date: 2026-05-17
+date: 2026-04-27
 author: Richey Ward
 tags:
   - Flare-On
@@ -14,7 +14,7 @@ slug: 02-javascrap
 series:
   - Flare-On-01
 series_order: 2
-lastmod: 2026-05-17
+lastmod: 2026-06-02
 ---
 
 ## Initial

@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 08 - Decoder & CPU
-date: 2026-05-04
+date: 2026-03-09
 draft: false
 author: Richey Ward
 summary: Combining all the parts to make the CPU
@@ -13,7 +13,7 @@ series:
   - Electronics Through Gaming - MHRD
 series_order: 8
 slug: 08-decoder_and_cpu
-lastmod: 2026-05-06
+lastmod: 2026-06-02
 ---
 
 ## Introduction

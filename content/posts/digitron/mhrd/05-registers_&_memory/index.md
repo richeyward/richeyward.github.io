@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 05 - Registers & Memory
-date: 2026-05-01
+date: 2026-02-16
 draft: false
 author: Richey Ward
 summary: Creating registers and memory to store data values
@@ -8,7 +8,7 @@ tags:
   - MHRD
 categories:
   - Digital Electronics
-lastmod: 2026-05-06
+lastmod: 2026-06-02
 description: Creating registers and memory to store data values in MHRD
 series:
   - Electronics Through Gaming - MHRD

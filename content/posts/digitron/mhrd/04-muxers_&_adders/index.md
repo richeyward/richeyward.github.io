@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 04 - Muxers & Adders
-date: 2026-04-30
+date: 2026-02-09
 draft: false
 author: Richey Ward
 summary: Selecting inputs via multiplexers (MUX) and adding bits together using adders.
@@ -12,7 +12,7 @@ series:
   - Electronics Through Gaming - MHRD
 series_order: 4
 slug: 04-muxers-and-adders
-lastmod: 2026-05-06
+lastmod: 2026-06-02
 description: Selecting inputs via multiplexers (MUX) and adding bits together using adders.
 ---
 

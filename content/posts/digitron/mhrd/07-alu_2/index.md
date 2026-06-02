@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 07 - ALU (2)
-date: 2026-05-03
+date: 2026-03-02
 draft: false
 author: Richey Ward
 summary: Finalizing the building of the ALU
@@ -13,7 +13,7 @@ series:
   - Electronics Through Gaming - MHRD
 series_order: 7
 slug: 07-alu-2
-lastmod: 2026-05-06
+lastmod: 2026-06-02
 ---
 
 ## Introduction

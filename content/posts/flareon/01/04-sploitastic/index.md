@@ -1,7 +1,7 @@
 ---
 title: Flare-On1 - 04 - Sploitastic
 draft: false
-date: 2026-05-27
+date: 2026-05-11
 author: Richey Ward
 tags:
   - Flare-On
@@ -14,7 +14,7 @@ slug: 04-sploitastic
 series:
   - Flare-On-01
 series_order: 4
-lastmod: 2026-05-26
+lastmod: 2026-06-02
 ---
 
 ## Initial

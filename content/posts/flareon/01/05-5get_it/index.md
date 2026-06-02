@@ -1,7 +1,7 @@
 ---
 title: Flare-On1 - 05 - 5get_it
 draft: false
-date: 2026-05-28
+date: 2026-05-18
 author: Richey Ward
 tags:
   - Flare-On
@@ -14,7 +14,7 @@ slug: 05-5getit
 series:
   - Flare-On-01
 series_order: 5
-lastmod: 2026-05-26
+lastmod: 2026-06-02
 ---
 
 ## Initial

@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 06 - ALU (1)
-date: 2026-05-02
+date: 2026-02-23
 draft: false
 author: Richey Ward
 summary: Building the basic Arithmetic Logic Unit (ALU)
@@ -13,7 +13,7 @@ series:
   - Electronics Through Gaming - MHRD
 series_order: 6
 slug: 06-alu-1
-lastmod: 2026-05-06
+lastmod: 2026-06-02
 ---
 
 ## Introduction

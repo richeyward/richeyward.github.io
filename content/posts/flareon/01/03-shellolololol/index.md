@@ -1,7 +1,7 @@
 ---
 title: Flare-On1 - 03 - Shellolololol
 draft: false
-date: 2026-05-26
+date: 2026-05-04
 author: Richey Ward
 tags:
   - Flare-On
@@ -14,7 +14,7 @@ slug: 03-shellolololol
 series:
   - Flare-On-01
 series_order: 3
-lastmod: 2026-05-26
+lastmod: 2026-06-02
 ---
 
 ## Initial

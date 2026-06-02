@@ -1,7 +1,7 @@
 ---
 title: Learning Electronics Through Gaming - MHRD - 02 - Basic Logic
 author: Richey Ward
-date: 2026-04-28
+date: 2026-01-26
 tags:
   - MHRD
 categories:
@@ -11,7 +11,7 @@ draft: false
 series:
   - Electronics Through Gaming - MHRD
 series_order: 2
-lastmod: 2026-05-06
+lastmod: 2026-06-02
 slug: 02-mhrd-basic-logic-gates
 description: Building the NOT, AND, OR, and XOR gates in MHRD.
 ---

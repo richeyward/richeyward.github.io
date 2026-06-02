@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - TC - 02 - Arithmetic
-date: 2026-05-06
+date: 2026-03-23
 draft: false
 author: Richey Ward
 summary: Building arithmetic components
@@ -13,7 +13,7 @@ series:
   - Electronics Through Gaming - TC
 series_order: 2
 slug: 02-arithmetic
-lastmod: 2026-05-06
+lastmod: 2026-06-02
 ---
 
 ## Introduction

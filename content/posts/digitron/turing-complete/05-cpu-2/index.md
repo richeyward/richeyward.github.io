@@ -1,6 +1,6 @@
 ---
 title: Learning Electronics Through Gaming - TC - 05 - CPU (2)
-date: 2026-05-11
+date: 2026-04-13
 draft: false
 author: Richey Ward
 summary: Completing the CPU - Part 2
@@ -13,7 +13,7 @@ series:
   - Electronics Through Gaming - TC
 series_order: 5
 slug: 05-cpu-2
-lastmod: 2026-05-09
+lastmod: 2026-06-02
 ---
 
 ## Introduction
